@@ -173,27 +173,15 @@ public class DAOUsuario {
     
 
     public ArrayList<Usuario> todosLosUsuarios() {
-
         ArrayList<Usuario> resultado = new ArrayList<Usuario>();
-
         for (Object it : root.getChildren()) {
-
             Element xmlElem = (Element) it;
-
             try {
-
                 resultado.add(UsuarioToObject(xmlElem));
-
             } catch (ParseException ex) {
-
                 System.out.println(ex.getMessage());
-
             }
-
         }
-
-               
-
         return resultado;
 
     } 
@@ -202,78 +190,44 @@ public class DAOUsuario {
 
     
 
-    public void ordenarLista(int arreglos[])
-
-    {
-
+    public void ordenarLista(){
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
-
         lista = todosLosUsuarios();
-
         Usuario arreglo[] = new Usuario[lista.size()];
-
         arreglo = lista.toArray(arreglo);
-
+        System.out.println("El arreglo tiene longitud: "+ arreglo.length);
         eliminarUsuarios();
-
         for(int i = 0; i < arreglo.length - 1; i++){
-
             for(int j = 0; j < arreglo.length - 1; j++){
-
                 if (Integer.parseInt(arreglo[j].getHashIp()) < Integer.parseInt(arreglo[j + 1].getHashIp()))
-
                 {
-
+                    System.out.println("enre en el if con arreglo[j]"+arreglo[j].getHashIp()+" arreglo[j + 1]"+arreglo[j + 1].getHashIp());
                     Usuario tmp = arreglo[j+1];
-
                     arreglo[j+1] = arreglo[j];
-
                     arreglo[j] = tmp;
-
                 }
-
             }
-
         }
-
-        for(int i = 0;i < arreglo.length; i++){
-
-            //System.out.print(arreglo[i]+"\n");
-
+        for(int i = arreglo.length-1;i >= 0; i--){
+            System.out.println(i+" "+arreglo[i].getHashIp());
             agregarUsuario(arreglo[i]);
-
         }
-
-        
-
-        
 
     }
 
     
 
     public boolean borrarUsuario(String hashIp) {
-
         boolean resultado = false;
-
         Element aux = new Element("Usuario");
-
         List Usuario = this.root.getChildren("Usuario");
-
         while (aux != null) {
-
             aux = DAOUsuario.buscar(Usuario,hashIp);
-
             if (aux != null) {
-
                 Usuario.remove(aux);
-
                 resultado = updateDocument();
-
             }
-
         }
-
         return resultado;
 
     }
@@ -281,15 +235,10 @@ public class DAOUsuario {
     
 
     public void eliminarUsuarios(){
-
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
-
         lista = todosLosUsuarios();
-
         for (Usuario s:lista){
-
             borrarUsuario(s.getHashIp());
-
         }
 
     }
