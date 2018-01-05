@@ -36,7 +36,11 @@ public class HiloProcesaServidor extends Thread {
             String recibo = (String) ois.readObject();
             System.out.println("llego: "+recibo);
             if(recibo.contains("REGISTRO")){
-                new DAOUsuario().agregarUsuario(new Usuario(recibo.split(";")[1]));
+                //new DAOUsuario().agregarUsuario();
+            }
+            if(recibo.contains("SALIR")){
+                //LOGICA PARA ELIMINAR EL USUARIO
+                //new DAOUsuario().eliminarUsuario(recibo.split(";")[1]);
             }
             ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream()); 
             //servidor responde

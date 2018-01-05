@@ -7,11 +7,18 @@ package Dominio;
 public class Usuario {
     protected String ip;
     protected String hashIp;
+    protected Integer puertoArchivo;
+    protected Integer puertoTexto;
 
-    public Usuario(String ip) {
+
+    public Usuario(String ip, Integer puertoArchivo, Integer puertoTexto) {
         this.ip = ip;
         this.hashIp = toHash(ip).toString();
+        this.puertoArchivo = puertoArchivo;
+        this.puertoTexto = puertoTexto;
     }
+    
+    
 
     public String getIp() {
         return ip;

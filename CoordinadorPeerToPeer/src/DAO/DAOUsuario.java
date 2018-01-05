@@ -68,7 +68,9 @@ public class DAOUsuario {
     
 
     private Usuario UsuarioToObject(Element element) throws ParseException {
-        Usuario nUsuario = new Usuario (element.getChildText("ip"));
+        Usuario nUsuario = new Usuario (element.getChildText("ip"),
+                Integer.parseInt(element.getChildText("ip")),
+                Integer.parseInt(element.getChildText("ip")));
         return nUsuario;
 
     }
@@ -243,5 +245,16 @@ public class DAOUsuario {
 
     }
 
+    public Integer obtenerPuertoTextoDisponible(){
+        Integer puerto =0;
+        
+        return puerto;
+    }
+    
+    public Integer obtenerPuertoArchvioDisponible(){
+        Integer puerto =0;
+        
+        return puerto;
+    }
 }
 
