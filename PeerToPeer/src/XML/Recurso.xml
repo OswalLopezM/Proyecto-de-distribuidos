@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <root>
-    
+  <Recurso>
+    <nombreRecurso>recurso</nombreRecurso>
+    <hashRecurso>1546ds</hashRecurso>
+    <ipRecurso>192.168.4.1</ipRecurso>
+    <hashIpRecurso>1111111</hashIpRecurso>
+    <rutaRecurso>ruta</rutaRecurso>
+  </Recurso>
 </root>

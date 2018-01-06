@@ -14,5 +14,7 @@ public class Registro {
     public static Integer PUERTO_CONEXION_COORDINADOR = 5000;
     public static Integer PUERTO_CONEXION = 5001;
     
-    
+    //RUTAS DE XML
+     public static final String UBICACION_ARCHIVO_XML_FINGER = "src//XML//Finger.xml";
+    public static final String UBICACION_ARCHIVO_XML_RECURSO = "src//XML//Recurso.xml";
 }
