@@ -49,6 +49,8 @@ public class HiloProcesaServidor extends Thread {
                 new DAOUsuario().salirDePeerToPeer(recibo.split(";")[1]);
             }
             
+            Envio.enviarListaATodos();
+            
             //ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream()); 
             clientSocket.close();
             envio.close();

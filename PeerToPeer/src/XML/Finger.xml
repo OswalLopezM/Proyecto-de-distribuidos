@@ -1,6 +1,22 @@
 <root>
   <Finger>
-    <ip>192.168.1.4</ip>
-    <hash_ip>1111111</hash_ip>
+    <ip>169.254.46.206</ip>
+    <hash_ip>1646700547</hash_ip>
+  </Finger>
+  <Finger>
+    <ip>169.254.46.206</ip>
+    <hash_ip>1646700547</hash_ip>
+  </Finger>
+  <Finger>
+    <ip>169.254.46.206</ip>
+    <hash_ip>1646700547</hash_ip>
+  </Finger>
+  <Finger>
+    <ip>169.254.46.206</ip>
+    <hash_ip>1646700547</hash_ip>
+  </Finger>
+  <Finger>
+    <ip>169.254.46.206</ip>
+    <hash_ip>1646700547</hash_ip>
   </Finger>
 </root>

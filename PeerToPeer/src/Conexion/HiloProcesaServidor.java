@@ -5,6 +5,8 @@
  */
 package Conexion;
 
+import DAO.DAOFinger;
+import Dominio.Finger;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -42,6 +44,8 @@ public class HiloProcesaServidor extends Thread {
             }else if(recibo instanceof ArrayList){
                 //logica para actualizar tabla de finger
                 System.out.println("llego un array");
+                ArrayList<String> finger = (ArrayList<String>) recibo;
+                actualizarFinger(finger);
             }
             //ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream()); 
             //servidor responde
@@ -54,5 +58,25 @@ public class HiloProcesaServidor extends Thread {
       } catch (ClassNotFoundException ex) {    
             Logger.getLogger(HiloProcesaServidor.class.getName()).log(Level.SEVERE, null, ex);
         }    
+    }
+    
+    public void actualizarFinger(ArrayList<String> fingers){
+        new DAOFinger().eliminarFinger();
+        for(String texto : fingers ){
+            Finger finger = new Finger (texto.split(";")[0],toHash(texto.split(";")[0]).toString());
+            new DAOFinger().registrarFinger(finger);            
+        }
+    }
+    
+    
+/**
+     * metodo que se encarga de convertir a hash la contrasena
+     * @param clave clave a convertir
+     * @return la clave convertida
+     */
+    private Integer toHash(String ip){
+        Integer hash = 512;
+        hash =  37*hash + ip.hashCode();
+        return hash;
     }
 }

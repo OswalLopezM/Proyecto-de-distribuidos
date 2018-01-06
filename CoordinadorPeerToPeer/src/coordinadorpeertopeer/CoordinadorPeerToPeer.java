@@ -23,7 +23,6 @@ public class CoordinadorPeerToPeer {
                 Envio.enviarListaATodos();
             }else if(entradaTeclado.equals("6")){
                 Envio.enviarTexto();
-                
             }
         }
 
