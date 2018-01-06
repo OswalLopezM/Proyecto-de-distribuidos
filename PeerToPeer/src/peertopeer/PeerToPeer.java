@@ -10,7 +10,11 @@ import Conexion.PeticionCoordinador;
 import ConexionArchivos.HiloEnvioArchivo;
 import ConexionArchivos.HiloPrincipalArchivo;
 import ConexionArchivos.HiloRecepcionArchivo;
+import DAO.DAOFinger;
+import DAO.DAORecurso;
 import DAO.DAOUsuario;
+import Dominio.Finger;
+import Dominio.Recurso;
 import Dominio.Usuario;
 import Interfaz.Interfaz;
 import java.net.InetAddress;
@@ -35,6 +39,7 @@ public class PeerToPeer {
             System.out.println("¿QUE DESEA HACER?");
             System.out.println("5: Registrar usuario");
             System.out.println("6: Salir PeerToPeer");
+            System.out.println("7: Salir PeerToPeer");
             System.err.println("0: Salir");
             Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
             entradaTeclado = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner

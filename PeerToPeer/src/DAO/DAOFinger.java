@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
-import Dominio.Recurso;
+
+import Dominio.Finger;
 import Registro.Registro;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,15 +16,15 @@ import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
 
 /**
- *
- * @author oswal
+ * Clase que se encarga de la logica de negocio de los productos
+ * @author mariangel
  */
-public class DAORecurso {
-     private Element root;
+public class DAOFinger {
+    private Element root;
     
-    private String fileLocation = Registro.UBICACION_ARCHIVO_XML_RECURSO;
+    private String fileLocation = Registro.UBICACION_ARCHIVO_XML_FINGER;
     
-    public DAORecurso() {
+    public DAOFinger() {
         try {
             SAXBuilder builder = new SAXBuilder(false);
             Document doc = null;
@@ -46,30 +42,21 @@ public class DAORecurso {
      * @param nFinger Objeto Finger
      * @return El producto convertido
      */
-    private Element RecursotoXmlElement(Recurso nRecurso ) {
-        Element Recursotrans = new Element("Recurso");
+    private Element FingertoXmlElement(Finger nFinger ) {
+        Element Fingertrans = new Element("Finger");
         
-        Element nombreRecurso = new Element("nombreRecurso");
-        Element hashRecurso = new Element("hashRecurso");
-        Element ipRecurso = new Element("ipRecurso");
-        Element hashIpRecurso = new Element("hashIpRecurso");
-        Element rutaRecurso = new Element("rutaRecurso");
+        Element ip = new Element("ip");
+        Element hash_ip = new Element("hash_ip");
         
-        nombreRecurso.setText(nRecurso.getNombreRecurso());
-        hashRecurso.setText(nRecurso.getHashRecurso());
-        ipRecurso.setText(nRecurso.getIpRecurso());
-        hashIpRecurso.setText(nRecurso.getHashIpRecurso());
-        rutaRecurso.setText(nRecurso.getRutaRecurso());
+        ip.setText(nFinger.getIp());
+        hash_ip.setText(nFinger.getHash_ip());
 
      
         
-        Recursotrans.addContent(nombreRecurso);
-        Recursotrans.addContent(hashRecurso);
-        Recursotrans.addContent(ipRecurso);
-        Recursotrans.addContent(hashIpRecurso);
-        Recursotrans.addContent(rutaRecurso);
+        Fingertrans.addContent(ip);
+        Fingertrans.addContent(hash_ip);
          
-        return Recursotrans;
+        return Fingertrans;
     }
     
     /**
@@ -78,15 +65,12 @@ public class DAORecurso {
      * @return El objeto Finger
      * @throws ParseException 
      */
-    private Recurso RecursoToObject(Element element) throws ParseException {
+    private Finger FingerToObject(Element element) throws ParseException {
        
-        Recurso nRecurso = new Recurso (element.getChildText("nombreRecurso"),
-                element.getChildText("hashRecurso"),
-                element.getChildText("ipRecurso"),
-                element.getChildText("hashIpRecurso"),
-                element.getChildText("rutaRecurso"));
+        Finger nFinger = new Finger (element.getChildText("ip"),
+                element.getChildText("hash_ip"));
                 
-        return nRecurso;
+        return nFinger;
     }
     
     
@@ -95,9 +79,9 @@ public class DAORecurso {
      * @param nFinger Objeto Finger
      * @return verdadero o falso
      */
-    public boolean registrarRecurso(Recurso nRecurso) {
+    public boolean registrarFinger(Finger nFinger) {
         boolean resultado = false;
-        root.addContent(RecursotoXmlElement((Recurso) nRecurso));
+        root.addContent(FingertoXmlElement((Finger) nFinger));
         resultado = updateDocument();
         return resultado;
     }
@@ -127,11 +111,11 @@ public class DAORecurso {
      * @param id Identificador del producto
      * @return el elemento
      */
-    public static Element buscar(List raiz, String hashRecurso) {
+    public static Element buscar(List raiz, String ip) {
         Iterator i = raiz.iterator();
         while (i.hasNext()) {
             Element e = (Element) i.next();
-            if ((hashRecurso.equals(e.getChild("hashRecurso").getText()))) {
+            if ((ip.equals(e.getChild("ip").getText()))) {
                 return e;
             }
         }
@@ -143,13 +127,13 @@ public class DAORecurso {
      * @param id Identificador del producto
      * @return retorna el objeto producto
      */
-    public Recurso buscarProducto(String hashRecurso) throws ParseException {
+    public Finger buscarFinger(String ip) throws ParseException {
         Element aux = new Element("Finger");
-        List Recurso= this.root.getChildren("Finger");
+        List Finger= this.root.getChildren("Finger");
         while (aux != null) {
-            aux = DAORecurso.buscar(Recurso,hashRecurso);
+            aux = DAOFinger.buscar(Finger,ip);
             if (aux != null) {
-                return RecursoToObject(aux);
+                return FingerToObject(aux);
             }
         }
         return null;
@@ -159,13 +143,13 @@ public class DAORecurso {
      * Obtiene la lista de todos los productos
      * @return la lista de todos los productos
      */
-    public ArrayList<Recurso> todosLosRecursos() {
-        ArrayList<Recurso> resultado = new ArrayList<>();
+    public ArrayList<Finger> todosLosFinger() {
+        ArrayList<Finger> resultado = new ArrayList<>();
         
         for (Object it : root.getChildren()) {
             Element xmlElem = (Element) it;
             try {
-                resultado.add(RecursoToObject(xmlElem));
+                resultado.add(FingerToObject(xmlElem));
             } catch (ParseException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -174,15 +158,14 @@ public class DAORecurso {
         return resultado;
     }  
     
-    
-    public boolean borrarRecurso(String hashRecurso) {
+    public boolean borrarFinger(String ip) {
         boolean resultado = false;
-        Element aux = new Element("Recurso");
-        List Recurso = this.root.getChildren("Recurso");
+        Element aux = new Element("Finger");
+        List Finger = this.root.getChildren("Finger");
         while (aux != null) {
-            aux = DAORecurso.buscar(Recurso,hashRecurso);
+            aux = DAOFinger.buscar(Finger,ip);
             if (aux != null) {
-                Recurso.remove(aux);
+                Finger.remove(aux);
                 resultado = updateDocument();
             }
         }
@@ -192,13 +175,11 @@ public class DAORecurso {
 
     
 
-    public void eliminarRecurso(){
-        ArrayList<Recurso> lista = new ArrayList<Recurso>();
-        lista = todosLosRecursos();
-        for (Recurso s:lista){
-            borrarRecurso(s.getHashRecurso());
+    public void eliminarFinger(){
+        ArrayList<Finger> lista = new ArrayList<Finger>();
+        lista = todosLosFinger();
+        for (Finger s:lista){
+            borrarFinger(s.getHash_ip());
         }
-
     }
-
 }
