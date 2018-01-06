@@ -9,24 +9,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import java.text.ParseException;
-
 import java.util.ArrayList;
-
 import java.util.Iterator;
-
 import java.util.List;
-
 import org.jdom.Document;
-
 import org.jdom.Element;
-
 import org.jdom.JDOMException;
-
 import org.jdom.input.SAXBuilder;
-
 import org.jdom.output.XMLOutputter;
-
-
 
 public class DAOUsuario {
 
@@ -59,8 +49,16 @@ public class DAOUsuario {
         hashIp.setText(nUsuario.getHashIp());
         Element ip = new Element("ip");
         ip.setText((nUsuario.getIp()));
+        Element puertoTexto = new Element("puertoTexto");
+        puertoTexto.setText((nUsuario.getPuertoTexto()).toString());
+        Element puertoArchivo = new Element("puertoArchivo");
+        puertoArchivo.setText((nUsuario.getPuertoArchivo()).toString());
+        
+        
         Usuariotrans.addContent(hashIp);
         Usuariotrans.addContent(ip);
+        Usuariotrans.addContent(puertoTexto);
+        Usuariotrans.addContent(puertoArchivo);
         return Usuariotrans;
 
     }
@@ -69,8 +67,8 @@ public class DAOUsuario {
 
     private Usuario UsuarioToObject(Element element) throws ParseException {
         Usuario nUsuario = new Usuario (element.getChildText("ip"),
-                Integer.parseInt(element.getChildText("ip")),
-                Integer.parseInt(element.getChildText("ip")));
+                Integer.parseInt(element.getChildText("puertoArchivo")),
+                Integer.parseInt(element.getChildText("puertoTexto")));
         return nUsuario;
 
     }
@@ -83,6 +81,15 @@ public class DAOUsuario {
         resultado = updateDocument();
         return resultado;
 
+    }
+    
+    public Usuario registrarUsuario(String ip) {
+        Usuario usuario = new Usuario(ip,obtenerPuertoArchvioDisponible(),
+                obtenerPuertoTextoDisponible());
+        root.addContent(UsuariotoXmlElement((Usuario) usuario));
+        updateDocument();
+        ordenarLista();
+        return usuario;
     }
 
     
@@ -217,6 +224,21 @@ public class DAOUsuario {
 
     }
 
+    public boolean salirDePeerToPeer(String ip) {
+        boolean resultado = false;
+        Usuario u = new Usuario(ip,0,0);
+        Element aux = new Element("Usuario");
+        List Usuario = this.root.getChildren("Usuario");
+        while (aux != null) {
+            aux = DAOUsuario.buscar(Usuario,u.getHashIp());
+            if (aux != null) {
+                Usuario.remove(aux);
+                resultado = updateDocument();
+            }
+        }
+        return resultado;
+
+    }
     
 
     public boolean borrarUsuario(String hashIp) {
@@ -246,14 +268,26 @@ public class DAOUsuario {
     }
 
     public Integer obtenerPuertoTextoDisponible(){
-        Integer puerto =0;
-        
+        Integer puerto =5001;
+        ArrayList<Usuario> lista = todosLosUsuarios();
+        for (Usuario usuario : lista){
+            if(usuario.getPuertoTexto() > puerto){
+                puerto = usuario.getPuertoTexto();
+            }
+        }
+        puerto++;
         return puerto;
     }
     
     public Integer obtenerPuertoArchvioDisponible(){
-        Integer puerto =0;
-        
+        Integer puerto =6001;
+        ArrayList<Usuario> lista = todosLosUsuarios();
+        for (Usuario usuario : lista){
+            if(usuario.getPuertoArchivo() > puerto){
+                puerto = usuario.getPuertoArchivo();
+            }
+        }
+        puerto++;
         return puerto;
     }
 }

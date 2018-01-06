@@ -20,6 +20,14 @@ import java.net.Socket;
  */
 public class HiloEnvioArchivo extends Thread{
     
+    Socket clientSocket;
+
+    public HiloEnvioArchivo(Socket clientSocket) {
+        this.clientSocket = clientSocket;
+    }
+    
+    
+    
     public void run(){
         BufferedInputStream bis;
         BufferedOutputStream bos;
@@ -30,11 +38,10 @@ public class HiloEnvioArchivo extends Thread{
 
         try{
             final File localFile = new File( nombreArchivo );
-            Socket client = new Socket("localhost", 5000);
             bis = new BufferedInputStream(new FileInputStream(localFile));
-            bos = new BufferedOutputStream(client.getOutputStream());
+            bos = new BufferedOutputStream(clientSocket.getOutputStream());
             //Enviamos el nombre del fichero
-            DataOutputStream dos=new DataOutputStream(client.getOutputStream());
+            DataOutputStream dos=new DataOutputStream(clientSocket.getOutputStream());
             dos.writeUTF(localFile.getName());
             Status status = new Status(nombreArchivo,"envio");
             int acumulado = 0 , cont = 0;
@@ -51,7 +58,7 @@ public class HiloEnvioArchivo extends Thread{
             System.out.println("Se ha terminado el envio del archivo");
             bis.close();
             bos.close();
-            client.close();
+            clientSocket.close();
         }catch ( Exception e ) {
             System.err.println(e);
         }

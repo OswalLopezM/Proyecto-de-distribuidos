@@ -7,6 +7,7 @@ package Conexion;
 
 import DAO.DAOUsuario;
 import Dominio.Usuario;
+import Registro.Registro;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -32,21 +33,25 @@ public class HiloProcesaServidor extends Thread {
        try {    
             System.out.println("SE INICIA PROCESO DE RECIBO");
             //servidor recibe
+            
             ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
             String recibo = (String) ois.readObject();
+            //servidor envia
+            ObjectOutputStream envio;
+            envio = new ObjectOutputStream(clientSocket.getOutputStream());
             System.out.println("llego: "+recibo);
             if(recibo.contains("REGISTRO")){
-                //new DAOUsuario().agregarUsuario();
+                Usuario usuario = new DAOUsuario().registrarUsuario(recibo.split(";")[1]);
+                envio.writeObject(usuario.getPuertoArchivo()+";"+usuario.getPuertoTexto());
             }
             if(recibo.contains("SALIR")){
                 //LOGICA PARA ELIMINAR EL USUARIO
-                //new DAOUsuario().eliminarUsuario(recibo.split(";")[1]);
+                new DAOUsuario().salirDePeerToPeer(recibo.split(";")[1]);
             }
-            ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream()); 
-            //servidor responde
-            //oos.writeObject("");
+            
+            //ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream()); 
             clientSocket.close();
-            oos.close();
+            envio.close();
             ois.close();
       } catch (IOException ex) {
           Logger.getLogger(HiloProcesaServidor.class.getName()).log(Level.SEVERE, null, ex);

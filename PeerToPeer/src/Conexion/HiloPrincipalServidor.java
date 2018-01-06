@@ -5,8 +5,11 @@
  */
 package Conexion;
 
+import DAO.DAOUsuario;
+import Dominio.Usuario;
 import Registro.Registro;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -21,15 +24,18 @@ public class HiloPrincipalServidor extends Thread{
      public void run (){
             
         try {
-            System.out.println("SE INICIA HILO DE ESCUCHA");
-            int PUERTO = Registro.PUERTO_CONEXION; //Puerto para la conexión
+            String ip = InetAddress.getLocalHost().getHostAddress();
+            Usuario usuario = new DAOUsuario().buscarUsuario(toHash(ip).toString());
+            
+            int PUERTO = usuario.getPuertoTexto(); //Puerto para la conexión
+            System.out.println("SE INICIA HILO DE ESCUCHA DE TEXTO CON PUERTO: "+PUERTO);
             ServerSocket serverSocket = new ServerSocket(PUERTO); //Socket del servidor
             Socket clientSocket; //Socket del cliente
             for (;;)
             {
                 clientSocket = serverSocket.accept();
                 new HiloProcesaServidor(clientSocket).start();
-            } 
+            }
         } catch (IOException ex) {
             Logger.getLogger(HiloPrincipalServidor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -37,4 +43,15 @@ public class HiloPrincipalServidor extends Thread{
      
     
      }
+     
+     /**
+     * metodo que se encarga de convertir a hash la contrasena
+     * @param clave clave a convertir
+     * @return la clave convertida
+     */
+    private Integer toHash(String ip){
+        Integer hash = 512;
+        hash =  37*hash + ip.hashCode();
+        return hash;
+    }
 }
