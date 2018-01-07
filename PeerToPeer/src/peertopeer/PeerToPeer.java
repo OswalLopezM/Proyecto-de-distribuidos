@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package peertopeer;
 
 import Conexion.HiloPrincipalServidor;
@@ -29,10 +24,23 @@ import java.util.logging.Logger;
  */
 public class PeerToPeer {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
+        String ip = "";
+        /*
+        try {
+            ip = InetAddress.getLocalHost().getHostAddress();
+            
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Recurso recurso = new Recurso("despacito.mp3",ip,"ruta sin importancia",true);
+        new DAORecurso().registrarRecurso(recurso);
+        recurso = new Recurso("cancionaleatoria.mp3",ip,"ruta sin importancia",true);
+        new DAORecurso().registrarRecurso(recurso);
+        */
+        
+        
         new DAOUsuario().eliminarUsuarios();
         String entradaTeclado="";
         while(!entradaTeclado.equals("0")){

@@ -11,19 +11,29 @@ package Dominio;
  */
 public class Recurso {
    public String nombreRecurso;
-   public String hashRecurso;
+   public Integer hashRecurso;
    public String ipRecurso;
-   public String hashIpRecurso;
+   public Integer hashIpRecurso;
    public String rutaRecurso;
+   public Boolean recursoPropio;
    
     public Recurso(){}
    
-    public Recurso(String nombreRecurso, String hashRecurso, String ipRecurso, String hashIpRecurso, String rutaRecurso) {
+    public Recurso(String nombreRecurso, String ipRecurso, String rutaRecurso,Boolean recursoPropio) {
         this.nombreRecurso = nombreRecurso;
-        this.hashRecurso = hashRecurso;
+        this.hashRecurso = toHash(nombreRecurso);
         this.ipRecurso = ipRecurso;
-        this.hashIpRecurso = hashIpRecurso;
+        this.hashIpRecurso = toHash(ipRecurso);
         this.rutaRecurso = rutaRecurso;
+        this.recursoPropio = recursoPropio;
+    }
+
+    public Boolean getRecursoPropio() {
+        return recursoPropio;
+    }
+
+    public void setRecursoPropio(Boolean recursoPropio) {
+        this.recursoPropio = recursoPropio;
     }
 
     /**
@@ -38,7 +48,7 @@ public class Recurso {
      * Obtiene el hash del nombre del recurso
      * @return el hash del recurso
      */
-    public String getHashRecurso() {
+    public Integer getHashRecurso() {
         return hashRecurso;
     }
 
@@ -54,7 +64,7 @@ public class Recurso {
      * Obtiene el hash del ip del recurso
      * @return hash del ip
      */
-    public String getHashIpRecurso() {
+    public Integer getHashIpRecurso() {
         return hashIpRecurso;
     }
 
@@ -78,7 +88,7 @@ public class Recurso {
      * Establece el hash del nombre del recurso
      * @param hashRecurso 
      */
-    public void setHashRecurso(String hashRecurso) {
+    public void setHashRecurso(Integer hashRecurso) {
         this.hashRecurso = hashRecurso;
     }
 
@@ -94,7 +104,7 @@ public class Recurso {
      * Establece el hash del ip del recurso
      * @param hashIpRecurso
      */
-    public void setHashIpRecurso(String hashIpRecurso) {
+    public void setHashIpRecurso(Integer hashIpRecurso) {
         this.hashIpRecurso = hashIpRecurso;
     }
 
@@ -106,5 +116,16 @@ public class Recurso {
         this.rutaRecurso = rutaRecurso;
     }
    
+    
+/**
+     * metodo que se encarga de convertir a hash la contrasena
+     * @param clave clave a convertir
+     * @return la clave convertida
+     */
+    private Integer toHash(String ip){
+        Integer hash = 512;
+        hash =  37*hash + ip.hashCode();
+        return hash;
+    }
    
 }

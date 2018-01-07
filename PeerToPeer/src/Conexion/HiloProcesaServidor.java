@@ -46,6 +46,7 @@ public class HiloProcesaServidor extends Thread {
                 System.out.println("llego un array");
                 ArrayList<String> finger = (ArrayList<String>) recibo;
                 actualizarFinger(finger);
+                new EnvioNodo().enviarListaRecursos(finger);
             }
             //ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream()); 
             //servidor responde

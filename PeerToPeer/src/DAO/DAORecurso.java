@@ -13,6 +13,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -54,13 +56,14 @@ public class DAORecurso {
         Element ipRecurso = new Element("ipRecurso");
         Element hashIpRecurso = new Element("hashIpRecurso");
         Element rutaRecurso = new Element("rutaRecurso");
+        Element recursoPropio = new Element("recursoPropio");
         
         nombreRecurso.setText(nRecurso.getNombreRecurso());
-        hashRecurso.setText(nRecurso.getHashRecurso());
+        hashRecurso.setText(nRecurso.getHashRecurso().toString());
         ipRecurso.setText(nRecurso.getIpRecurso());
-        hashIpRecurso.setText(nRecurso.getHashIpRecurso());
+        hashIpRecurso.setText(nRecurso.getHashIpRecurso().toString());
         rutaRecurso.setText(nRecurso.getRutaRecurso());
-
+        recursoPropio.setText(nRecurso.getRecursoPropio().toString());
      
         
         Recursotrans.addContent(nombreRecurso);
@@ -68,7 +71,8 @@ public class DAORecurso {
         Recursotrans.addContent(ipRecurso);
         Recursotrans.addContent(hashIpRecurso);
         Recursotrans.addContent(rutaRecurso);
-         
+        Recursotrans.addContent(recursoPropio);
+        
         return Recursotrans;
     }
     
@@ -81,10 +85,9 @@ public class DAORecurso {
     private Recurso RecursoToObject(Element element) throws ParseException {
        
         Recurso nRecurso = new Recurso (element.getChildText("nombreRecurso"),
-                element.getChildText("hashRecurso"),
                 element.getChildText("ipRecurso"),
-                element.getChildText("hashIpRecurso"),
-                element.getChildText("rutaRecurso"));
+                element.getChildText("rutaRecurso"),
+                Boolean.parseBoolean(element.getChildText("recursoPropio")));
                 
         return nRecurso;
     }
@@ -143,7 +146,7 @@ public class DAORecurso {
      * @param id Identificador del producto
      * @return retorna el objeto producto
      */
-    public Recurso buscarProducto(String hashRecurso) throws ParseException {
+    public Recurso buscarRecurso(String hashRecurso) throws ParseException {
         Element aux = new Element("Finger");
         List Recurso= this.root.getChildren("Finger");
         while (aux != null) {
@@ -181,9 +184,14 @@ public class DAORecurso {
         List Recurso = this.root.getChildren("Recurso");
         while (aux != null) {
             aux = DAORecurso.buscar(Recurso,hashRecurso);
-            if (aux != null) {
-                Recurso.remove(aux);
-                resultado = updateDocument();
+            try {
+                if (aux != null && !RecursoToObject(aux).getRecursoPropio()) {
+                    Recurso.remove(aux);
+                    resultado = updateDocument();
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(DAORecurso.class.getName()).log(Level.SEVERE,
+                        null, ex);
             }
         }
         return resultado;
@@ -196,7 +204,7 @@ public class DAORecurso {
         ArrayList<Recurso> lista = new ArrayList<Recurso>();
         lista = todosLosRecursos();
         for (Recurso s:lista){
-            borrarRecurso(s.getHashRecurso());
+            borrarRecurso(s.getHashRecurso().toString());
         }
 
     }
