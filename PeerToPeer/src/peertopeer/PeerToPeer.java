@@ -43,6 +43,7 @@ public class PeerToPeer {
         String prueba = "hola";
         System.out.println("el hash es: "+ prueba.hashCode());
         new DAOUsuario().eliminarUsuarios();
+        new DAOOtrosUsuarios().eliminarOtrosUsuarios();
         String entradaTeclado="";
         while(!entradaTeclado.equals("0")){
             System.out.println("¿QUE DESEA HACER?");

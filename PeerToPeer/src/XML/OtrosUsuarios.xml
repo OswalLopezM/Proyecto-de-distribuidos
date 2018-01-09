@@ -1,22 +1,14 @@
 <root>
-  <Finger>
+  <OtrosUsuarios>
     <ip>169.254.46.206</ip>
-    <hash_ip>1646700547</hash_ip>
-  </Finger>
-  <Finger>
-    <ip>169.254.46.206</ip>
-    <hash_ip>1646700547</hash_ip>
-  </Finger>
-  <Finger>
-    <ip>169.254.46.206</ip>
-    <hash_ip>1646700547</hash_ip>
-  </Finger>
-  <Finger>
-    <ip>169.254.46.206</ip>
-    <hash_ip>1646700547</hash_ip>
-  </Finger>
-  <Finger>
-    <ip>169.254.46.206</ip>
-    <hash_ip>1646700547</hash_ip>
-  </Finger>
+    <hash_ip>-1419671096</hash_ip>
+    <puertoArchivo>6003</puertoArchivo>
+    <puertoTexto>5003</puertoTexto>
+  </OtrosUsuarios>
+  <OtrosUsuarios>
+    <ip>192.168.1.10</ip>
+    <hash_ip>1907906113</hash_ip>
+    <puertoArchivo>6002</puertoArchivo>
+    <puertoTexto>5002</puertoTexto>
+  </OtrosUsuarios>
 </root>

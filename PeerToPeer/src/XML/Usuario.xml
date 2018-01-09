@@ -1,1 +1,8 @@
-<root />
+<root>
+  <Usuario>
+    <hashIp>1646700547</hashIp>
+    <ip>169.254.46.206</ip>
+    <puertoTexto>5003</puertoTexto>
+    <puertoArchivo>6003</puertoArchivo>
+  </Usuario>
+</root>

@@ -123,7 +123,7 @@ public class DAOOtrosUsuarios {
         Iterator i = raiz.iterator();
         while (i.hasNext()) {
             Element e = (Element) i.next();
-            if ((ip.equals(e.getChild("ip").getText()))) {
+            if ((ip.equals(e.getChild("hash_ip").getText()))) {
                 return e;
             }
         }
@@ -192,7 +192,7 @@ public class DAOOtrosUsuarios {
     }
     
     public void actualizarListaOtrosUsuarios(ArrayList<String> otrosUsuarioss){
-        new DAOOtrosUsuarios().eliminarOtrosUsuarios();
+        eliminarOtrosUsuarios();
         for(String texto : otrosUsuarioss ){
             OtrosUsuarios otrosUsuarios = new OtrosUsuarios (texto.split(";")[0],
                     toHash(texto.split(";")[1]),
