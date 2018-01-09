@@ -20,20 +20,19 @@ import java.util.ArrayList;
  */
 public class Envio {
     public static void enviarListaATodos(){
-        ArrayList<String> finger = Envio.obtenerListaString();
+        ArrayList<String> listaUsuarios = new DAOUsuario().obtenerListaString();
         Socket clientSocket;
         ArrayList<Usuario> usuarios = new DAOUsuario().todosLosUsuarios();
         ObjectOutputStream envio;
         try {
             for (Usuario u : usuarios){
-                System.out.println("vot a enviar a usaurio con ip: "+u.getIp()+" y puerto: "+u.getPuertoTexto());
+                System.out.println("voy a enviar a usaurio con ip: "+u.getIp()+" y puerto: "+u.getPuertoTexto());
                 clientSocket = new Socket(u.getIp(),u.getPuertoTexto());
                 envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
-                envio.writeObject(finger);
+                envio.writeObject(listaUsuarios);
                 envio.close();
-            clientSocket.close();
+                clientSocket.close();
             }
-            
         } catch (IOException ex) {
             //Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("El servidor esta desconectado");
@@ -54,18 +53,16 @@ public class Envio {
     }
     
     public static void enviarTexto(){
-        ArrayList<String> finger = Envio.obtenerListaString();
         Socket clientSocket;
         ArrayList<Usuario> usuarios = new DAOUsuario().todosLosUsuarios();
         ObjectOutputStream envio;
         try {
             for (Usuario u : usuarios){
-                System.out.println("vot a enviar a usaurio con ip: "+u.getIp()+" y puerto: "+u.getPuertoTexto());
                 clientSocket = new Socket(u.getIp(),u.getPuertoTexto());
                 envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
                 envio.writeObject("envie texto");
                 envio.close();
-            clientSocket.close();
+                clientSocket.close();
             }
             
         } catch (IOException ex) {

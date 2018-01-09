@@ -5,10 +5,10 @@ import Conexion.PeticionCoordinador;
 import ConexionArchivos.HiloEnvioArchivo;
 import ConexionArchivos.HiloPrincipalArchivo;
 import ConexionArchivos.HiloRecepcionArchivo;
-import DAO.DAOFinger;
+import DAO.DAOOtrosUsuarios;
 import DAO.DAORecurso;
 import DAO.DAOUsuario;
-import Dominio.Finger;
+import Dominio.OtrosUsuarios;
 import Dominio.Recurso;
 import Dominio.Usuario;
 import Interfaz.Interfaz;
@@ -40,7 +40,8 @@ public class PeerToPeer {
         new DAORecurso().registrarRecurso(recurso);
         */
         
-        
+        String prueba = "hola";
+        System.out.println("el hash es: "+ prueba.hashCode());
         new DAOUsuario().eliminarUsuarios();
         String entradaTeclado="";
         while(!entradaTeclado.equals("0")){
@@ -51,15 +52,6 @@ public class PeerToPeer {
             System.err.println("0: Salir");
             Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
             entradaTeclado = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
-            /*if ((entradaTeclado.equals("1"))){
-                new HiloPrincipalServidor().start();
-            }else if((entradaTeclado.equals("2"))){
-                
-            }else if((entradaTeclado.equals("3"))){
-                //new HiloEnvioArchivo().start();
-            }else if((entradaTeclado.equals("4"))){
-                new HiloRecepcionArchivo().start();
-            }else*/
             if(entradaTeclado.equals("5")){
                 PeerToPeer.registrarmeConCoordinador();
                 new HiloPrincipalServidor().start();

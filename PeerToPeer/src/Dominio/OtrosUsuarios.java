@@ -9,15 +9,19 @@ package Dominio;
  *
  * @author oswal
  */
-public class Finger {
+public class OtrosUsuarios {
     public String ip;
-    public String hash_ip;
+    public Integer hash_ip;
+    public Integer puertoArchivo;
+    public Integer puertoTexto;
 
-    public Finger(){}
-    
-    public Finger(String ip, String hash_ip) {
+    public OtrosUsuarios(){}
+
+    public OtrosUsuarios(String ip, Integer hash_ip, Integer puertoArchivo, Integer puertoTexto) {
         this.ip = ip;
         this.hash_ip = hash_ip;
+        this.puertoArchivo = puertoArchivo;
+        this.puertoTexto = puertoTexto;
     }
 
     /**
@@ -32,7 +36,7 @@ public class Finger {
      * Obtiene el hash del ip
      * @return el hash de la ip
      */
-    public String getHash_ip() {
+    public Integer getHash_ip() {
         return hash_ip;
     }
 
@@ -48,9 +52,27 @@ public class Finger {
      * Establece el hash del ip
      * @param hash_ip el hash del ip
      */
-    public void setHash_ip(String hash_ip) {
+    public void setHash_ip(Integer hash_ip) {
         this.hash_ip = hash_ip;
     }
+
+    public Integer getPuertoArchivo() {
+        return puertoArchivo;
+    }
+
+    public void setPuertoArchivo(Integer puertoArchivo) {
+        this.puertoArchivo = puertoArchivo;
+    }
+
+    public Integer getPuertoTexto() {
+        return puertoTexto;
+    }
+
+    public void setPuertoTexto(Integer puertoTexto) {
+        this.puertoTexto = puertoTexto;
+    }
+    
+    
     
     
 }

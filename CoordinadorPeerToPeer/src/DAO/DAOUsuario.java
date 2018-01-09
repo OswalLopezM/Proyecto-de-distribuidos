@@ -290,5 +290,19 @@ public class DAOUsuario {
         puerto++;
         return puerto;
     }
+    
+    public static ArrayList<String> obtenerListaString(){
+        ArrayList<String> listaString  = new ArrayList<String>();
+        
+        ArrayList<Usuario> usuarios = new DAOUsuario().todosLosUsuarios();
+        for ( Usuario u: usuarios){
+            listaString.add(u.getIp()+";"+
+                    u.getHashIp()+";"+
+                    u.getPuertoArchivo()+";"+
+                    u.getPuertoTexto());
+            
+        }
+        return listaString;
+    }
 }
 

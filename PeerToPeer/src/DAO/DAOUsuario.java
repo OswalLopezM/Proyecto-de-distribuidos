@@ -46,7 +46,7 @@ public class DAOUsuario {
 
         Element Usuariotrans = new Element("Usuario");
         Element hashIp = new Element("hashIp");
-        hashIp.setText(nUsuario.getHashIp());
+        hashIp.setText(nUsuario.getHashIp().toString());
         Element ip = new Element("ip");
         ip.setText((nUsuario.getIp()));
         Element puertoTexto = new Element("puertoTexto");
@@ -210,7 +210,7 @@ public class DAOUsuario {
         eliminarUsuarios();
         for(int i = 0; i < arreglo.length - 1; i++){
             for(int j = 0; j < arreglo.length - 1; j++){
-                if (Integer.parseInt(arreglo[j].getHashIp()) < Integer.parseInt(arreglo[j + 1].getHashIp()))
+                if (arreglo[j].getHashIp() < (arreglo[j + 1].getHashIp()))
                 {
                     System.out.println("enre en el if con arreglo[j]"+arreglo[j].getHashIp()+" arreglo[j + 1]"+arreglo[j + 1].getHashIp());
                     Usuario tmp = arreglo[j+1];
@@ -249,7 +249,7 @@ public class DAOUsuario {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
         lista = todosLosUsuarios();
         for (Usuario s:lista){
-            borrarUsuario(s.getHashIp());
+            borrarUsuario(s.getHashIp().toString());
         }
 
     }

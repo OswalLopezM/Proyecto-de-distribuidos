@@ -6,13 +6,13 @@ package Dominio;
  */
 public class Usuario {
     protected String ip;
-    protected String hashIp;
+    protected Integer hashIp;
     protected Integer puertoArchivo;
     protected Integer puertoTexto;
 
     public Usuario(String ip, Integer puertoArchivo, Integer puertoTexto) {
         this.ip = ip;
-        this.hashIp = toHash(ip).toString();
+        this.hashIp = toHash(ip);
         this.puertoArchivo = puertoArchivo;
         this.puertoTexto = puertoTexto;
     }
@@ -43,11 +43,11 @@ public class Usuario {
         this.ip = ip;
     }
 
-    public String getHashIp() {
+    public Integer getHashIp() {
         return hashIp;
     }
 
-    public void setHashIp(String hashIp) {
+    public void setHashIp(Integer hashIp) {
         this.hashIp = hashIp;
     }
     

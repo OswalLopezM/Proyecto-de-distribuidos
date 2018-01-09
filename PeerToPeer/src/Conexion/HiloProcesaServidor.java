@@ -5,8 +5,10 @@
  */
 package Conexion;
 
-import DAO.DAOFinger;
-import Dominio.Finger;
+import DAO.DAOOtrosUsuarios;
+import DAO.DAORecurso;
+import Dominio.OtrosUsuarios;
+import Dominio.Recurso;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -42,11 +44,14 @@ public class HiloProcesaServidor extends Thread {
                 //logica para cualquier otra cosa.
                 System.out.println("llego un string");
             }else if(recibo instanceof ArrayList){
-                //logica para actualizar tabla de finger
+                //logica para actualizar tabla de otrosUsuarios
                 System.out.println("llego un array");
-                ArrayList<String> finger = (ArrayList<String>) recibo;
-                actualizarFinger(finger);
-                new EnvioNodo().enviarListaRecursos(finger);
+                ArrayList<String> otrosUsuarios = (ArrayList<String>) recibo;
+                new DAOOtrosUsuarios().actualizarListaOtrosUsuarios(otrosUsuarios);
+                //new EnvioNodo().enviarListaRecursos();
+            }else if(recibo instanceof Recurso){
+                //logica para cuando recibes un recurso de otro nodo
+                new DAORecurso().registrarRecurso((Recurso) recibo);
             }
             //ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream()); 
             //servidor responde
@@ -59,14 +64,6 @@ public class HiloProcesaServidor extends Thread {
       } catch (ClassNotFoundException ex) {    
             Logger.getLogger(HiloProcesaServidor.class.getName()).log(Level.SEVERE, null, ex);
         }    
-    }
-    
-    public void actualizarFinger(ArrayList<String> fingers){
-        new DAOFinger().eliminarFinger();
-        for(String texto : fingers ){
-            Finger finger = new Finger (texto.split(";")[0],toHash(texto.split(";")[0]).toString());
-            new DAOFinger().registrarFinger(finger);            
-        }
     }
     
     
