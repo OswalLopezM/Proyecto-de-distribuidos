@@ -42,7 +42,6 @@ public class EnvioNodo {
                     primerOtroUsuario = otroUsuario;
                 }
                 if(usuario.getHashIp().compareTo(otroUsuario.getHash_ip())  != 0){//si el usuario a quien le voy a enviar es distinto a mi (usuaruio que envia)
-                    
                     if(recurso.getHashRecurso() < otroUsuario.getHash_ip()  && //si el hash del recurso es menor que el hash del usuario y el hash del usuario es menor al que ya habia seleccionado anterior mente
                         mayorCercano > otroUsuario.getHash_ip()){
                         mayorCercano = otroUsuario.getHash_ip();
@@ -51,10 +50,14 @@ public class EnvioNodo {
                     }
                 }
             }
-            if(!consiguio){
+            if(!consiguio && usuario.getHashIp().compareTo(primerOtroUsuario.getHash_ip()) != 0){
                 otro = primerOtroUsuario;
+                consiguio = true;
             }
-            enviar(otro.getIp(),otro.getPuertoTexto(),recurso);
+            if(consiguio){
+                enviar(otro.getIp(),otro.getPuertoTexto(),recurso);
+            }
+            
         }
     }
     
