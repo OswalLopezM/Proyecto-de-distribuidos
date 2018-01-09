@@ -194,12 +194,10 @@ public class DAOOtrosUsuarios {
     public void actualizarListaOtrosUsuarios(ArrayList<String> otrosUsuarioss){
         eliminarOtrosUsuarios();
         for(String texto : otrosUsuarioss ){
-            System.out.println("DAOOtrosUsuario.actualizarListaOtrosUsuarios los datos del otro usuario son: " + texto);
             OtrosUsuarios otrosUsuarios = new OtrosUsuarios (texto.split(";")[0],
                     Integer.parseInt(texto.split(";")[1]),
                     Integer.parseInt(texto.split(";")[2]),
                     Integer.parseInt(texto.split(";")[3]));
-            System.out.println("DAOOtrosUsuario.actualizarListaOtrosUsuarios: los datos en el objeto son: "+ otrosUsuarios.getIp()+ otrosUsuarios.getHash_ip() + otrosUsuarios.getPuertoArchivo()+ otrosUsuarios.getPuertoTexto());
             registrarOtrosUsuarios(otrosUsuarios);            
         }
     }

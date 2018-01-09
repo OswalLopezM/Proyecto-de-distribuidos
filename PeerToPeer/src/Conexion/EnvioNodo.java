@@ -34,16 +34,15 @@ public class EnvioNodo {
         Integer mayorCercano = 0;
         OtrosUsuarios otro = null, primerOtroUsuario = null;
         boolean consiguio = false;
+        Integer p = 3;
         for(Recurso recurso : recursosPropios){
             for(OtrosUsuarios otroUsuario : otrosUsuarios){
                 if(otro == null){
                     otro  = otroUsuario;
                     primerOtroUsuario = otroUsuario;
                 }
-                System.out.println("EnvioNodo.enviarListaRecursos: la comparacion de que si son diferentes es: "+ (usuario.getHashIp() == otroUsuario.getHash_ip()));
-                System.out.println("EnvioNodo.enviarListaRecursos: Porque usuario.getHashIp() = " + usuario.getHashIp() + " y otroUsuario.getHash_ip() = "+ otroUsuario.getHash_ip());
-                if(usuario.getHashIp().equals(otroUsuario.getHash_ip()) ){//si el usuario a quien le voy a enviar es distinto a mi (usuaruio que envia)
-                    System.out.println("entro en el if");
+                if(usuario.getHashIp().compareTo(otroUsuario.getHash_ip())  != 0){//si el usuario a quien le voy a enviar es distinto a mi (usuaruio que envia)
+                    
                     if(recurso.getHashRecurso() < otroUsuario.getHash_ip()  && //si el hash del recurso es menor que el hash del usuario y el hash del usuario es menor al que ya habia seleccionado anterior mente
                         mayorCercano > otroUsuario.getHash_ip()){
                         mayorCercano = otroUsuario.getHash_ip();
