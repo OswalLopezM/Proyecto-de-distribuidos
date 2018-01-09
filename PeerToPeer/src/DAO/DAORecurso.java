@@ -176,6 +176,27 @@ public class DAORecurso {
                
         return resultado;
     }  
+    /**
+     * Obtiene la lista de todos los productos
+     * @return la lista de todos los productos
+     */
+    public ArrayList<Recurso> todosLosRecursosPropios() {
+        ArrayList<Recurso> resultado = new ArrayList<>();
+        
+        for (Object it : root.getChildren()) {
+            Element xmlElem = (Element) it;
+            try {
+                if(RecursoToObject(xmlElem).getRecursoPropio()){
+                    resultado.add(RecursoToObject(xmlElem));
+                }
+                
+            } catch (ParseException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+               
+        return resultado;
+    }  
     
     
     public boolean borrarRecurso(String hashRecurso) {

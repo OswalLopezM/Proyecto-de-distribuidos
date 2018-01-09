@@ -5,17 +5,20 @@
  */
 package Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author oswal
  */
-public class Recurso {
+public class Recurso implements Serializable{
    public String nombreRecurso;
    public Integer hashRecurso;
    public String ipRecurso;
    public Integer hashIpRecurso;
    public String rutaRecurso;
    public Boolean recursoPropio;
+   private static final long serialVersionUID = 1L;
    
     public Recurso(){}
    

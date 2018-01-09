@@ -34,7 +34,7 @@ public class PeerToPeer {
         } catch (UnknownHostException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        new DAORecurso().registrarRecurso(recurso);
+        //new DAORecurso().registrarRecurso(recurso);
         /*
         try {
             ip = InetAddress.getLocalHost().getHostAddress();

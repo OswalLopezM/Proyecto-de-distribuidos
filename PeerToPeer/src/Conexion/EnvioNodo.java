@@ -27,11 +27,10 @@ import java.util.logging.Logger;
  */
 public class EnvioNodo {
     
-    public void enviarListaRecursos() throws UnknownHostException{
-        ArrayList<Recurso> recursosPropios = new DAORecurso().todosLosRecursos();
+    public void enviarListaRecursos() {
+        ArrayList<Recurso> recursosPropios = new DAORecurso().todosLosRecursosPropios();
         ArrayList<OtrosUsuarios> otrosUsuarios = new DAOOtrosUsuarios().todosLosOtrosUsuarios();
-        String ip = InetAddress.getLocalHost().getHostAddress();
-            Usuario usuario = new DAOUsuario().buscarUsuario(toHash(ip).toString());
+            Usuario usuario = new DAOUsuario().devolverUsuarioActivo();
         Integer mayorCercano = 0;
         OtrosUsuarios otro = null, primerOtroUsuario = null;
         boolean consiguio = false;
@@ -41,7 +40,10 @@ public class EnvioNodo {
                     otro  = otroUsuario;
                     primerOtroUsuario = otroUsuario;
                 }
-                if(usuario.getHashIp() != otroUsuario.getHash_ip()){//si el usuario a quien le voy a enviar es distinto a mi (usuaruio que envia)
+                System.out.println("EnvioNodo.enviarListaRecursos: la comparacion de que si son diferentes es: "+ (usuario.getHashIp() == otroUsuario.getHash_ip()));
+                System.out.println("EnvioNodo.enviarListaRecursos: Porque usuario.getHashIp() = " + usuario.getHashIp() + " y otroUsuario.getHash_ip() = "+ otroUsuario.getHash_ip());
+                if(usuario.getHashIp().equals(otroUsuario.getHash_ip()) ){//si el usuario a quien le voy a enviar es distinto a mi (usuaruio que envia)
+                    System.out.println("entro en el if");
                     if(recurso.getHashRecurso() < otroUsuario.getHash_ip()  && //si el hash del recurso es menor que el hash del usuario y el hash del usuario es menor al que ya habia seleccionado anterior mente
                         mayorCercano > otroUsuario.getHash_ip()){
                         mayorCercano = otroUsuario.getHash_ip();
@@ -61,7 +63,7 @@ public class EnvioNodo {
     public void enviar(String ip, Integer puerto,Recurso recurso){
         try {
             Socket clientSocket;
-            clientSocket = new Socket("localhost",Registro.PUERTO_CONEXION_COORDINADOR);
+            clientSocket = new Socket(ip,puerto);
             ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
             envio.writeObject(recurso);
             envio.close();

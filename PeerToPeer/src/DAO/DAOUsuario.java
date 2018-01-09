@@ -177,7 +177,19 @@ public class DAOUsuario {
     
     
 
-   
+   public Usuario devolverUsuarioActivo() {
+        Usuario resultado = new Usuario();
+        for (Object it : root.getChildren()) {
+            Element xmlElem = (Element) it;
+            try {
+                resultado = (UsuarioToObject(xmlElem));
+            } catch (ParseException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return resultado;
+
+    } 
 
     
 

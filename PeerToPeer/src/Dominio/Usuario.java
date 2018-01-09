@@ -10,6 +10,9 @@ public class Usuario {
     protected Integer puertoArchivo;
     protected Integer puertoTexto;
 
+    public Usuario(){
+        
+    }
     public Usuario(String ip, Integer puertoArchivo, Integer puertoTexto) {
         this.ip = ip;
         this.hashIp = toHash(ip);
