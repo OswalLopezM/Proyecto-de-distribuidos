@@ -1,18 +1,2 @@
 <root>
-  <Recurso>
-    <nombreRecurso>despacito.mp3</nombreRecurso>
-    <hashRecurso>-809992858</hashRecurso>
-    <ipRecurso>169.254.46.206</ipRecurso>
-    <hashIpRecurso>1646700547</hashIpRecurso>
-    <rutaRecurso>ruta sin importancia</rutaRecurso>
-    <recursoPropio>true</recursoPropio>
-  </Recurso>
-  <Recurso>
-    <nombreRecurso>cancionaleatoria.mp3</nombreRecurso>
-    <hashRecurso>523503253</hashRecurso>
-    <ipRecurso>169.254.46.206</ipRecurso>
-    <hashIpRecurso>1646700547</hashIpRecurso>
-    <rutaRecurso>ruta sin importancia</rutaRecurso>
-    <recursoPropio>true</recursoPropio>
-  </Recurso>
 </root>

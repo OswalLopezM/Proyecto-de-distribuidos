@@ -27,6 +27,14 @@ public class PeerToPeer {
     
     public static void main(String[] args) {
         String ip = "";
+        Recurso recurso= null;
+        //String nombreRecurso, String ipRecurso, String rutaRecurso,Boolean recursoPropio
+        try {
+        recurso = new Recurso("el ladron del rayo",InetAddress.getLocalHost().getHostAddress(),"no importa",true);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        new DAORecurso().registrarRecurso(recurso);
         /*
         try {
             ip = InetAddress.getLocalHost().getHostAddress();

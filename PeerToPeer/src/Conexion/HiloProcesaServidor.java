@@ -51,7 +51,9 @@ public class HiloProcesaServidor extends Thread {
                 //new EnvioNodo().enviarListaRecursos();
             }else if(recibo instanceof Recurso){
                 //logica para cuando recibes un recurso de otro nodo
-                new DAORecurso().registrarRecurso((Recurso) recibo);
+                Recurso recibido = (Recurso) recibo;
+                recibido.setRecursoPropio(false);
+                new DAORecurso().registrarRecurso(recibido);
             }
             //ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream()); 
             //servidor responde
