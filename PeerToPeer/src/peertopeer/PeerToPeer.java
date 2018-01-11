@@ -5,6 +5,7 @@ import Conexion.PeticionCoordinador;
 import ConexionArchivos.HiloEnvioArchivo;
 import ConexionArchivos.HiloPrincipalArchivo;
 import ConexionArchivos.HiloRecepcionArchivo;
+import DAO.DAOFinger;
 import DAO.DAOOtrosUsuarios;
 import DAO.DAORecurso;
 import DAO.DAOUsuario;
@@ -29,12 +30,12 @@ public class PeerToPeer {
         String ip = "";
         Recurso recurso= null;
         //String nombreRecurso, String ipRecurso, String rutaRecurso,Boolean recursoPropio
-        try {
-        recurso = new Recurso("el ladron del rayo",InetAddress.getLocalHost().getHostAddress(),"no importa",true);
+        /*try {
+        recurso = new Recurso("Cirque Du Freak",InetAddress.getLocalHost().getHostAddress(),"no importa",true);
         } catch (UnknownHostException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //new DAORecurso().registrarRecurso(recurso);
+        new DAORecurso().registrarRecurso(recurso);*/
         /*
         try {
             ip = InetAddress.getLocalHost().getHostAddress();
@@ -48,8 +49,18 @@ public class PeerToPeer {
         new DAORecurso().registrarRecurso(recurso);
         */
         
-        String prueba = "hola";
-        System.out.println("el hash es: "+ prueba.hashCode());
+        String prueba = "192.168.4.20";
+        String prueba2 = "192.168.4.58";
+        String prueba3 = "192.168.4.10";
+        String prueba4 = "192.168.4.75";
+       int var = PeerToPeer.toHash(prueba);
+       int var2 = PeerToPeer.toHash(prueba2);
+       int var3 = PeerToPeer.toHash(prueba3);
+       int var4 = PeerToPeer.toHash(prueba4);
+        System.out.println("el hash es: "+ var);
+        System.out.println("el hash es: "+ var2);
+        System.out.println("el hash es: "+ var3);
+        System.out.println("el hash es: "+ var4);
         new DAOUsuario().eliminarUsuarios();
         new DAOOtrosUsuarios().eliminarOtrosUsuarios();
         String entradaTeclado="";
@@ -92,4 +103,10 @@ public class PeerToPeer {
         }
         
     }
+    
+ static Integer toHash(String str){
+   int strHashCode = str.hashCode() % 100;
+   return strHashCode;
+}
+ 
 }

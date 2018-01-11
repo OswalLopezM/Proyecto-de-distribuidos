@@ -80,11 +80,10 @@ public class EnvioNodo {
      * @param clave clave a convertir
      * @return la clave convertida
      */
-    private Integer toHash(String ip){
-        Integer hash = 512;
-        hash =  37*hash + ip.hashCode();
-        return hash;
-    }
+  static Integer toHash(String str){
+   int strHashCode = str.hashCode() % 100;
+   return strHashCode;
+}
     
     
 }

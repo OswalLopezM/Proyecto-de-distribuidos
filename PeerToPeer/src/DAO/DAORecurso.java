@@ -102,6 +102,7 @@ public class DAORecurso {
         boolean resultado = false;
         root.addContent(RecursotoXmlElement((Recurso) nRecurso));
         resultado = updateDocument();
+        System.out.println("DAORecurso.RegistrarRecurso TERMINE DE REGISTRAR EL RECURSO");
         return resultado;
     }
     

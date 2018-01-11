@@ -5,6 +5,7 @@
  */
 package Conexion;
 
+import DAO.DAOFinger;
 import DAO.DAOOtrosUsuarios;
 import DAO.DAORecurso;
 import Dominio.OtrosUsuarios;
@@ -49,9 +50,11 @@ public class HiloProcesaServidor extends Thread {
                 ArrayList<String> otrosUsuarios = (ArrayList<String>) recibo;
                 System.out.println("El largo del array es: " +otrosUsuarios.size());
                 new DAOOtrosUsuarios().actualizarListaOtrosUsuarios(otrosUsuarios);
-                new EnvioNodo().enviarListaRecursos();
+                new DAOFinger().llenarFinger();
+                //new EnvioNodo().enviarListaRecursos();
             }else if(recibo instanceof Recurso){
                 //logica para cuando recibes un recurso de otro nodo
+                System.out.println("HiloProcesaServidor.run LLEGO UN RECURSO");
                 Recurso recibido = (Recurso) recibo;
                 recibido.setRecursoPropio(false);
                 new DAORecurso().registrarRecurso(recibido);
@@ -75,9 +78,8 @@ public class HiloProcesaServidor extends Thread {
      * @param clave clave a convertir
      * @return la clave convertida
      */
-    private Integer toHash(String ip){
-        Integer hash = 512;
-        hash =  37*hash + ip.hashCode();
-        return hash;
-    }
+   static Integer toHash(String str){
+   int strHashCode = str.hashCode() % 100;
+   return strHashCode;
+}
 }

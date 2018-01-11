@@ -1,7 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package DAO;
 
-
+import Dominio.Finger;
+import DAO.DAOOtrosUsuarios;
 import Dominio.OtrosUsuarios;
+import Dominio.Usuario;
 import Registro.Registro;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,15 +23,16 @@ import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
 
 /**
- * Clase que se encarga de la logica de negocio de los productos
- * @author mariangel
+ *
+ * @author maria
  */
-public class DAOOtrosUsuarios {
-    private Element root;
+public class DAOFinger {
+
+        private Element root;
     
-    private String fileLocation = Registro.UBICACION_ARCHIVO_XML_OTROS_USUARIOS;
+    private String fileLocation = Registro.UBICACION_ARCHIVO_XML_FINGER;
     
-    public DAOOtrosUsuarios() {
+    public DAOFinger() {
         try {
             SAXBuilder builder = new SAXBuilder(false);
             Document doc = null;
@@ -42,27 +50,29 @@ public class DAOOtrosUsuarios {
      * @param nOtrosUsuarios Objeto OtrosUsuarios
      * @return El producto convertido
      */
-    private Element OtrosUsuariostoXmlElement(OtrosUsuarios nOtrosUsuarios ) {
-        Element OtrosUsuariostrans = new Element("OtrosUsuarios");
+    private Element OtrosUsuariostoXmlElement(Finger nFinger ) {
+        Element fingerTrans = new Element("Finger");
         
+        Element posicion = new Element("posicion");
         Element ip = new Element("ip");
         Element hash_ip = new Element("hash_ip");
-        Element puertoArchivo = new Element("puertoArchivo");
         Element puertoTexto = new Element("puertoTexto");
+        Element puertoArchivo = new Element("puertoArchivo");
         
-        ip.setText(nOtrosUsuarios.getIp());
-        hash_ip.setText(nOtrosUsuarios.getHash_ip().toString());
-        puertoArchivo.setText(nOtrosUsuarios.getPuertoArchivo().toString());
-        puertoTexto.setText(nOtrosUsuarios.getPuertoTexto().toString());
+        posicion.setText(nFinger.getPosicion().toString());
+        ip.setText(nFinger.getIp());
+        hash_ip.setText(nFinger.getHash_ip().toString());
+        puertoArchivo.setText(nFinger.getPuertoArchivo().toString());
+        puertoTexto.setText(nFinger.getPuertoTexto().toString());
         
-        
-        OtrosUsuariostrans.addContent(ip);
-        OtrosUsuariostrans.addContent(hash_ip);
-        OtrosUsuariostrans.addContent(puertoArchivo);
-        OtrosUsuariostrans.addContent(puertoTexto);
+        fingerTrans.addContent(posicion);
+        fingerTrans.addContent(ip);
+        fingerTrans.addContent(hash_ip);
+        fingerTrans.addContent(puertoArchivo);
+        fingerTrans.addContent(puertoTexto);
         
          
-        return OtrosUsuariostrans;
+        return fingerTrans;
     }
     
     /**
@@ -71,14 +81,15 @@ public class DAOOtrosUsuarios {
      * @return El objeto OtrosUsuarios
      * @throws ParseException 
      */
-    private OtrosUsuarios OtrosUsuariosToObject(Element element) throws ParseException {
+    private Finger FingerToObject(Element element) throws ParseException {
        
-        OtrosUsuarios nOtrosUsuarios = new OtrosUsuarios (element.getChildText("ip"),
+        Finger nFinger = new Finger (Integer.parseInt(element.getChildText("posicion")),
+                element.getChildText("ip"),
                 Integer.parseInt(element.getChildText("hash_ip")),
                 Integer.parseInt(element.getChildText("puertoArchivo")),
                 Integer.parseInt(element.getChildText("puertoTexto")));
                 
-        return nOtrosUsuarios;
+        return nFinger;
     }
     
     
@@ -87,9 +98,9 @@ public class DAOOtrosUsuarios {
      * @param nOtrosUsuarios Objeto OtrosUsuarios
      * @return verdadero o falso
      */
-    public boolean registrarOtrosUsuarios(OtrosUsuarios nOtrosUsuarios) {
+    public boolean registrarFinger(Finger nFinger) {
         boolean resultado = false;
-        root.addContent(OtrosUsuariostoXmlElement((OtrosUsuarios) nOtrosUsuarios));
+        root.addContent(OtrosUsuariostoXmlElement((Finger) nFinger));
         resultado = updateDocument();
         return resultado;
     }
@@ -135,13 +146,13 @@ public class DAOOtrosUsuarios {
      * @param id Identificador del producto
      * @return retorna el objeto producto
      */
-    public OtrosUsuarios buscarOtrosUsuarios(String ip) throws ParseException {
-        Element aux = new Element("OtrosUsuarios");
-        List OtrosUsuarios= this.root.getChildren("OtrosUsuarios");
+    public Finger buscarFinger(String ip) throws ParseException {
+        Element aux = new Element("Finger");
+        List Finger= this.root.getChildren("Finger");
         while (aux != null) {
-            aux = DAOOtrosUsuarios.buscar(OtrosUsuarios,ip);
+            aux = DAOFinger.buscar(Finger,ip);
             if (aux != null) {
-                return OtrosUsuariosToObject(aux);
+                return FingerToObject(aux);
             }
         }
         return null;
@@ -151,13 +162,13 @@ public class DAOOtrosUsuarios {
      * Obtiene la lista de todos los productos
      * @return la lista de todos los productos
      */
-    public ArrayList<OtrosUsuarios> todosLosOtrosUsuarios() {
-        ArrayList<OtrosUsuarios> resultado = new ArrayList<>();
+    public ArrayList<Finger> todosLosFinger() {
+        ArrayList<Finger> resultado = new ArrayList<>();
         
         for (Object it : root.getChildren()) {
             Element xmlElem = (Element) it;
             try {
-                resultado.add(OtrosUsuariosToObject(xmlElem));
+                resultado.add(FingerToObject(xmlElem));
             } catch (ParseException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -166,14 +177,14 @@ public class DAOOtrosUsuarios {
         return resultado;
     }  
     
-    public boolean borrarOtrosUsuarios(String ip) {
+    public boolean borrarFinger(String ip) {
         boolean resultado = false;
-        Element aux = new Element("OtrosUsuarios");
-        List OtrosUsuarios = this.root.getChildren("OtrosUsuarios");
+        Element aux = new Element("Finger");
+        List Finger = this.root.getChildren("Finger");
         while (aux != null) {
-            aux = DAOOtrosUsuarios.buscar(OtrosUsuarios,ip);
+            aux = DAOFinger.buscar(Finger,ip);
             if (aux != null) {
-                OtrosUsuarios.remove(aux);
+                Finger.remove(aux);
                 resultado = updateDocument();
             }
         }
@@ -183,34 +194,42 @@ public class DAOOtrosUsuarios {
 
     
 
-    public void eliminarOtrosUsuarios(){
-        ArrayList<OtrosUsuarios> lista = new ArrayList<OtrosUsuarios>();
-        lista = todosLosOtrosUsuarios();
-        for (OtrosUsuarios s:lista){
-            borrarOtrosUsuarios(s.getHash_ip().toString());
+    public void eliminarFinger(){
+        ArrayList<Finger> lista = new ArrayList<Finger>();
+        lista = todosLosFinger();
+        for (Finger s:lista){
+            borrarFinger(s.getHash_ip().toString());
         }
     }
     
-    public void actualizarListaOtrosUsuarios(ArrayList<String> otrosUsuarioss){
-        eliminarOtrosUsuarios();
-        for(String texto : otrosUsuarioss ){
-            OtrosUsuarios otrosUsuarios = new OtrosUsuarios (texto.split(";")[0],
+    public void actualizarListaFinger(ArrayList<String> finger){
+        eliminarFinger();
+        /*for(String texto : finger ){
+            Finger otrosUsuarios = new Finger (texto.split(";")[0],
                     Integer.parseInt(texto.split(";")[1]),
                     Integer.parseInt(texto.split(";")[2]),
                     Integer.parseInt(texto.split(";")[3]));
             registrarOtrosUsuarios(otrosUsuarios);            
-        }
+        }*/
     }
     
     
+public void llenarFinger(){
+    ArrayList<OtrosUsuarios> listaUsuarios = new ArrayList<OtrosUsuarios>();
+    DAOOtrosUsuarios dao = new DAOOtrosUsuarios();
+    DAOUsuario daoUsuario = new DAOUsuario();
+    listaUsuarios = dao.todosLosOtrosUsuarios();
+    Usuario user = daoUsuario.devolverUsuarioActivo();
+    int miHash = user.getHashIp();
+   
+    for(int k = 0; k < 5 ; k++){ 
+        int posicion = (int) Math.abs(miHash + Math.pow(2,k)); 
+     //for(OtrosUsuarios o : listaUsuarios){
+        // if (o.getHash_ip()>posicion){
+             System.out.println("Entre aqui "+ posicion);
+        // }
+     //}
+   }
     
-/**
-     * metodo que se encarga de convertir a hash la contrasena
-     * @param clave clave a convertir
-     * @return la clave convertida
-     */
-  static Integer toHash(String str){
-   int strHashCode = str.hashCode() % 100;
-   return strHashCode;
 }
 }
