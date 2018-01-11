@@ -1,9 +1,17 @@
 <root>
   <Recurso>
-    <nombreRecurso>el ladron del rayo.pdf</nombreRecurso>
-    <hashRecurso>45</hashRecurso>
+    <nombreRecurso>el ladron del rayo .pdf</nombreRecurso>
+    <hashRecurso>115</hashRecurso>
     <ipRecurso>169.254.46.206</ipRecurso>
-    <hashIpRecurso>3</hashIpRecurso>
+    <hashIpRecurso>61</hashIpRecurso>
+    <rutaRecurso>no importa</rutaRecurso>
+    <recursoPropio>true</recursoPropio>
+  </Recurso>
+  <Recurso>
+    <nombreRecurso>321</nombreRecurso>
+    <hashRecurso>68</hashRecurso>
+    <ipRecurso>169.254.46.206</ipRecurso>
+    <hashIpRecurso>61</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
   </Recurso>

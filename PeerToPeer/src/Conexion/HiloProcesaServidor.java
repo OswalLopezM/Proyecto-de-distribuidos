@@ -51,8 +51,8 @@ public class HiloProcesaServidor extends Thread {
                 ArrayList<String> otrosUsuarios = (ArrayList<String>) recibo;
                 System.out.println("El largo del array es: " +otrosUsuarios.size());
                 new DAOOtrosUsuarios().actualizarListaOtrosUsuarios(otrosUsuarios);
-                new DAOFinger().llenarFinger();
-                //new EnvioNodo().enviarListaRecursos();
+                //new DAOFinger().llenarFinger();
+                new EnvioNodo().enviarListaRecursos();
             }else if(recibo instanceof Recurso){
                 //logica para cuando recibes un recurso de otro nodo
                 System.out.println("HiloProcesaServidor.run LLEGO UN RECURSO");

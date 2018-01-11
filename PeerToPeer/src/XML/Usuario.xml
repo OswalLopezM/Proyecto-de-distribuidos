@@ -5,4 +5,10 @@
     <puertoTexto>5004</puertoTexto>
     <puertoArchivo>6004</puertoArchivo>
   </Usuario>
+  <Usuario>
+    <hashIp>61</hashIp>
+    <ip>169.254.46.206</ip>
+    <puertoTexto>5004</puertoTexto>
+    <puertoArchivo>6004</puertoArchivo>
+  </Usuario>
 </root>

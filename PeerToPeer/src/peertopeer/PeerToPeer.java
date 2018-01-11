@@ -34,13 +34,13 @@ public class PeerToPeer {
             recurso = new Recurso("nombre223 gjh",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que el recurso sea el ultimo y caiga en el primero
             recurso = new Recurso("bjb ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea el menor y quede ene lprimero
             recurso = new Recurso("bjbbbbbbx ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
-            recurso = new Recurso("bjbbbbbbx ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
-            recurso = new Recurso("el ladron del rayo.pdf",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
+            recurso = new Recurso("el ladron del rayo .pdf",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
+            recurso = new Recurso("321",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
         } catch (UnknownHostException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("El recurso es: "+recurso.getNombreRecurso()+ " " + recurso.getIpRecurso() 
-        + " " + recurso.getRutaRecurso()+ " " + recurso.getHashIpRecurso() + " " + recurso.getHashRecurso()+ " " );
+        //System.out.println("El recurso es: "+recurso.getNombreRecurso()+ " " + recurso.getIpRecurso() 
+        //+ " " + recurso.getRutaRecurso()+ " " + recurso.getHashIpRecurso() + " " + recurso.getHashRecurso()+ " " );
         
         //new DAORecurso().registrarRecurso(recurso);
         /*
@@ -53,21 +53,21 @@ public class PeerToPeer {
         Recurso recurso = new Recurso("despacito.mp3",ip,"ruta sin importancia",true);
         new DAORecurso().registrarRecurso(recurso);
         recurso = new Recurso("cancionaleatoria.mp3",ip,"ruta sin importancia",true);*/
-        new DAORecurso().registrarRecurso(recurso);
+        //new DAORecurso().registrarRecurso(recurso);
         
         
-        String prueba = "192.168.4.20";
+        /*String prueba = "elladrondelrayo.pdf";/*
         String prueba2 = "192.168.4.58";
         String prueba3 = "192.168.4.10";
-        String prueba4 = "192.168.4.75";
-       int var = PeerToPeer.toHash(prueba);
+        String prueba4 = "192.168.4.75";*/
+       /*int var = PeerToPeer.toHash(prueba);/*
        int var2 = PeerToPeer.toHash(prueba2);
        int var3 = PeerToPeer.toHash(prueba3);
-       int var4 = PeerToPeer.toHash(prueba4);
-        System.out.println("el hash es: "+ var);
+       int var4 = PeerToPeer.toHash(prueba4);*/
+        /*System.out.println("el hash es: "+ var);/*
         System.out.println("el hash es: "+ var2);
         System.out.println("el hash es: "+ var3);
-        System.out.println("el hash es: "+ var4);
+        System.out.println("el hash es: "+ var4);*/
         new DAOUsuario().eliminarUsuarios();
         new DAOOtrosUsuarios().eliminarOtrosUsuarios();
         String entradaTeclado="";
