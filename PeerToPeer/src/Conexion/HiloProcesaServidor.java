@@ -40,6 +40,7 @@ public class HiloProcesaServidor extends Thread {
             //String recibo = (String) ois.readObject();
             //System.out.println("llego: "+recibo);
             Object recibo = ois.readObject();
+            clientSocket.getLocalAddress().getHostAddress();
             if(recibo instanceof String){
                 //logica para cualquier otra cosa.
                 System.out.println("llego un string");
@@ -52,6 +53,7 @@ public class HiloProcesaServidor extends Thread {
                 new EnvioNodo().enviarListaRecursos();
             }else if(recibo instanceof Recurso){
                 //logica para cuando recibes un recurso de otro nodo
+                System.out.println("llego un recurso");
                 Recurso recibido = (Recurso) recibo;
                 recibido.setRecursoPropio(false);
                 new DAORecurso().registrarRecurso(recibido);

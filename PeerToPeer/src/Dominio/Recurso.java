@@ -125,9 +125,10 @@ public class Recurso implements Serializable{
      * @param clave clave a convertir
      * @return la clave convertida
      */
-    private Integer toHash(String ip){
+    public Integer toHash(String ip){
         Integer hash = 512;
         hash =  37*hash + ip.hashCode();
+        hash = -1*hash;
         return hash;
     }
    

@@ -30,10 +30,15 @@ public class PeerToPeer {
         Recurso recurso= null;
         //String nombreRecurso, String ipRecurso, String rutaRecurso,Boolean recursoPropio
         try {
-        recurso = new Recurso("el ladron del rayo",InetAddress.getLocalHost().getHostAddress(),"no importa",true);
+            recurso = new Recurso("nombre223 gjh",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que el recurso sea el ultimo y caiga en el primero
+            recurso = new Recurso("bjb ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea el menor y quede ene lprimero
+            recurso = new Recurso("bjbbbbbbx ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
         } catch (UnknownHostException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("El recurso es: "+recurso.getNombreRecurso()+ " " + recurso.getIpRecurso() 
+        + " " + recurso.getRutaRecurso()+ " " + recurso.getHashIpRecurso() + " " + recurso.getHashRecurso()+ " " );
+        
         //new DAORecurso().registrarRecurso(recurso);
         /*
         try {

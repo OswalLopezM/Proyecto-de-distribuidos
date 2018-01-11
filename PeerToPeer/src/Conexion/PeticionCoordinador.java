@@ -48,7 +48,7 @@ public class PeticionCoordinador {
         
         try {
             Socket clientSocket;
-            clientSocket = new Socket("localhost",Registro.PUERTO_CONEXION_COORDINADOR);
+            clientSocket = new Socket(Registro.IP_CONEXION,Registro.PUERTO_CONEXION_COORDINADOR);
             ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
             envio.writeObject(dato);
             envio.close();
