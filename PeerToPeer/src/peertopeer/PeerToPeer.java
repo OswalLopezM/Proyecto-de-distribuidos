@@ -35,6 +35,7 @@ public class PeerToPeer {
             recurso = new Recurso("bjb ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea el menor y quede ene lprimero
             recurso = new Recurso("bjbbbbbbx ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
             recurso = new Recurso("bjbbbbbbx ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
+            recurso = new Recurso("el ladron del rayo.pdf",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
         } catch (UnknownHostException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,9 +52,9 @@ public class PeerToPeer {
         }
         Recurso recurso = new Recurso("despacito.mp3",ip,"ruta sin importancia",true);
         new DAORecurso().registrarRecurso(recurso);
-        recurso = new Recurso("cancionaleatoria.mp3",ip,"ruta sin importancia",true);
+        recurso = new Recurso("cancionaleatoria.mp3",ip,"ruta sin importancia",true);*/
         new DAORecurso().registrarRecurso(recurso);
-        */
+        
         
         String prueba = "192.168.4.20";
         String prueba2 = "192.168.4.58";

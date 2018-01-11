@@ -92,7 +92,7 @@ public class EnvioNodo {
             clientSocket = new Socket(ip,puerto);
             System.out.println("Voy a enviar a ip: "+ip + " puerto: "+ puerto);
             ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
-            envio.writeObject("hola meme");
+            envio.writeObject(recurso);
             envio.close();
             clientSocket.close();
         } catch (IOException ex) {
@@ -105,8 +105,9 @@ public class EnvioNodo {
      * @param clave clave a convertir
      * @return la clave convertida
      */
-  static Integer toHash(String str){
-   int strHashCode = str.hashCode() % 100;
+ static Integer toHash(String str){
+   int hash = 2;
+   int strHashCode = Math.abs(29*hash + str.hashCode() % 100);
    return strHashCode;
 }
     
