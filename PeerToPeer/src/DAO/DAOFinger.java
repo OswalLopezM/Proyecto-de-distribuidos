@@ -215,20 +215,53 @@ public class DAOFinger {
     
     
 public void llenarFinger(){
-    ArrayList<OtrosUsuarios> listaUsuarios = new ArrayList<OtrosUsuarios>();
+    
     DAOOtrosUsuarios dao = new DAOOtrosUsuarios();
     DAOUsuario daoUsuario = new DAOUsuario();
-    listaUsuarios = dao.todosLosOtrosUsuarios();
+    ArrayList<OtrosUsuarios> listaUsuarios = dao.todosLosOtrosUsuarios();
     Usuario user = daoUsuario.devolverUsuarioActivo();
-    int miHash = user.getHashIp();
+    Integer miHash = user.getHashIp();
    
-    for(int k = 0; k < 5 ; k++){ 
-        int posicion = (int) Math.abs(miHash + Math.pow(2,k)); 
-     //for(OtrosUsuarios o : listaUsuarios){
-        // if (o.getHash_ip()>posicion){
-             System.out.println("Entre aqui "+ posicion);
-        // }
-     //}
+    for(int indice = 1; indice < 6 ; indice++){ 
+        int siguiente = (int) Math.abs(miHash + Math.pow(2,indice-1)); 
+        System.out.println("DAOFinger.llenarFinger el siguiente es: "+ siguiente);
+        boolean consiguio = false,soyYo = false;
+            OtrosUsuarios otro = null, primerOtroUsuario = null;
+            Integer mayorCercano = 0;
+        for (OtrosUsuarios otroUsuario :listaUsuarios ){
+            if(otro == null){
+                otro  = otroUsuario;
+                primerOtroUsuario = otroUsuario;
+            }
+            if(siguiente <= otroUsuario.getHash_ip()  && //si el hash del recurso es menor que el hash del usuario y el hash del usuario es menor al que ya habia seleccionado anterior mente
+                        mayorCercano < otroUsuario.getHash_ip()){
+                mayorCercano = otroUsuario.getHash_ip();
+                otro = otroUsuario;
+                consiguio = true;
+                if(miHash.compareTo(otroUsuario.getHash_ip())  == 0){
+                    soyYo = true;
+                }else{
+                    soyYo = false;
+                }
+                break;
+            }
+            if(!consiguio){
+              //  System.out.println("EnvioNodo.enviarListaRecursos el recurso se le va a enviar al primer usuario de la lista");
+                otro = primerOtroUsuario;
+                consiguio = true;
+                if(miHash.compareTo(primerOtroUsuario.getHash_ip()) == 0){
+                    soyYo = true;
+                }
+            }
+            Finger finger = new Finger();
+            finger.setHash_ip(otro.getHash_ip());
+            finger.setIp(otro.getIp());
+            finger.setPosicion(indice);
+            finger.setPuertoArchivo(otro.getPuertoArchivo());
+            finger.setPuertoTexto(otro.getPuertoTexto());
+            registrarFinger(finger);
+        }
+        
    }
     
 }

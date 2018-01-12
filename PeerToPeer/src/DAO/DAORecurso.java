@@ -235,5 +235,18 @@ public class DAORecurso {
         }
 
     }
+    
+    public void eliminarRecursoDeOtros(){
+        ArrayList<Recurso> lista = new ArrayList<Recurso>();
+        lista = todosLosRecursos();
+        for (Recurso r:lista){
+            if(!r.recursoPropio){
+                borrarRecurso(r.getHashRecurso().toString());
+
+            }
+                    
+        }
+
+    }
 
 }

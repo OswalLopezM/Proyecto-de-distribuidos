@@ -1,4 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <root>
-    
+  <Finger>
+    <posicion>1</posicion>
+    <ip>169.254.46.206</ip>
+    <hash_ip>61</hash_ip>
+    <puertoArchivo>6004</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+  </Finger>
+  <Finger>
+    <posicion>2</posicion>
+    <ip>169.254.46.206</ip>
+    <hash_ip>61</hash_ip>
+    <puertoArchivo>6004</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+  </Finger>
+  <Finger>
+    <posicion>3</posicion>
+    <ip>169.254.46.206</ip>
+    <hash_ip>61</hash_ip>
+    <puertoArchivo>6004</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+  </Finger>
+  <Finger>
+    <posicion>4</posicion>
+    <ip>169.254.46.206</ip>
+    <hash_ip>61</hash_ip>
+    <puertoArchivo>6004</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+  </Finger>
+  <Finger>
+    <posicion>5</posicion>
+    <ip>169.254.46.206</ip>
+    <hash_ip>61</hash_ip>
+    <puertoArchivo>6004</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+  </Finger>
+  <Finger>
+    <posicion>5</posicion>
+    <ip>169.254.46.206</ip>
+    <hash_ip>61</hash_ip>
+    <puertoArchivo>6004</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+  </Finger>
 </root>

@@ -15,4 +15,12 @@
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
   </Recurso>
+  <Recurso>
+    <nombreRecurso>5</nombreRecurso>
+    <hashRecurso>111</hashRecurso>
+    <ipRecurso>169.254.46.206</ipRecurso>
+    <hashIpRecurso>61</hashIpRecurso>
+    <rutaRecurso>no importa</rutaRecurso>
+    <recursoPropio>true</recursoPropio>
+  </Recurso>
 </root>
