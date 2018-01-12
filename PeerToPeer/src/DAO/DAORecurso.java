@@ -100,6 +100,9 @@ public class DAORecurso {
      */
     public boolean registrarRecurso(Recurso nRecurso) {
         boolean resultado = false;
+        while(Registro.SEMAFORO_XML_RECURSO){
+            
+        }
         root.addContent(RecursotoXmlElement((Recurso) nRecurso));
         resultado = updateDocument();
         System.out.println("DAORecurso.RegistrarRecurso TERMINE DE REGISTRAR EL RECURSO");

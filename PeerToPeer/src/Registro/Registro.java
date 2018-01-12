@@ -19,4 +19,7 @@ public class Registro {
      public static final String UBICACION_ARCHIVO_XML_OTROS_USUARIOS = "src//XML//OtrosUsuarios.xml";
     public static final String UBICACION_ARCHIVO_XML_RECURSO = "src//XML//Recurso.xml";
     public static final String UBICACION_ARCHIVO_XML_FINGER = "src//XML//Finger.xml";
+    
+    //SEMAFORO PARA EL ARCHIVO DE XML
+    public static Boolean SEMAFORO_XML_RECURSO = false;
 }
