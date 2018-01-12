@@ -103,9 +103,11 @@ public class DAORecurso {
         while(Registro.SEMAFORO_XML_RECURSO){
             
         }
+        Registro.SEMAFORO_XML_RECURSO = true;
         root.addContent(RecursotoXmlElement((Recurso) nRecurso));
         resultado = updateDocument();
         System.out.println("DAORecurso.RegistrarRecurso TERMINE DE REGISTRAR EL RECURSO");
+        Registro.SEMAFORO_XML_RECURSO = false;
         return resultado;
     }
     
