@@ -170,10 +170,11 @@ public class Recurso implements Serializable{
         String sfichero= "RecursosConocidos";
         
         f= new File(sfichero);
-        for (File archivo : f.listFiles()){
-            archivo.delete();
+        if(f.listFiles() != null){
+            for (File archivo : f.listFiles()){
+                archivo.delete();
+            }
         }
-        
     }
      
      
@@ -185,12 +186,15 @@ public class Recurso implements Serializable{
             f= new File(sfichero);
             String texto = "";
             BufferedReader br;
-            for (File archivo : f.listFiles()){
-                br= new BufferedReader(new FileReader(sfichero+"//"+archivo.getName()));
-                texto= br.readLine();
-                recursosConocidos.add(new Recurso(texto.split(";")[0],texto.split(";")[0],texto.split(";")[0],Boolean.parseBoolean(texto.split(";")[0])));
-                br.close();
+            if(f.listFiles() != null){
+                for (File archivo : f.listFiles()){
+                    br= new BufferedReader(new FileReader(sfichero+"//"+archivo.getName()));
+                    texto= br.readLine();
+                    recursosConocidos.add(new Recurso(texto.split(";")[0],texto.split(";")[0],texto.split(";")[0],Boolean.parseBoolean(texto.split(";")[0])));
+                    br.close();
+                }
             }
+            
         } catch (IOException ex) {
             Logger.getLogger(Recurso.class.getName()).log(Level.SEVERE, null, ex);
         }
