@@ -5,6 +5,7 @@
  */
 package Dominio;
 
+import Conexion.EnvioNodo;
 import DAO.DAOFinger;
 import DAO.DAORecurso;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class Buscador {
      
       public String tablaFinger(){
         String _loTiene = "No";
+        Usuario user = new Usuario();
         DAOFinger _dao = new DAOFinger();
         for(Finger f : _dao.todosLosFinger()){
             if((_hashRecurso<f.hash_ip) || (_hashRecurso == f.hash_ip)){
@@ -54,7 +56,8 @@ public class Buscador {
                 return _loTiene;
             }
             if(f.getPosicion() == 5){
-                
+                EnvioNodo envio = new EnvioNodo();
+                envio.buscarEnOtroNodo(_hashRecurso, user.getPuertoTexto(), user.getPuertoArchivo(), user.getIp());
             }
         }
      return _loTiene;

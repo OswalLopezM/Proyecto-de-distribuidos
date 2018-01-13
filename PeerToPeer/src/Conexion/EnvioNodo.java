@@ -102,6 +102,20 @@ public class EnvioNodo {
         }
     }
     
+    public void buscarEnOtroNodo(Integer hashrecurso, Integer puertoTexto, Integer puertoArchivo,String ip){
+        /*try {
+            Socket clientSocket;
+            clientSocket = new Socket(ip,puerto);
+            System.out.println("EnvioNodo.enviar: Voy a enviar el recurso a ip: "+ip + " puerto: "+ puerto);
+            ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
+            envio.writeObject(recurso);
+            envio.close();
+            clientSocket.close();
+        } catch (IOException ex) {
+            Logger.getLogger(PeticionCoordinador.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+    }
+    
      /**
      * metodo que se encarga de convertir a hash la contrasena
      * @param clave clave a convertir

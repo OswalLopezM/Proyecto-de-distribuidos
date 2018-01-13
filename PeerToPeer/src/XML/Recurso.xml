@@ -1,7 +1,7 @@
 <root>
   <Recurso>
-    <nombreRecurso>el ladron del rayo.pdf</nombreRecurso>
-    <hashRecurso>45</hashRecurso>
+    <nombreRecurso>Cirque Du Freak.pdf</nombreRecurso>
+    <hashRecurso>49</hashRecurso>
     <ipRecurso>192.168.1.10</ipRecurso>
     <hashIpRecurso>11</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>
@@ -16,10 +16,10 @@
     <recursoPropio>false</recursoPropio>
   </Recurso>
   <Recurso>
-    <nombreRecurso>Crepusculo.pdf</nombreRecurso>
-    <hashRecurso>83</hashRecurso>
-    <ipRecurso>192.168.1.4</ipRecurso>
-    <hashIpRecurso>76</hashIpRecurso>
+    <nombreRecurso>star wars.pdf</nombreRecurso>
+    <hashRecurso>81</hashRecurso>
+    <ipRecurso>192.168.1.8</ipRecurso>
+    <hashIpRecurso>80</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>false</recursoPropio>
   </Recurso>

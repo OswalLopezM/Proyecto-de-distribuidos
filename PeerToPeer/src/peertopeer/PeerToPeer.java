@@ -37,7 +37,7 @@ public class PeerToPeer {
             //recurso = new Recurso("nombre223 gjh",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que el recurso sea el ultimo y caiga en el primero
             //recurso = new Recurso("bjb ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea el menor y quede ene lprimero
             //recurso = new Recurso("bjbbbbbbx ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
-            recurso = new Recurso("el ladron del rayo.pdf",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
+            recurso = new Recurso("Cirque Du Freak.pdf",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
             //recurso = new Recurso("5",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
         } catch (UnknownHostException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
