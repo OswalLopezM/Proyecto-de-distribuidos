@@ -1,1 +1,20 @@
-<root />
+<root>
+  <Usuario>
+    <hashIp>3</hashIp>
+    <ip>169.254.46.206</ip>
+    <puertoTexto>5004</puertoTexto>
+    <puertoArchivo>6004</puertoArchivo>
+  </Usuario>
+  <Usuario>
+    <hashIp>76</hashIp>
+    <ip>192.168.1.4</ip>
+    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6002</puertoArchivo>
+  </Usuario>
+  <Usuario>
+    <hashIp>80</hashIp>
+    <ip>192.168.1.8</ip>
+    <puertoTexto>5003</puertoTexto>
+    <puertoArchivo>6003</puertoArchivo>
+  </Usuario>
+</root>
