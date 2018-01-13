@@ -28,4 +28,14 @@ public class Interfaz {
         
     }
     
+    public static void buscar(){
+        
+        System.out.println("------------------------------------");
+        System.out.println("------------------------------------");
+        System.out.println("-     1: Buscar                    -");
+        System.out.println("-     2: Reportes                  -");
+        System.out.println("------------------------------------");
+        System.out.println("------------------------------------");
+        
+    }
 }

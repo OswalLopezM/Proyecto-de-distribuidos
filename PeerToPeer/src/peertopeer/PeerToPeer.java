@@ -9,6 +9,7 @@ import DAO.DAOFinger;
 import DAO.DAOOtrosUsuarios;
 import DAO.DAORecurso;
 import DAO.DAOUsuario;
+import Dominio.Buscador;
 import Dominio.OtrosUsuarios;
 import Dominio.Recurso;
 import Dominio.Usuario;
@@ -33,11 +34,11 @@ public class PeerToPeer {
         HiloPrincipalArchivo hiloArchivo = null;
         //String nombreRecurso, String ipRecurso, String rutaRecurso,Boolean recursoPropio
         try {
-            recurso = new Recurso("nombre223 gjh",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que el recurso sea el ultimo y caiga en el primero
-            recurso = new Recurso("bjb ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea el menor y quede ene lprimero
-            recurso = new Recurso("bjbbbbbbx ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
-            recurso = new Recurso("el ladron del rayo .pdf",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
-            recurso = new Recurso("5",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
+            //recurso = new Recurso("nombre223 gjh",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que el recurso sea el ultimo y caiga en el primero
+            //recurso = new Recurso("bjb ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea el menor y quede ene lprimero
+            //recurso = new Recurso("bjbbbbbbx ",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
+            recurso = new Recurso("el ladron del rayo.pdf",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
+            //recurso = new Recurso("5",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
         } catch (UnknownHostException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,6 +88,12 @@ public class PeerToPeer {
                 hiloArchivo = new HiloPrincipalArchivo();
                 hiloTexto.start();
                 hiloArchivo.start();
+                Interfaz interfaz = new Interfaz();
+                interfaz.buscar();
+                Scanner entradaEscaner2 = new Scanner (System.in); //Creación de un objeto Scanner
+                entradaTeclado = entradaEscaner2.nextLine (); //Invocamos un método sobre un objeto Scanner
+                PeerToPeer.dentroRegistro(entradaTeclado);
+                
             }else if(entradaTeclado.equals("6")){
                 PeerToPeer.salirmeConCoordinador();
                 //hiloTexto.stop();
@@ -117,7 +124,26 @@ public class PeerToPeer {
         }
         
     }
+    public static void dentroRegistro(String caso){
+        String entradaTeclado = "";
+        if (caso.equals("1")){
+            System.out.println("Indica el nombre del recurso que deseas: ");
+            Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+            entradaTeclado = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
+            Integer _hashRecurso = PeerToPeer.toHash(entradaTeclado);
+            Buscador buscador = new Buscador(_hashRecurso);
+            Boolean _esMio = buscador.miRecurso();
+            if(_esMio == true){
+                System.out.println("ESTE RECURSO "+_hashRecurso+" YA ES TUYO");
+            }else{
+                System.out.println("ESTE RECURSO "+_hashRecurso+" NO ES TUYO, SE PROCEDE A BUSCAR SI TIENES LA DIRECCION DE ESTE RECURSO");
+                String _conozcoDireccion = buscador.conozcoDireccion();
+                System.out.println("SI LO CONOCES, LO TIENE EL NODO "+_conozcoDireccion);
+                
+            }
+        }
     
+    }
  static Integer toHash(String str){
    int strHashCode = Math.abs(str.hashCode() % 100);
    return strHashCode;
