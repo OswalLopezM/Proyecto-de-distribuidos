@@ -100,14 +100,9 @@ public class DAORecurso {
      */
     public boolean registrarRecurso(Recurso nRecurso) {
         boolean resultado = false;
-        while(Registro.SEMAFORO_XML_RECURSO){
-            
-        }
-        Registro.SEMAFORO_XML_RECURSO = true;
         root.addContent(RecursotoXmlElement((Recurso) nRecurso));
         resultado = updateDocument();
         System.out.println("DAORecurso.RegistrarRecurso TERMINE DE REGISTRAR EL RECURSO");
-        Registro.SEMAFORO_XML_RECURSO = false;
         return resultado;
     }
     
@@ -237,10 +232,7 @@ public class DAORecurso {
     }
     
     public void eliminarRecursoDeOtros(){
-        while(Registro.SEMAFORO_XML_RECURSO){
-            
-        }
-        Registro.SEMAFORO_XML_RECURSO = true;
+        
         ArrayList<Recurso> lista = new ArrayList<Recurso>();
         lista = todosLosRecursos();
         for (Recurso r:lista){
@@ -250,8 +242,18 @@ public class DAORecurso {
             }
                     
         }
-        Registro.SEMAFORO_XML_RECURSO = false;
 
+    }
+    
+    public void actualizarRecursos(Recurso recurso){
+        while(Registro.SEMAFORO_XML_RECURSO){
+            
+        }
+        Registro.SEMAFORO_XML_RECURSO = true;
+        eliminarRecursoDeOtros();
+        registrarRecurso(recurso);
+
+        Registro.SEMAFORO_XML_RECURSO = false;
     }
 
 }

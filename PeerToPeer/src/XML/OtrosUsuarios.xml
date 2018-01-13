@@ -2,8 +2,8 @@
   <OtrosUsuarios>
     <ip>169.254.46.206</ip>
     <hash_ip>3</hash_ip>
-    <puertoArchivo>6002</puertoArchivo>
-    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6005</puertoArchivo>
+    <puertoTexto>5005</puertoTexto>
   </OtrosUsuarios>
   <OtrosUsuarios>
     <ip>192.168.1.10</ip>
@@ -16,5 +16,11 @@
     <hash_ip>76</hash_ip>
     <puertoArchivo>6003</puertoArchivo>
     <puertoTexto>5003</puertoTexto>
+  </OtrosUsuarios>
+  <OtrosUsuarios>
+    <ip>192.168.1.8</ip>
+    <hash_ip>80</hash_ip>
+    <puertoArchivo>6002</puertoArchivo>
+    <puertoTexto>5002</puertoTexto>
   </OtrosUsuarios>
 </root>

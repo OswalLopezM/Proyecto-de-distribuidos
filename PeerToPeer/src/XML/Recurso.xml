@@ -7,12 +7,4 @@
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
   </Recurso>
-  <Recurso>
-    <nombreRecurso>el ladron del rayo.pdf</nombreRecurso>
-    <hashRecurso>45</hashRecurso>
-    <ipRecurso>192.168.1.10</ipRecurso>
-    <hashIpRecurso>11</hashIpRecurso>
-    <rutaRecurso>no importa</rutaRecurso>
-    <recursoPropio>true</recursoPropio>
-  </Recurso>
 </root>
