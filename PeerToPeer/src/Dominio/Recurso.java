@@ -5,7 +5,17 @@
  */
 package Dominio;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -129,5 +139,64 @@ public class Recurso implements Serializable{
    int strHashCode = Math.abs(str.hashCode() % 100);
    return strHashCode;
 }
+ 
+ 
+ /**
+     * metodo que se encarga de crear el archivo el cual almacerana el status 
+     * de la descarga actual
+     */
+    public void crearArchvio(){
+        try {
+            int i=0;
+            File f=null;
+            String sfichero="";
+                sfichero ="RecursosConocidos//"+this.nombreRecurso+".txt";
+                f= new File(sfichero);
+                if(!f.exists()){
+                   BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+
+                   bw.write(this.nombreRecurso+";"+this.hashRecurso+";"+this.ipRecurso+";"
+                           +this.hashIpRecurso+";"+this.rutaRecurso+";"+this.recursoPropio);
+                   bw.close();
+                }
+        } catch (IOException ex) {
+            Logger.getLogger(Status.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+     public static void eliminarArchivos(){
+        File f=null;
+        String sfichero= "RecursosConocidos";
+        
+        f= new File(sfichero);
+        for (File archivo : f.listFiles()){
+            archivo.delete();
+        }
+        
+    }
+     
+     
+    public static ArrayList<Recurso> ObtenerTodosLosRecursosConocidos(){
+        ArrayList<Recurso> recursosConocidos = new ArrayList<Recurso>();
+        File f=null;
+        try {
+            String sfichero= "RecursosConocidos";
+            f= new File(sfichero);
+            String texto = "";
+            BufferedReader br;
+            for (File archivo : f.listFiles()){
+                br= new BufferedReader(new FileReader(sfichero+"//"+archivo.getName()));
+                texto= br.readLine();
+                recursosConocidos.add(new Recurso(texto.split(";")[0],texto.split(";")[0],texto.split(";")[0],Boolean.parseBoolean(texto.split(";")[0])));
+                br.close();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Recurso.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return recursosConocidos;
+    }
+     
+    
    
 }
