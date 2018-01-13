@@ -47,7 +47,7 @@ public class HiloProcesaServidor extends Thread {
                 System.out.println("llego un string");
             }else if(recibo instanceof ArrayList){
                 //logica para actualizar tabla de otrosUsuarios
-                System.out.println("llego un array");
+                System.out.println("llego un array/////////////////////////////////////////////////////");
                 ArrayList<String> otrosUsuarios = (ArrayList<String>) recibo;
                 System.out.println("El largo del array es: " +otrosUsuarios.size());
                 new DAOOtrosUsuarios().actualizarListaOtrosUsuarios(otrosUsuarios);
@@ -55,7 +55,7 @@ public class HiloProcesaServidor extends Thread {
                 new DAOFinger().llenarFinger();
                 new EnvioNodo().enviarListaRecursos();
                 //new DAORecurso().eliminarRecursoDeOtros(); 
-                Recurso.eliminarArchivos();
+                //Recurso.eliminarArchivos();
             }else if(recibo instanceof Recurso){
                 //logica para cuando recibes un recurso de otro nodo
                 System.out.println("HiloProcesaServidor.run LLEGO UN RECURSO");
