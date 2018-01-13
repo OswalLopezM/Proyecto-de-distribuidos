@@ -91,7 +91,7 @@ public class EnvioNodo {
     public void enviar(String ip, Integer puerto,Recurso recurso){
         try {
             Socket clientSocket;
-            System.out.println("EnvioNodo.enviar: Voy a enviar el recurso a ip: "+ip + " puerto: "+ puerto);
+            System.out.println("EnvioNodo.enviar: Voy a enviar el recurso con nombre " + recurso.getNombreRecurso() + " y hash: "+recurso.getHashIpRecurso()+" a ip: "+ip + " puerto: "+ puerto);
             clientSocket = new Socket(ip,puerto);
             ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
             envio.writeObject(recurso);
