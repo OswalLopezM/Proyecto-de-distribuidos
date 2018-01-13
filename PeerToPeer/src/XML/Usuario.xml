@@ -2,7 +2,7 @@
   <Usuario>
     <hashIp>3</hashIp>
     <ip>169.254.46.206</ip>
-    <puertoTexto>5005</puertoTexto>
-    <puertoArchivo>6005</puertoArchivo>
+    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6002</puertoArchivo>
   </Usuario>
 </root>
