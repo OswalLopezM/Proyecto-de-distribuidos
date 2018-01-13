@@ -22,6 +22,10 @@ public class Buscador {
         this._hashRecurso = hash_recurso;
     }
     
+   /**
+    * Este metodo se encarga de revisar si el recurso es de la persona quien busca
+    * @return 
+    */
     public Boolean miRecurso(){
         Boolean _esMio = false;
         DAORecurso _dao = new DAORecurso();
@@ -34,6 +38,10 @@ public class Buscador {
      return _esMio;
     }
     
+    /**
+     * Se encarga de revisar si la persona quien busca conoce quien tiene el recurso
+     * @return 
+     */
      public String conozcoDireccion(){
         String _conozco = "No";
         DAORecurso _dao = new DAORecurso();
@@ -46,6 +54,10 @@ public class Buscador {
      return _conozco;
     }
      
+     /**
+      * Se encarga de buscar en la tabla de finger el recurso
+      * @return 
+      */
       public String tablaFinger(){
         String _loTiene = "No";
         Usuario user = new Usuario();
@@ -54,10 +66,9 @@ public class Buscador {
             if((_hashRecurso<f.hash_ip) || (_hashRecurso == f.hash_ip)){
                 _loTiene = f.getIp();
                 return _loTiene;
-            }
-            if(f.getPosicion() == 5){
+            }else if((f.getPosicion() == 5) && (_hashRecurso>f.hash_ip)){
                 EnvioNodo envio = new EnvioNodo();
-                envio.buscarEnOtroNodo(_hashRecurso, user.getPuertoTexto(), user.getPuertoArchivo(), user.getIp());
+                envio.buscarEnOtroNodo(_hashRecurso, user.getPuertoTexto(), user.getPuertoArchivo(), user.getIp(),f.getIp());
             }
         }
      return _loTiene;

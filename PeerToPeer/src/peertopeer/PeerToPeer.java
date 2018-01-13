@@ -141,6 +141,7 @@ public class PeerToPeer {
                 if(_conozcoDireccion.equals("No")){
                     System.out.println("ESTE RECURSO "+_hashRecurso+"NO LO TIENE NADIE QUE CONOZCAS, SE PROCEDE A BUSCAR CON LA TABLA DE FINGER"); 
                     String _quienLoTiene = buscador.tablaFinger();
+                    System.out.println("EL RECURSO LO TIENE "+_quienLoTiene);
                 }else{
                    System.out.println("SI LO CONOCES, LO TIENE EL NODO "+_conozcoDireccion);
                 }

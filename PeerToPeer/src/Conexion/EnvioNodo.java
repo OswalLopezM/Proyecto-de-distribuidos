@@ -102,13 +102,13 @@ public class EnvioNodo {
         }
     }
     
-    public void buscarEnOtroNodo(Integer hashrecurso, Integer puertoTexto, Integer puertoArchivo,String ip){
-        /*try {
+    public void buscarEnOtroNodo(Integer hashrecurso, Integer puertoTexto, Integer puertoArchivo,String miIp, String tuIp){
+       /* try {
             Socket clientSocket;
-            clientSocket = new Socket(ip,puerto);
+            clientSocket = new Socket(ip,puertoTexto);
             System.out.println("EnvioNodo.enviar: Voy a enviar el recurso a ip: "+ip + " puerto: "+ puerto);
             ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
-            envio.writeObject(recurso);
+            envio.writeObject(hashrecurso);
             envio.close();
             clientSocket.close();
         } catch (IOException ex) {
