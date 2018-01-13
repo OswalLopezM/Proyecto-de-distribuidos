@@ -56,21 +56,31 @@ public class Buscador {
      
      /**
       * Se encarga de buscar en la tabla de finger el recurso
+     * @param miIp
+     * @param miPuertoTexto
+     * @param miPuertoArchivo
       * @return 
       */
-      public String tablaFinger(){
+      public String tablaFingerSinSalto(String miIp, Integer miPuertoTexto, Integer miPuertoArchivo){
         String _loTiene = "No";
-        Usuario user = new Usuario();
         DAOFinger _dao = new DAOFinger();
         for(Finger f : _dao.todosLosFinger()){
-            if((_hashRecurso<f.hash_ip) || (_hashRecurso == f.hash_ip)){
+            if(_hashRecurso<=f.hash_ip){
                 _loTiene = f.getIp();
                 return _loTiene;
-            }else if((f.getPosicion() == 5) && (_hashRecurso>f.hash_ip)){
+            }
+        }     
+     return _loTiene;
+    }
+  
+      
+    public void tablaFingerConSalto(String miIp, Integer miPuertoTexto, Integer miPuertoArchivo){
+        DAOFinger _dao = new DAOFinger();
+        for(Finger f : _dao.todosLosFinger()){
+          if((f.getPosicion() == 5) && (_hashRecurso>f.hash_ip)){
                 EnvioNodo envio = new EnvioNodo();
-                envio.buscarEnOtroNodo(_hashRecurso, user.getPuertoTexto(), user.getPuertoArchivo(), user.getIp(),f.getIp());
+                envio.buscarEnOtroNodo(_hashRecurso, miPuertoTexto, miPuertoArchivo, miIp,f.getIp(),f.getPuertoTexto(),f.getPuertoArchivo());
             }
         }
-     return _loTiene;
     }
 }

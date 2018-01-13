@@ -8,6 +8,7 @@ package Conexion;
 import DAO.DAOFinger;
 import DAO.DAOOtrosUsuarios;
 import DAO.DAORecurso;
+import Dominio.Buscador;
 import Dominio.OtrosUsuarios;
 import Dominio.Recurso;
 import java.io.IOException;
@@ -44,7 +45,40 @@ public class HiloProcesaServidor extends Thread {
             clientSocket.getLocalAddress().getHostAddress();
             if(recibo instanceof String){
                 //logica para cualquier otra cosa.
-                System.out.println("llego un string");
+                String mensaje = (String)ois.readObject();
+                String[] split = mensaje.split(";");
+                EnvioNodo envio = new EnvioNodo();
+                if (split[0].equals("BUSCAR")){
+                
+                    Buscador buscador = new Buscador(Integer.parseInt(split[1]));
+                    Boolean _esMio = buscador.miRecurso();
+                    if(_esMio == true){
+                        envio.encontreRecurso(split[6], Integer.parseInt(split[7]), Integer.parseInt(split[8]),
+                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]));
+                    }else{
+                        System.out.println("ESTE RECURSO "+split[0]+" NO ES TUYO, SE PROCEDE A BUSCAR SI TIENES LA DIRECCION DE ESTE RECURSO");
+                        String _conozcoDireccion = buscador.conozcoDireccion();
+                        if(_conozcoDireccion.equals("No")){
+                            System.out.println("ESTE RECURSO "+split[0]+"NO LO TIENE NADIE QUE CONOZCAS, SE PROCEDE A BUSCAR CON LA TABLA DE FINGER"); 
+                            String _quienLoTiene =  buscador.tablaFingerSinSalto(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]));
+                            if(_quienLoTiene.equals("No")){
+                                buscador.tablaFingerConSalto(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]));
+                            }else{
+                                envio.encontreRecurso(split[6], Integer.parseInt(split[7]), Integer.parseInt(split[8]),
+                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]));
+                            }
+                            
+                        }else{
+                           envio.encontreRecurso(split[6], Integer.parseInt(split[7]), Integer.parseInt(split[8]),
+                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]));
+                        }
+                    }
+              
+                }else if (split[0].equals("RECURSO")){
+                    System.out.println("La IP del dueno del recurso: "+split[1]);
+                    System.out.println("El puerto de TEXTO del dueno del recurso: "+split[2]);
+                    System.out.println("El puerto de ARCHIVOS del dueno del recurso: "+split[3]);
+                }
             }else if(recibo instanceof ArrayList){
                 //logica para actualizar tabla de otrosUsuarios
                 System.out.println("llego un array");
@@ -63,7 +97,7 @@ public class HiloProcesaServidor extends Thread {
                 System.out.println("el recurso es: nombre " + recibido.getNombreRecurso() +" hash nombre "+ recibido.getHashRecurso() 
                         +" ip "+ recibido.getIpRecurso() +" hash ip "+recibido.getHashIpRecurso() );
                 //new DAORecurso().eliminarRecursoDeOtros(); 
-                new DAORecurso().registrarRecurso(recibido);
+                //new DAORecurso().registrarRecurso(recibido);
                 //new DAORecurso().actualizarRecursos(recibido);
             }
             //ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream()); 
