@@ -224,7 +224,7 @@ public void llenarFinger(){
    
     for(int indice = 1; indice < 6 ; indice++){ 
         int siguiente = (int) (Math.abs(miHash + Math.pow(2,indice-1))) % 100; 
-        System.out.println("DAOFinger.llenarFinger el siguiente es: "+ siguiente);
+        //System.out.println("DAOFinger.llenarFinger el siguiente es: "+ siguiente);
         boolean consiguio = false,soyYo = false;
         OtrosUsuarios otro = null, primerOtroUsuario = null;
         Integer mayorCercano = 0;
@@ -233,12 +233,12 @@ public void llenarFinger(){
                 otro  = otroUsuario;
                 primerOtroUsuario = otroUsuario;
             }
-            System.out.print("DAOFinger.llenarFinger: siguiente es = "+ siguiente + " otroUsuario.getHash_ip() = " + otroUsuario.getHash_ip());
-            System.out.println("mayorCercano = "+ mayorCercano );
+            //System.out.print("DAOFinger.llenarFinger: siguiente es = "+ siguiente + " otroUsuario.getHash_ip() = " + otroUsuario.getHash_ip());
+            //System.out.println("mayorCercano = "+ mayorCercano );
             if(siguiente <= otroUsuario.getHash_ip()  && //si el hash del recurso es menor que el hash del usuario y el hash del usuario es menor al que ya habia seleccionado anterior mente
                         mayorCercano < otroUsuario.getHash_ip()){
-                System.out.print("DAOFinger.llenarFinger: encontre el usuario que estara en esta posicion de la tabla de finger");
-                System.out.println("tiene hash = "+otroUsuario.getHash_ip());
+                //System.out.print("DAOFinger.llenarFinger: encontre el usuario que estara en esta posicion de la tabla de finger");
+                //System.out.println("tiene hash = "+otroUsuario.getHash_ip());
                 mayorCercano = otroUsuario.getHash_ip();
                 otro = otroUsuario;
                 consiguio = true;
@@ -259,8 +259,8 @@ public void llenarFinger(){
                 soyYo = true;
             }
         }
-        System.out.println("DAOFinger.llenarFinger: el usuario que agregare en la tabla tendra estos datos:"
-                + " " +otro.getHash_ip()+ " " + otro.getIp()+ " " + otro.getPuertoArchivo()+ " " + otro.getPuertoTexto());
+        //System.out.println("DAOFinger.llenarFinger: el usuario que agregare en la tabla tendra estos datos:"
+          //      + " " +otro.getHash_ip()+ " " + otro.getIp()+ " " + otro.getPuertoArchivo()+ " " + otro.getPuertoTexto());
         Finger finger = new Finger();
         finger.setHash_ip(otro.getHash_ip());
         finger.setIp(otro.getIp());

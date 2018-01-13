@@ -1,8 +1,8 @@
 <root>
   <Usuario>
-    <hashIp>11</hashIp>
-    <ip>192.168.1.10</ip>
-    <puertoTexto>5004</puertoTexto>
-    <puertoArchivo>6004</puertoArchivo>
+    <hashIp>3</hashIp>
+    <ip>169.254.46.206</ip>
+    <puertoTexto>5005</puertoTexto>
+    <puertoArchivo>6005</puertoArchivo>
   </Usuario>
 </root>

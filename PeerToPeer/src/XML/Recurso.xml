@@ -7,20 +7,4 @@
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
   </Recurso>
-  <Recurso>
-    <nombreRecurso>Crepusculo.pdf</nombreRecurso>
-    <hashRecurso>83</hashRecurso>
-    <ipRecurso>192.168.1.4</ipRecurso>
-    <hashIpRecurso>76</hashIpRecurso>
-    <rutaRecurso>no importa</rutaRecurso>
-    <recursoPropio>false</recursoPropio>
-  </Recurso>
-  <Recurso>
-    <nombreRecurso>star wars.pdf</nombreRecurso>
-    <hashRecurso>81</hashRecurso>
-    <ipRecurso>192.168.1.8</ipRecurso>
-    <hashIpRecurso>80</hashIpRecurso>
-    <rutaRecurso>no importa</rutaRecurso>
-    <recursoPropio>false</recursoPropio>
-  </Recurso>
 </root>

@@ -60,7 +60,8 @@ public class HiloProcesaServidor extends Thread {
                 Recurso recibido = (Recurso) recibo;
                 recibido.setRecursoPropio(false);
                 //new DAORecurso().eliminarRecursoDeOtros();
-                new DAORecurso().registrarRecurso(recibido);
+                //new DAORecurso().registrarRecurso(recibido);
+                new DAORecurso().actualizarRecursos(recibido);
             }
             //ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream()); 
             //servidor responde
