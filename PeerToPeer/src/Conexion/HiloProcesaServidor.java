@@ -53,7 +53,7 @@ public class HiloProcesaServidor extends Thread {
                 new DAOOtrosUsuarios().actualizarListaOtrosUsuarios(otrosUsuarios);
                 new DAOFinger().eliminarFinger();
                 new DAOFinger().llenarFinger();
-                //new EnvioNodo().enviarListaRecursos();
+                new EnvioNodo().enviarListaRecursos();
             }else if(recibo instanceof Recurso){
                 //logica para cuando recibes un recurso de otro nodo
                 System.out.println("HiloProcesaServidor.run LLEGO UN RECURSO");

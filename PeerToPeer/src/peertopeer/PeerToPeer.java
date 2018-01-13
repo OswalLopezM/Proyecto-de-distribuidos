@@ -29,6 +29,8 @@ public class PeerToPeer {
     public static void main(String[] args) {
         String ip = "";
         Recurso recurso= null;
+        HiloPrincipalServidor hiloTexto = null;
+        HiloPrincipalArchivo hiloArchivo = null;
         //String nombreRecurso, String ipRecurso, String rutaRecurso,Boolean recursoPropio
         try {
             recurso = new Recurso("nombre223 gjh",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que el recurso sea el ultimo y caiga en el primero
@@ -81,10 +83,14 @@ public class PeerToPeer {
             entradaTeclado = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
             if(entradaTeclado.equals("5")){
                 PeerToPeer.registrarmeConCoordinador();
-                new HiloPrincipalServidor().start();
-                new HiloPrincipalArchivo().start();
+                hiloTexto = new HiloPrincipalServidor();
+                hiloArchivo = new HiloPrincipalArchivo();
+                hiloTexto.start();
+                hiloArchivo.start();
             }else if(entradaTeclado.equals("6")){
                 PeerToPeer.salirmeConCoordinador();
+                //hiloTexto.stop();
+                //hiloArchivo.stop();
             }
         }
     }
@@ -93,6 +99,7 @@ public class PeerToPeer {
         try {
             String ip = InetAddress.getLocalHost().getHostAddress();
             Usuario usuario = new PeticionCoordinador().AgregarPeerToPeer("REGISTRO;"+ip);
+            new DAOUsuario().eliminarUsuarios();
             new DAOUsuario().agregarUsuario(usuario);
         } catch (UnknownHostException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
