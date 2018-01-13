@@ -38,9 +38,9 @@ public class PeerToPeer {
         } catch (UnknownHostException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        recurso.crearArchvio();
-        recurso = new Recurso("hbhbhj.pdf","ipgadfa","no importa",true);//caso para que sea menor que la maquina de mari
-        recurso.crearArchvio();
+        //recurso.crearArchvio();
+        //recurso = new Recurso("hbhbhj.pdf","ipgadfa","no importa",true);//caso para que sea menor que la maquina de mari
+        //recurso.crearArchvio();
         
         //System.out.println("El recurso es: "+recurso.getNombreRecurso()+ " " + recurso.getIpRecurso() 
         //+ " " + recurso.getRutaRecurso()+ " " + recurso.getHashIpRecurso() + " " + recurso.getHashRecurso()+ " " );
