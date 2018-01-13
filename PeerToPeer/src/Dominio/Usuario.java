@@ -60,8 +60,7 @@ public class Usuario {
      * @return la clave convertida
      */
  static Integer toHash(String str){
-   int hash = 2;
-   int strHashCode = Math.abs(29*hash + str.hashCode() % 100);
+   int strHashCode = Math.abs(str.hashCode() % 100);
    return strHashCode;
 }
 }
