@@ -223,7 +223,7 @@ public void llenarFinger(){
     Integer miHash = user.getHashIp();
    
     for(int indice = 1; indice < 6 ; indice++){ 
-        int siguiente = (int) Math.abs(miHash + Math.pow(2,indice-1)); 
+        int siguiente = (int) (Math.abs(miHash + Math.pow(2,indice-1))) % 100; 
         System.out.println("DAOFinger.llenarFinger el siguiente es: "+ siguiente);
         boolean consiguio = false,soyYo = false;
         OtrosUsuarios otro = null, primerOtroUsuario = null;
