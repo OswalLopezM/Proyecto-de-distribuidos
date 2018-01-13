@@ -1,15 +1,15 @@
 <root>
   <Usuario>
-    <hashIp>3</hashIp>
-    <ip>169.254.46.206</ip>
-    <puertoTexto>5002</puertoTexto>
-    <puertoArchivo>6002</puertoArchivo>
+    <hashIp>11</hashIp>
+    <ip>192.168.1.10</ip>
+    <puertoTexto>5004</puertoTexto>
+    <puertoArchivo>6004</puertoArchivo>
   </Usuario>
   <Usuario>
     <hashIp>76</hashIp>
     <ip>192.168.1.4</ip>
-    <puertoTexto>5004</puertoTexto>
-    <puertoArchivo>6004</puertoArchivo>
+    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6002</puertoArchivo>
   </Usuario>
   <Usuario>
     <hashIp>80</hashIp>
