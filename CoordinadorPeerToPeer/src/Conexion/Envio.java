@@ -13,6 +13,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,7 +36,7 @@ public class Envio {
                 clientSocket.close();
             }
         } catch (IOException ex) {
-            //Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Envio.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("El servidor esta desconectado");
         }catch(Exception e){
             System.out.println("El servidor esta desconectado");

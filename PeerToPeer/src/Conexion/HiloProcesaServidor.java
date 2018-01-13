@@ -59,9 +59,11 @@ public class HiloProcesaServidor extends Thread {
                 System.out.println("HiloProcesaServidor.run LLEGO UN RECURSO");
                 Recurso recibido = (Recurso) recibo;
                 recibido.setRecursoPropio(false);
-                //new DAORecurso().eliminarRecursoDeOtros();
+                System.out.println("el recurso es: nombre " + recibido.getNombreRecurso() +" hash nombre "+ recibido.getHashRecurso() 
+                        +" ip "+ recibido.getIpRecurso() +" hash ip "+recibido.getHashIpRecurso() );
+                //new DAORecurso().eliminarRecursoDeOtros(); 
                 //new DAORecurso().registrarRecurso(recibido);
-                new DAORecurso().actualizarRecursos(recibido);
+                //new DAORecurso().actualizarRecursos(recibido);
             }
             //ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream()); 
             //servidor responde
