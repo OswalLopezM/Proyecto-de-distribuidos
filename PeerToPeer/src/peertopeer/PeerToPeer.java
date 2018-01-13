@@ -45,7 +45,7 @@ public class PeerToPeer {
         //System.out.println("El recurso es: "+recurso.getNombreRecurso()+ " " + recurso.getIpRecurso() 
         //+ " " + recurso.getRutaRecurso()+ " " + recurso.getHashIpRecurso() + " " + recurso.getHashRecurso()+ " " );
         
-        new DAORecurso().registrarRecurso(recurso);
+        //new DAORecurso().registrarRecurso(recurso);
         /*
         try {
             ip = InetAddress.getLocalHost().getHostAddress();
@@ -59,16 +59,16 @@ public class PeerToPeer {
         //new DAORecurso().registrarRecurso(recurso);
         
         
-        /*String prueba = "elladrondelrayo.pdf";/*
-        String prueba2 = "192.168.4.58";
+        //String prueba = "192.168.4.8";
+        /*String prueba2 = "192.168.4.58";
         String prueba3 = "192.168.4.10";
         String prueba4 = "192.168.4.75";*/
        /*int var = PeerToPeer.toHash(prueba);/*
        int var2 = PeerToPeer.toHash(prueba2);
        int var3 = PeerToPeer.toHash(prueba3);
        int var4 = PeerToPeer.toHash(prueba4);*/
-        /*System.out.println("el hash es: "+ var);/*
-        System.out.println("el hash es: "+ var2);
+        //System.out.println("el hash es: "+ PeerToPeer.toHash(prueba));
+        /*System.out.println("el hash es: "+ var2);
         System.out.println("el hash es: "+ var3);
         System.out.println("el hash es: "+ var4);*/
         new DAOUsuario().eliminarUsuarios();
@@ -138,7 +138,13 @@ public class PeerToPeer {
             }else{
                 System.out.println("ESTE RECURSO "+_hashRecurso+" NO ES TUYO, SE PROCEDE A BUSCAR SI TIENES LA DIRECCION DE ESTE RECURSO");
                 String _conozcoDireccion = buscador.conozcoDireccion();
-                System.out.println("SI LO CONOCES, LO TIENE EL NODO "+_conozcoDireccion);
+                if(_conozcoDireccion.equals("No")){
+                    System.out.println("ESTE RECURSO "+_hashRecurso+"NO LO TIENE NADIE QUE CONOZCAS, SE PROCEDE A BUSCAR CON LA TABLA DE FINGER"); 
+                    String _quienLoTiene = buscador.tablaFinger();
+                }else{
+                   System.out.println("SI LO CONOCES, LO TIENE EL NODO "+_conozcoDireccion);
+                }
+                
                 
             }
         }

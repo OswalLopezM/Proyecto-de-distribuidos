@@ -5,6 +5,7 @@
  */
 package Dominio;
 
+import DAO.DAOFinger;
 import DAO.DAORecurso;
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class Buscador {
     }
     
      public String conozcoDireccion(){
-        String _conozco = "No conozco IP";
+        String _conozco = "No";
         DAORecurso _dao = new DAORecurso();
         for(Recurso r : _dao.todosLosRecursos()){
             if((r.getHashRecurso().equals(_hashRecurso)) && (r.getRecursoPropio() == false)){
@@ -42,5 +43,20 @@ public class Buscador {
             }
         }
      return _conozco;
+    }
+     
+      public String tablaFinger(){
+        String _loTiene = "No";
+        DAOFinger _dao = new DAOFinger();
+        for(Finger f : _dao.todosLosFinger()){
+            if((_hashRecurso<f.hash_ip) || (_hashRecurso == f.hash_ip)){
+                _loTiene = f.getIp();
+                return _loTiene;
+            }
+            if(f.getPosicion() == 5){
+                
+            }
+        }
+     return _loTiene;
     }
 }
