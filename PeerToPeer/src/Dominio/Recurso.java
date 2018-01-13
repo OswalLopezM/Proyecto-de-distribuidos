@@ -146,22 +146,24 @@ public class Recurso implements Serializable{
      * de la descarga actual
      */
     public void crearArchvio(){
+        System.out.println("Recurso.crearArchvio: entrando al metodo");
         try {
-            int i=0;
             File f=null;
             String sfichero="";
                 sfichero ="RecursosConocidos//"+this.nombreRecurso+".txt";
                 f= new File(sfichero);
                 if(!f.exists()){
-                   BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+                    System.out.println("el fichero no existe");
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 
-                   bw.write(this.nombreRecurso+";"+this.hashRecurso+";"+this.ipRecurso+";"
-                           +this.hashIpRecurso+";"+this.rutaRecurso+";"+this.recursoPropio);
-                   bw.close();
+                    bw.write(this.nombreRecurso+";"+this.hashRecurso+";"+this.ipRecurso+";"
+                            +this.hashIpRecurso+";"+this.rutaRecurso+";"+this.recursoPropio);
+                    bw.close();
                 }
         } catch (IOException ex) {
             Logger.getLogger(Status.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("Recurso.crearArchvio: el metodo termina");
     }
     
     
