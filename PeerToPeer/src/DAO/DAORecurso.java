@@ -237,6 +237,10 @@ public class DAORecurso {
     }
     
     public void eliminarRecursoDeOtros(){
+        while(Registro.SEMAFORO_XML_RECURSO){
+            
+        }
+        Registro.SEMAFORO_XML_RECURSO = true;
         ArrayList<Recurso> lista = new ArrayList<Recurso>();
         lista = todosLosRecursos();
         for (Recurso r:lista){
@@ -246,6 +250,7 @@ public class DAORecurso {
             }
                     
         }
+        Registro.SEMAFORO_XML_RECURSO = false;
 
     }
 

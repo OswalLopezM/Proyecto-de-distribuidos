@@ -45,7 +45,7 @@ public class PeerToPeer {
         //System.out.println("El recurso es: "+recurso.getNombreRecurso()+ " " + recurso.getIpRecurso() 
         //+ " " + recurso.getRutaRecurso()+ " " + recurso.getHashIpRecurso() + " " + recurso.getHashRecurso()+ " " );
         
-        //new DAORecurso().registrarRecurso(recurso);
+        new DAORecurso().registrarRecurso(recurso);
         /*
         try {
             ip = InetAddress.getLocalHost().getHostAddress();
