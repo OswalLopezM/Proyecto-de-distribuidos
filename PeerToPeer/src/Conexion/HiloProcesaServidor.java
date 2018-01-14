@@ -11,6 +11,7 @@ import DAO.DAORecurso;
 import Dominio.Buscador;
 import Dominio.OtrosUsuarios;
 import Dominio.Recurso;
+import Registro.Registro;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -88,6 +89,7 @@ public class HiloProcesaServidor extends Thread {
                 new DAOFinger().eliminarFinger();
                 new DAOFinger().llenarFinger();
                 new EnvioNodo().enviarListaRecursos();
+                Registro.RECURSOS_CONOCIDOS = new ArrayList();
                 //new DAORecurso().eliminarRecursoDeOtros(); 
                 //Recurso.eliminarArchivos();
             }else if(recibo instanceof Recurso){
@@ -97,7 +99,8 @@ public class HiloProcesaServidor extends Thread {
                 recibido.setRecursoPropio(false);
                 System.out.println("el recurso es: nombre " + recibido.getNombreRecurso() +" hash nombre "+ recibido.getHashRecurso() 
                         +" ip "+ recibido.getIpRecurso() +" hash ip "+recibido.getHashIpRecurso() );
-                ((Recurso) recibo).crearArchvio();
+                //((Recurso) recibo).crearArchvio();
+                Registro.RECURSOS_CONOCIDOS.add(recibido);
                 //new DAORecurso().eliminarRecursoDeOtros(); 
                 //new DAORecurso().registrarRecurso(recibido);
                 //new DAORecurso().actualizarRecursos(recibido);

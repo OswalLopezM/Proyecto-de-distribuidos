@@ -5,6 +5,9 @@
  */
 package Registro;
 
+import Dominio.Recurso;
+import java.util.ArrayList;
+
 /**
  *
  * @author oswal
@@ -22,4 +25,8 @@ public class Registro {
     
     //SEMAFORO PARA EL ARCHIVO DE XML
     public static Boolean SEMAFORO_XML_RECURSO = false;
+    
+    
+    //ARRAYLIST QUE CONITIENE RECURSOS CONOCIDOS
+    public static ArrayList<Recurso> RECURSOS_CONOCIDOS = new ArrayList<Recurso>();
 }
