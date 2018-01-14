@@ -1,5 +1,6 @@
 package peertopeer;
 
+import Conexion.EnvioNodo;
 import Conexion.HiloPrincipalServidor;
 import Conexion.PeticionCoordinador;
 import ConexionArchivos.HiloEnvioArchivo;
@@ -14,6 +15,7 @@ import Dominio.OtrosUsuarios;
 import Dominio.Recurso;
 import Dominio.Usuario;
 import Interfaz.Interfaz;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Scanner;
@@ -27,11 +29,12 @@ import java.util.logging.Logger;
 public class PeerToPeer {
 
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String ip = "";
         Recurso recurso= null;
         HiloPrincipalServidor hiloTexto = null;
         HiloPrincipalArchivo hiloArchivo = null;
+        
         //String nombreRecurso, String ipRecurso, String rutaRecurso,Boolean recursoPropio
         try {
             recurso = new Recurso("star wars.pdf",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
@@ -57,7 +60,7 @@ public class PeerToPeer {
         new DAORecurso().registrarRecurso(recurso);
         recurso = new Recurso("cancionaleatoria.mp3",ip,"ruta sin importancia",true);*/
         //new DAORecurso().registrarRecurso(recurso);
-        
+        //new EnvioNodo().buscarEnOtroNodo(54, 5000, 6000, "192.168.1.10", "192.168.1.4", 4000, 3000);
         
         //String prueba = "192.168.4.8";
         /*String prueba2 = "192.168.4.58";
@@ -125,6 +128,8 @@ public class PeerToPeer {
    public static void dentroRegistro(){
         String entradaTeclado = "";
         Usuario user = new Usuario();
+        DAOUsuario dao = new DAOUsuario();
+        user = dao.devolverUsuarioActivo();
         while (!entradaTeclado.equals("0")){
             Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
             entradaTeclado = entradaEscaner.nextLine ();
@@ -142,7 +147,7 @@ public class PeerToPeer {
                     String _conozcoDireccion = buscador.conozcoDireccion();
                     if(_conozcoDireccion.equals("No")){
                             
-                            System.out.println("ESTE RECURSO "+_hashRecurso+"NO LO TIENE NADIE QUE CONOZCAS, SE PROCEDE A BUSCAR CON LA TABLA DE FINGER"); 
+                            System.out.println("ESTE RECURSO "+_hashRecurso+" NO LO TIENE NADIE QUE CONOZCAS, SE PROCEDE A BUSCAR CON LA TABLA DE FINGER"); 
                             String _quienLoTiene =  buscador.tablaFingerSinSalto(user.getIp(),user.getPuertoTexto(),user.getPuertoArchivo());
                             if(_quienLoTiene.equals("No")){
                                 buscador.tablaFingerConSalto(user.getIp(),user.getPuertoTexto(),user.getPuertoArchivo());

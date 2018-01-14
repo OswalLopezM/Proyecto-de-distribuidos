@@ -86,8 +86,8 @@ public class DAOFinger {
         Finger nFinger = new Finger (Integer.parseInt(element.getChildText("posicion")),
                 element.getChildText("ip"),
                 Integer.parseInt(element.getChildText("hash_ip")),
-                Integer.parseInt(element.getChildText("puertoArchivo")),
-                Integer.parseInt(element.getChildText("puertoTexto")));
+                Integer.parseInt(element.getChildText("puertoTexto")),
+                Integer.parseInt(element.getChildText("puertoArchivo")));
                 
         return nFinger;
     }

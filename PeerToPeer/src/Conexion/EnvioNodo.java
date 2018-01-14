@@ -103,16 +103,19 @@ public class EnvioNodo {
     }
     
     public void buscarEnOtroNodo(Integer hashrecurso, Integer miPuertoTexto, Integer miPuertoArchivo,
-            String miIp, String tuIp, Integer tuPuertoTexto, Integer tuPuertoArchivo){
-       try {
-            Socket clientSocket;
+            String miIp, String tuIp, Integer tuPuertoTexto, Integer tuPuertoArchivo) throws IOException{
+        Socket clientSocket;
+        System.out.println("Esta es la ip que llega "+tuIp +" Con este puerto: "+tuPuertoTexto);
             clientSocket = new Socket(tuIp,tuPuertoTexto);
+        try {
+            
             
             String mensaje = "BUSCAR;"+hashrecurso.toString()+";"+miIp+";"+miPuertoTexto+";"+miPuertoArchivo+
                     ";"+tuIp+";"+tuPuertoTexto.toString()+";"+tuPuertoArchivo.toString();
-
+            System.out.println("El mensaje es: "+mensaje);
             ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
-            envio.writeObject(mensaje);
+            envio.writeObject(mensaje.toString());
+           
             envio.close();
             clientSocket.close();
             

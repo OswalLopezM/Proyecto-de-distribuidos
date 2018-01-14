@@ -192,7 +192,7 @@ public class Recurso implements Serializable{
                 for (File archivo : f.listFiles()){
                     br= new BufferedReader(new FileReader(sfichero+"//"+archivo.getName()));
                     texto= br.readLine();
-                    recursosConocidos.add(new Recurso(texto.split(";")[0],texto.split(";")[0],texto.split(";")[0],Boolean.parseBoolean(texto.split(";")[0])));
+                    recursosConocidos.add(new Recurso(texto.split(";")[0],texto.split(";")[2],texto.split(";")[4],Boolean.parseBoolean(texto.split(";")[5])));
                     br.close();
                 }
             }

@@ -8,7 +8,10 @@ package Dominio;
 import Conexion.EnvioNodo;
 import DAO.DAOFinger;
 import DAO.DAORecurso;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -44,8 +47,7 @@ public class Buscador {
      */
      public String conozcoDireccion(){
         String _conozco = "No";
-        DAORecurso _dao = new DAORecurso();
-        for(Recurso r : _dao.todosLosRecursos()){
+        for(Recurso r : Recurso.ObtenerTodosLosRecursosConocidos()){
             if((r.getHashRecurso().equals(_hashRecurso)) && (r.getRecursoPropio() == false)){
                 _conozco = r.getIpRecurso();
                 return _conozco;
@@ -79,7 +81,11 @@ public class Buscador {
         for(Finger f : _dao.todosLosFinger()){
           if((f.getPosicion() == 5) && (_hashRecurso>f.hash_ip)){
                 EnvioNodo envio = new EnvioNodo();
-                envio.buscarEnOtroNodo(_hashRecurso, miPuertoTexto, miPuertoArchivo, miIp,f.getIp(),f.getPuertoTexto(),f.getPuertoArchivo());
+              try {
+                  envio.buscarEnOtroNodo(_hashRecurso, miPuertoTexto, miPuertoArchivo, miIp,f.getIp(),f.getPuertoTexto(),f.getPuertoArchivo());
+              } catch (IOException ex) {
+                  Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
+              }
             }
         }
     }
