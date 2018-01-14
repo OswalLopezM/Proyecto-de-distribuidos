@@ -126,22 +126,32 @@ public class PeerToPeer {
     }
     public static void dentroRegistro(String caso){
         String entradaTeclado = "";
-        if (caso.equals("1")){
-            System.out.println("Indica el nombre del recurso que deseas: ");
-            Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
-            entradaTeclado = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
-            Integer _hashRecurso = PeerToPeer.toHash(entradaTeclado);
-            Buscador buscador = new Buscador(_hashRecurso);
-            Boolean _esMio = buscador.miRecurso();
-            if(_esMio == true){
-                System.out.println("ESTE RECURSO "+_hashRecurso+" YA ES TUYO");
-            }else{
-                System.out.println("ESTE RECURSO "+_hashRecurso+" NO ES TUYO, SE PROCEDE A BUSCAR SI TIENES LA DIRECCION DE ESTE RECURSO");
-                String _conozcoDireccion = buscador.conozcoDireccion();
-                System.out.println("SI LO CONOCES, LO TIENE EL NODO "+_conozcoDireccion);
-                
+        
+        while (entradaTeclado.equals("0")){
+            if (caso.equals("1")){
+                System.out.println("Indica el nombre del recurso que deseas: ");
+                Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+                entradaTeclado = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
+                Integer _hashRecurso = PeerToPeer.toHash(entradaTeclado);
+                Buscador buscador = new Buscador(_hashRecurso);
+                Boolean _esMio = buscador.miRecurso();
+                if(_esMio == true){
+                    System.out.println("ESTE RECURSO "+_hashRecurso+" YA ES TUYO");
+                }else{
+                    System.out.println("ESTE RECURSO "+_hashRecurso+" NO ES TUYO, SE PROCEDE A BUSCAR SI TIENES LA DIRECCION DE ESTE RECURSO");
+                    String _conozcoDireccion = buscador.conozcoDireccion();
+                    System.out.println("SI LO CONOCES, LO TIENE EL NODO "+_conozcoDireccion);
+
+                }
+            }else if(caso.equals("2")){
+            
+            }else if(caso.equals("3")){
+                for(Recurso r : Registro.Registro.RECURSOS_CONOCIDOS){
+                    System.out.println("nombre : "+r.getNombreRecurso());
+                }
             }
         }
+        
     
     }
  static Integer toHash(String str){
