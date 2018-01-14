@@ -124,7 +124,7 @@ public class PeerToPeer {
     }
    public static void dentroRegistro(){
         String entradaTeclado = "";
-        
+        Usuario user = new Usuario();
         while (!entradaTeclado.equals("0")){
             Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
             entradaTeclado = entradaEscaner.nextLine ();
@@ -140,7 +140,19 @@ public class PeerToPeer {
                 }else{
                     System.out.println("ESTE RECURSO "+_hashRecurso+" NO ES TUYO, SE PROCEDE A BUSCAR SI TIENES LA DIRECCION DE ESTE RECURSO");
                     String _conozcoDireccion = buscador.conozcoDireccion();
-                    System.out.println("SI LO CONOCES, LO TIENE EL NODO "+_conozcoDireccion);
+                    if(_conozcoDireccion.equals("No")){
+                            
+                            System.out.println("ESTE RECURSO "+_hashRecurso+"NO LO TIENE NADIE QUE CONOZCAS, SE PROCEDE A BUSCAR CON LA TABLA DE FINGER"); 
+                            String _quienLoTiene =  buscador.tablaFingerSinSalto(user.getIp(),user.getPuertoTexto(),user.getPuertoArchivo());
+                            if(_quienLoTiene.equals("No")){
+                                buscador.tablaFingerConSalto(user.getIp(),user.getPuertoTexto(),user.getPuertoArchivo());
+                            }else{
+                                System.out.println("El recurso lo tiene: "+_quienLoTiene);
+                            }
+                            
+                        }else{
+                           System.out.println("El recurso lo tiene: "+_conozcoDireccion);
+                        }
 
                 }
             }else if(entradaTeclado.equals("2")){
