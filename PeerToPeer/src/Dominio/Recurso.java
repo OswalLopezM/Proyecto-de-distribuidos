@@ -159,6 +159,7 @@ public class Recurso implements Serializable{
                     bw.write(this.nombreRecurso+";"+this.hashRecurso+";"+this.ipRecurso+";"
                             +this.hashIpRecurso+";"+this.rutaRecurso+";"+this.recursoPropio);
                     bw.close();
+                    
                 }
         } catch (IOException ex) {
             Logger.getLogger(Status.class.getName()).log(Level.SEVERE, null, ex);

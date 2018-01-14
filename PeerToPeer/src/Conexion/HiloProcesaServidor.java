@@ -60,6 +60,7 @@ public class HiloProcesaServidor extends Thread {
                 //Recurso.eliminarArchivos();
             }else if(recibo instanceof Recurso){
                 //logica para cuando recibes un recurso de otro nodo
+                 Thread.sleep(3000);
                 System.out.println("HiloProcesaServidor.run LLEGO UN RECURSO");
                 Recurso recibido = (Recurso) recibo;
                 recibido.setRecursoPropio(false);
@@ -80,6 +81,8 @@ public class HiloProcesaServidor extends Thread {
       } catch (IOException ex) {
           Logger.getLogger(HiloProcesaServidor.class.getName()).log(Level.SEVERE, null, ex);
       } catch (ClassNotFoundException ex) {    
+            Logger.getLogger(HiloProcesaServidor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
             Logger.getLogger(HiloProcesaServidor.class.getName()).log(Level.SEVERE, null, ex);
         }    
     }
