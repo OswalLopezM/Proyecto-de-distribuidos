@@ -155,11 +155,12 @@ public class PeerToPeer {
                     if(_conozcoDireccion.equals("No")){
                             
                             System.out.println("ESTE RECURSO "+_hashRecurso+" NO LO TIENE NADIE QUE CONOZCAS, SE PROCEDE A BUSCAR CON LA TABLA DE FINGER"); 
-                            String _quienLoTiene =  buscador.tablaFingerSinSalto(user.getIp(),user.getPuertoTexto(),user.getPuertoArchivo());
+                            String _quienLoTiene =  buscador.tablaFingerSinSaltoPropio(user.getIp(),user.getPuertoTexto(),user.getPuertoArchivo());
                             if(_quienLoTiene.equals("No")){
                                 buscador.tablaFingerConSalto(user.getIp(),user.getPuertoTexto(),user.getPuertoArchivo());
                             }else{
                                 System.out.println("El recurso lo tiene: "+_quienLoTiene);
+                                EnvioNodo.solicitarRecurso(_quienLoTiene.split(";")[0],Integer.parseInt(_quienLoTiene.split(";")[1]),_hashRecurso);
                             }
                             
                         }else{

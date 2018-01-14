@@ -153,7 +153,7 @@ public class EnvioNodo {
    return strHashCode;
 }
   
-  public void solicitarRecurso(String ipDueno, Integer PuertoArchivoDueno, Integer hashRecurso){
+  public static void solicitarRecurso(String ipDueno, Integer PuertoArchivoDueno, Integer hashRecurso){
       try {
             Socket clientSocket;
             clientSocket = new Socket(ipDueno,PuertoArchivoDueno);

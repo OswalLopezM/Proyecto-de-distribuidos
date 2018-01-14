@@ -82,6 +82,7 @@ public class HiloProcesaServidor extends Thread {
                     System.out.println("La IP del dueno del recurso: "+split[1]);
                     System.out.println("El puerto de TEXTO del dueno del recurso: "+split[2]);
                     System.out.println("El puerto de ARCHIVOS del dueno del recurso: "+split[3]);
+                    EnvioNodo.solicitarRecurso(split[1],Integer.parseInt(split[3]),Integer.parseInt(split[4]));
                 }
             }else if(recibo instanceof ArrayList){
                 Recurso.eliminarArchivos();

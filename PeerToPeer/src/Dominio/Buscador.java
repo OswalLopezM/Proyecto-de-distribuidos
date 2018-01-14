@@ -56,6 +56,7 @@ public class Buscador {
      return _conozco;
     }
      
+     
      /**
       * Se encarga de buscar en la tabla de finger el recurso
      * @param miIp
@@ -75,6 +76,24 @@ public class Buscador {
      return _loTiene;
     }
   
+       /**
+      * Se encarga de buscar en la tabla de finger el recurso
+     * @param miIp
+     * @param miPuertoTexto
+     * @param miPuertoArchivo
+      * @return 
+      */
+      public String tablaFingerSinSaltoPropio(String miIp, Integer miPuertoTexto, Integer miPuertoArchivo){
+        String _loTiene = "No";
+        DAOFinger _dao = new DAOFinger();
+        for(Finger f : _dao.todosLosFinger()){
+            if(_hashRecurso<=f.hash_ip){
+                _loTiene = f.getIp()+";"+f.getPuertoArchivo();
+                return _loTiene;
+            }
+        }     
+     return _loTiene;
+    }
       
     public void tablaFingerConSalto(String miIp, Integer miPuertoTexto, Integer miPuertoArchivo){
         DAOFinger _dao = new DAOFinger();
