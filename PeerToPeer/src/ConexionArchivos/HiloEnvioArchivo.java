@@ -5,6 +5,8 @@
  */
 package ConexionArchivos;
 
+import DAO.DAORecurso;
+import Dominio.Recurso;
 import Dominio.Status;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -12,6 +14,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.net.Socket;
 
 /**
@@ -34,14 +37,21 @@ public class HiloEnvioArchivo extends Thread{
         int in;
         byte[] byteArray;
         //Fichero a transferir
-        final String nombreArchivo = "test.pdf";
-
+        String nombreArchivo = "test.pdf";
+        
         try{
+            ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
+            String recibo = (String) ois.readObject();
+            
+            Recurso r = new DAORecurso().buscarRecurso(recibo.split(";")[2]);
+            nombreArchivo = r.getNombreRecurso();
             final File localFile = new File( nombreArchivo );
+            
             bis = new BufferedInputStream(new FileInputStream(localFile));
-            bos = new BufferedOutputStream(clientSocket.getOutputStream());
+            Socket clientArchivo = new Socket(recibo.split(";")[0],Integer.parseInt(recibo.split(";")[1]));
+            bos = new BufferedOutputStream(clientArchivo.getOutputStream());
             //Enviamos el nombre del fichero
-            DataOutputStream dos=new DataOutputStream(clientSocket.getOutputStream());
+            DataOutputStream dos=new DataOutputStream(clientArchivo.getOutputStream());
             dos.writeUTF(localFile.getName());
             Status status = new Status(nombreArchivo,"envio");
             int acumulado = 0 , cont = 0;
@@ -59,6 +69,7 @@ public class HiloEnvioArchivo extends Thread{
             bis.close();
             bos.close();
             clientSocket.close();
+            clientArchivo.close();
         }catch ( Exception e ) {
             System.err.println(e);
         }

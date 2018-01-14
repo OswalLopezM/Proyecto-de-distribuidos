@@ -55,7 +55,7 @@ public class HiloProcesaServidor extends Thread {
                     Boolean _esMio = buscador.miRecurso();
                     if(_esMio == true){
                         envio.encontreRecurso(split[5], Integer.parseInt(split[6]), Integer.parseInt(split[7]),
-                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]));
+                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]),split[1]);
                     }else{
                         System.out.println("ESTE RECURSO "+split[1]+" NO ES TUYO, SE PROCEDE A BUSCAR SI TIENES LA DIRECCION DE ESTE RECURSO");
                         String _conozcoDireccion = buscador.conozcoDireccion();
@@ -67,16 +67,18 @@ public class HiloProcesaServidor extends Thread {
                                 buscador.tablaFingerConSalto(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]));
                             }else{
                                 envio.encontreRecurso(_quienLoTiene, Integer.parseInt(split[6]), Integer.parseInt(split[7]),
-                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]));
+                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]),split[1]);
                             }
                             
                         }else{
                            envio.encontreRecurso(_conozcoDireccion, Integer.parseInt(split[7]), Integer.parseInt(split[8]),
-                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]));
+                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]),split[1]);
                         }
                     }
               
                 }else if (split[0].equals("RECURSO")){
+                    //logica cuando se reciben los datos del nodo que posee el recurso
+                    
                     System.out.println("La IP del dueno del recurso: "+split[1]);
                     System.out.println("El puerto de TEXTO del dueno del recurso: "+split[2]);
                     System.out.println("El puerto de ARCHIVOS del dueno del recurso: "+split[3]);

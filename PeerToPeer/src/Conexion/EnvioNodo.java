@@ -5,6 +5,7 @@
  */
 package Conexion;
 
+import ConexionArchivos.HiloRecepcionArchivo;
 import DAO.DAOOtrosUsuarios;
 import DAO.DAORecurso;
 import DAO.DAOUsuario;
@@ -49,7 +50,7 @@ public class EnvioNodo {
                 //if(usuario.getHashIp().compareTo(otroUsuario.getHash_ip())  != 0){//si el usuario a quien le voy a enviar es distinto a mi (usuaruio que envia)
               //      System.out.println("EnvioNodo.enviarListaRecursos: Estoy en un usuario con ip "+ otroUsuario.getIp() + " y el hash es "+otroUsuario.getHash_ip());
                 //    System.out.println("EnvioNodo.enviarListaRecursos: el hash del recuro es: " + recurso.getHashRecurso());
-                    if(recurso.getHashRecurso() < otroUsuario.getHash_ip()  && //si el hash del recurso es menor que el hash del usuario y el hash del usuario es menor al que ya habia seleccionado anterior mente
+                    if(recurso.getHashRecurso() <= otroUsuario.getHash_ip()  && //si el hash del recurso es menor que el hash del usuario y el hash del usuario es menor al que ya habia seleccionado anterior mente
                         mayorCercano < otroUsuario.getHash_ip()){
                         //hash recurso: 1650000000 hash mari: 
                         mayorCercano = otroUsuario.getHash_ip();
@@ -125,12 +126,12 @@ public class EnvioNodo {
     }
     
      public void encontreRecurso(String miIp, Integer miPuertoTexto, Integer miPuertoArchivo,
-             String ipOrigen, Integer puertoTextoOrigen, Integer puertoArchivoOrigen){
+             String ipOrigen, Integer puertoTextoOrigen, Integer puertoArchivoOrigen,String hashDelRecurso){
        try {
             Socket clientSocket;
             clientSocket = new Socket(ipOrigen,puertoTextoOrigen);
             
-            String mensaje = "RECURSO;"+miIp+";"+miPuertoTexto+";"+miPuertoArchivo;
+            String mensaje = "RECURSO;"+miIp+";"+miPuertoTexto+";"+miPuertoArchivo+";"+hashDelRecurso;
 
             ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
             envio.writeObject(mensaje);
@@ -151,6 +152,24 @@ public class EnvioNodo {
    int strHashCode = Math.abs(str.hashCode() % 100);
    return strHashCode;
 }
+  
+  public void solicitarRecurso(String ipDueno, Integer PuertoArchivoDueno, Integer hashRecurso){
+      try {
+            Socket clientSocket;
+            clientSocket = new Socket(ipDueno,PuertoArchivoDueno);
+            Usuario u = new DAOUsuario().devolverUsuarioActivo();
+            String ip = u.getIp();
+            Integer puertoArchivo = u.getPuertoArchivo();
+            String mensaje = ip + ";" + puertoArchivo+";"+hashRecurso;
+            ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
+            envio.writeObject(mensaje);
+            envio.close();
+            clientSocket.close();
+            new HiloRecepcionArchivo().start();
+        } catch (IOException ex) {
+            Logger.getLogger(PeticionCoordinador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+  }
     
     
 }

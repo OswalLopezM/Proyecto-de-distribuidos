@@ -6,9 +6,21 @@
     <puertoArchivo>6002</puertoArchivo>
   </Usuario>
   <Usuario>
+    <hashIp>75</hashIp>
+    <ip>192.168.1.3</ip>
+    <puertoTexto>5004</puertoTexto>
+    <puertoArchivo>6004</puertoArchivo>
+  </Usuario>
+  <Usuario>
     <hashIp>76</hashIp>
     <ip>192.168.1.4</ip>
     <puertoTexto>5003</puertoTexto>
     <puertoArchivo>6003</puertoArchivo>
+  </Usuario>
+  <Usuario>
+    <hashIp>81</hashIp>
+    <ip>192.168.1.9</ip>
+    <puertoTexto>5005</puertoTexto>
+    <puertoArchivo>6005</puertoArchivo>
   </Usuario>
 </root>

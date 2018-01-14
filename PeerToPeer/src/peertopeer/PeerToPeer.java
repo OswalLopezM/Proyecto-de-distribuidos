@@ -17,7 +17,9 @@ import Dominio.Usuario;
 import Interfaz.Interfaz;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.UnknownHostException;
+import java.util.Enumeration;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +31,7 @@ import java.util.logging.Logger;
 public class PeerToPeer {
 
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, Exception {
         String ip = "";
         Recurso recurso= null;
         HiloPrincipalServidor hiloTexto = null;
@@ -37,18 +39,21 @@ public class PeerToPeer {
         
         //String nombreRecurso, String ipRecurso, String rutaRecurso,Boolean recursoPropio
         try {
-            recurso = new Recurso("star wars.pdf",InetAddress.getLocalHost().getHostAddress(),"no importa",true);//caso para que sea menor que la maquina de mari
+            recurso = new Recurso("The big Bang theory.pdf",PeerToPeer.obtenerIP(),"no importa",true);//caso para que sea menor que la maquina de mari
         } catch (UnknownHostException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //recurso.crearArchvio();
+        System.out.println("Hola");
+        System.out.println("PeerToPeer.main: "+recurso.getIpRecurso());
+        
+        //recurso.crearArchvioR
         //recurso = new Recurso("hbhbhj.pdf","ipgadfa","no importa",true);//caso para que sea menor que la maquina de mari
         //recurso.crearArchvio();
         
         //System.out.println("El recurso es: "+recurso.getNombreRecurso()+ " " + recurso.getIpRecurso() 
         //+ " " + recurso.getRutaRecurso()+ " " + recurso.getHashIpRecurso() + " " + recurso.getHashRecurso()+ " " );
         
-        //new DAORecurso().registrarRecurso(recurso);
+//        new DAORecurso().registrarRecurso(recurso);
         /*
         try {
             ip = InetAddress.getLocalHost().getHostAddress();
@@ -105,11 +110,13 @@ public class PeerToPeer {
     
     public static void registrarmeConCoordinador(){
         try {
-            String ip = InetAddress.getLocalHost().getHostAddress();
+            String ip = PeerToPeer.obtenerIP();
             Usuario usuario = new PeticionCoordinador().AgregarPeerToPeer("REGISTRO;"+ip);
             new DAOUsuario().eliminarUsuarios();
             new DAOUsuario().agregarUsuario(usuario);
         } catch (UnknownHostException ex) {
+            Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -176,5 +183,26 @@ public class PeerToPeer {
    int strHashCode = Math.abs(str.hashCode() % 100);
    return strHashCode;
 }
+ 
+    public static String obtenerIP() throws Exception
+   {
+           //System.out.println("Host addr: " + InetAddress.getLocalHost().getHostAddress());  // often returns "127.0.0.1"
+           Enumeration<NetworkInterface> n = NetworkInterface.getNetworkInterfaces();
+           for (; n.hasMoreElements();)
+           {
+                   NetworkInterface e = n.nextElement();
+                   //System.out.println("Interface: " + e.getName());
+                   Enumeration<InetAddress> a = e.getInetAddresses();
+                   for (; a.hasMoreElements();)
+                   {
+                           InetAddress addr = a.nextElement();
+             //              System.out.println("  " + addr.getHostAddress());
+                           if(addr.getHostAddress().contains("192.168.1")){
+                               return addr.getHostAddress();
+                           }
+                   }
+           }
+           return null;
+   }
  
 }

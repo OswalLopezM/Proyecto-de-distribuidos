@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author maria
  */
 public class Buscador {
-    Integer _hashRecurso; 
+    public Integer _hashRecurso; 
     public Buscador(){}
     
     public Buscador(Integer hash_recurso){

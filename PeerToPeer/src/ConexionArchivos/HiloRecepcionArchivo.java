@@ -40,11 +40,12 @@ public class HiloRecepcionArchivo extends Thread{
         byte[] receivedData;
         int in;
         String nombreArchivo;
-
+        
+        
         try{
             //Servidor Socket en el puerto 5000
-            serverSocket = new ServerSocket( 5000 );
-            while ( true ) {
+            serverSocket = new ServerSocket( 5000 ); //este ppuerto dependera lo que tenga en el dao
+//            while ( true ) {
                 //Aceptar conexiones
                 clientSocket = serverSocket.accept();
                 //Buffer de 1024 bytes
@@ -65,7 +66,6 @@ public class HiloRecepcionArchivo extends Thread{
                         acumulado = acumulado + in;
                         status.actualizarArchivo(acumulado);
                     }
-
                 }
                 status.eliminarArchivo();
                 System.out.println("Se ha terminado la recepcion del archivo");
@@ -74,7 +74,7 @@ public class HiloRecepcionArchivo extends Thread{
                 serverSocket.close();
                 clientSocket.close();
                 
-            }
+//            }
         }catch (Exception e ) {
             System.err.println(e);
         }

@@ -14,6 +14,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import peertopeer.PeerToPeer;
 
 /**
  *
@@ -24,21 +25,22 @@ public class HiloPrincipalArchivo extends Thread{
      public void run (){
             
         try {
-            String ip = InetAddress.getLocalHost().getHostAddress();
+            String ip = PeerToPeer.obtenerIP();
             Usuario usuario = new DAOUsuario().buscarUsuario(toHash(ip).toString());
             
             int PUERTO = usuario.getPuertoArchivo(); //Puerto para la conexión
             System.out.println("SE INICIA HILO DE ESCUCHA DE ARCHIVO CON PUERTO: "+PUERTO);
             ServerSocket serverSocket = new ServerSocket(PUERTO); //Socket del servidor
             Socket clientSocket; //Socket del cliente
-            for (;;)
-            {
+            for (;;){
                 clientSocket = serverSocket.accept();
                 new HiloEnvioArchivo(clientSocket).start();
-            } 
+            }
         } catch (IOException ex) {
             Logger.getLogger(HiloPrincipalArchivo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (Exception ex) {
+             Logger.getLogger(HiloPrincipalArchivo.class.getName()).log(Level.SEVERE, null, ex);
+         }
        
      
     

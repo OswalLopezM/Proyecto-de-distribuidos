@@ -6,15 +6,21 @@
     <puertoTexto>5002</puertoTexto>
   </OtrosUsuarios>
   <OtrosUsuarios>
+    <ip>192.168.1.3</ip>
+    <hash_ip>75</hash_ip>
+    <puertoArchivo>6004</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+  </OtrosUsuarios>
+  <OtrosUsuarios>
     <ip>192.168.1.4</ip>
     <hash_ip>76</hash_ip>
     <puertoArchivo>6003</puertoArchivo>
     <puertoTexto>5003</puertoTexto>
   </OtrosUsuarios>
   <OtrosUsuarios>
-    <ip>192.168.1.8</ip>
-    <hash_ip>80</hash_ip>
-    <puertoArchivo>6004</puertoArchivo>
-    <puertoTexto>5004</puertoTexto>
+    <ip>192.168.1.9</ip>
+    <hash_ip>81</hash_ip>
+    <puertoArchivo>6005</puertoArchivo>
+    <puertoTexto>5005</puertoTexto>
   </OtrosUsuarios>
 </root>
