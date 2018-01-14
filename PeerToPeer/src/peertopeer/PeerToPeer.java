@@ -90,9 +90,7 @@ public class PeerToPeer {
                 hiloArchivo.start();
                 Interfaz interfaz = new Interfaz();
                 interfaz.buscar();
-                Scanner entradaEscaner2 = new Scanner (System.in); //Creación de un objeto Scanner
-                entradaTeclado = entradaEscaner2.nextLine (); //Invocamos un método sobre un objeto Scanner
-                PeerToPeer.dentroRegistro(entradaTeclado);
+                PeerToPeer.dentroRegistro();
                 
             }else if(entradaTeclado.equals("6")){
                 PeerToPeer.salirmeConCoordinador();
@@ -124,13 +122,15 @@ public class PeerToPeer {
         }
         
     }
-    public static void dentroRegistro(String caso){
+   public static void dentroRegistro(){
         String entradaTeclado = "";
-         Usuario user = new Usuario();
-        while (entradaTeclado.equals("0")){
-            if (caso.equals("1")){
+        
+        while (!entradaTeclado.equals("0")){
+            Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+            entradaTeclado = entradaEscaner.nextLine ();
+            if (entradaTeclado.equals("1")){
                 System.out.println("Indica el nombre del recurso que deseas: ");
-                Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+                entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
                 entradaTeclado = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
                 Integer _hashRecurso = PeerToPeer.toHash(entradaTeclado);
                 Buscador buscador = new Buscador(_hashRecurso);
@@ -143,9 +143,10 @@ public class PeerToPeer {
                     System.out.println("SI LO CONOCES, LO TIENE EL NODO "+_conozcoDireccion);
 
                 }
-            }else if(caso.equals("2")){
+            }else if(entradaTeclado.equals("2")){
             
-            }else if(caso.equals("3")){
+            }else if(entradaTeclado.equals("3")){
+                System.out.println("lista de recursos:");
                 for(Recurso r : Registro.Registro.RECURSOS_CONOCIDOS){
                     System.out.println("nombre : "+r.getNombreRecurso());
                 }

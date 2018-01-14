@@ -3,35 +3,35 @@
     <posicion>1</posicion>
     <ip>192.168.1.4</ip>
     <hash_ip>76</hash_ip>
-    <puertoArchivo>6002</puertoArchivo>
-    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6003</puertoArchivo>
+    <puertoTexto>5003</puertoTexto>
   </Finger>
   <Finger>
     <posicion>2</posicion>
     <ip>192.168.1.4</ip>
     <hash_ip>76</hash_ip>
-    <puertoArchivo>6002</puertoArchivo>
-    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6003</puertoArchivo>
+    <puertoTexto>5003</puertoTexto>
   </Finger>
   <Finger>
     <posicion>3</posicion>
     <ip>192.168.1.4</ip>
     <hash_ip>76</hash_ip>
-    <puertoArchivo>6002</puertoArchivo>
-    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6003</puertoArchivo>
+    <puertoTexto>5003</puertoTexto>
   </Finger>
   <Finger>
     <posicion>4</posicion>
     <ip>192.168.1.4</ip>
     <hash_ip>76</hash_ip>
-    <puertoArchivo>6002</puertoArchivo>
-    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6003</puertoArchivo>
+    <puertoTexto>5003</puertoTexto>
   </Finger>
   <Finger>
     <posicion>5</posicion>
     <ip>192.168.1.4</ip>
     <hash_ip>76</hash_ip>
-    <puertoArchivo>6002</puertoArchivo>
-    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6003</puertoArchivo>
+    <puertoTexto>5003</puertoTexto>
   </Finger>
 </root>
