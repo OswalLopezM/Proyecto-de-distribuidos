@@ -1,7 +1,23 @@
 <root>
   <Recurso>
-    <nombreRecurso>el ladron del rayo.pdf</nombreRecurso>
-    <hashRecurso>45</hashRecurso>
+    <nombreRecurso>Cirque Du Freak.pdf</nombreRecurso>
+    <hashRecurso>49</hashRecurso>
+    <ipRecurso>192.168.1.10</ipRecurso>
+    <hashIpRecurso>11</hashIpRecurso>
+    <rutaRecurso>no importa</rutaRecurso>
+    <recursoPropio>true</recursoPropio>
+  </Recurso>
+  <Recurso>
+    <nombreRecurso>Bajo La Misma Estrella.pdf</nombreRecurso>
+    <hashRecurso>92</hashRecurso>
+    <ipRecurso>192.168.1.10</ipRecurso>
+    <hashIpRecurso>11</hashIpRecurso>
+    <rutaRecurso>no importa</rutaRecurso>
+    <recursoPropio>true</recursoPropio>
+  </Recurso>
+  <Recurso>
+    <nombreRecurso>Yo Antes De Ti.pdf</nombreRecurso>
+    <hashRecurso>75</hashRecurso>
     <ipRecurso>192.168.1.10</ipRecurso>
     <hashIpRecurso>11</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>

@@ -102,6 +102,43 @@ public class EnvioNodo {
         }
     }
     
+    public void buscarEnOtroNodo(Integer hashrecurso, Integer miPuertoTexto, Integer miPuertoArchivo,
+            String miIp, String tuIp, Integer tuPuertoTexto, Integer tuPuertoArchivo){
+       try {
+            Socket clientSocket;
+            clientSocket = new Socket(tuIp,tuPuertoTexto);
+            
+            String mensaje = "BUSCAR;"+hashrecurso.toString()+";"+miIp+";"+miPuertoTexto+";"+miPuertoArchivo+
+                    ";"+tuIp+";"+tuPuertoTexto.toString()+";"+tuPuertoArchivo.toString();
+
+            ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
+            envio.writeObject(mensaje);
+            envio.close();
+            clientSocket.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(PeticionCoordinador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     public void encontreRecurso(String miIp, Integer miPuertoTexto, Integer miPuertoArchivo,
+             String ipOrigen, Integer puertoTextoOrigen, Integer puertoArchivoOrigen){
+       try {
+            Socket clientSocket;
+            clientSocket = new Socket(ipOrigen,puertoTextoOrigen);
+            
+            String mensaje = "RECURSO;"+miIp+";"+miPuertoTexto+";"+miPuertoArchivo;
+
+            ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
+            envio.writeObject(mensaje);
+            envio.close();
+            clientSocket.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(PeticionCoordinador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
      /**
      * metodo que se encarga de convertir a hash la contrasena
      * @param clave clave a convertir

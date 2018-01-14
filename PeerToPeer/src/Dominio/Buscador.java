@@ -5,6 +5,8 @@
  */
 package Dominio;
 
+import Conexion.EnvioNodo;
+import DAO.DAOFinger;
 import DAO.DAORecurso;
 import java.util.ArrayList;
 
@@ -20,6 +22,10 @@ public class Buscador {
         this._hashRecurso = hash_recurso;
     }
     
+   /**
+    * Este metodo se encarga de revisar si el recurso es de la persona quien busca
+    * @return 
+    */
     public Boolean miRecurso(){
         Boolean _esMio = false;
         DAORecurso _dao = new DAORecurso();
@@ -32,8 +38,12 @@ public class Buscador {
      return _esMio;
     }
     
+    /**
+     * Se encarga de revisar si la persona quien busca conoce quien tiene el recurso
+     * @return 
+     */
      public String conozcoDireccion(){
-        String _conozco = "No conozco IP";
+        String _conozco = "No";
         DAORecurso _dao = new DAORecurso();
         for(Recurso r : _dao.todosLosRecursos()){
             if((r.getHashRecurso().equals(_hashRecurso)) && (r.getRecursoPropio() == false)){
@@ -42,5 +52,35 @@ public class Buscador {
             }
         }
      return _conozco;
+    }
+     
+     /**
+      * Se encarga de buscar en la tabla de finger el recurso
+     * @param miIp
+     * @param miPuertoTexto
+     * @param miPuertoArchivo
+      * @return 
+      */
+      public String tablaFingerSinSalto(String miIp, Integer miPuertoTexto, Integer miPuertoArchivo){
+        String _loTiene = "No";
+        DAOFinger _dao = new DAOFinger();
+        for(Finger f : _dao.todosLosFinger()){
+            if(_hashRecurso<=f.hash_ip){
+                _loTiene = f.getIp();
+                return _loTiene;
+            }
+        }     
+     return _loTiene;
+    }
+  
+      
+    public void tablaFingerConSalto(String miIp, Integer miPuertoTexto, Integer miPuertoArchivo){
+        DAOFinger _dao = new DAOFinger();
+        for(Finger f : _dao.todosLosFinger()){
+          if((f.getPosicion() == 5) && (_hashRecurso>f.hash_ip)){
+                EnvioNodo envio = new EnvioNodo();
+                envio.buscarEnOtroNodo(_hashRecurso, miPuertoTexto, miPuertoArchivo, miIp,f.getIp(),f.getPuertoTexto(),f.getPuertoArchivo());
+            }
+        }
     }
 }
