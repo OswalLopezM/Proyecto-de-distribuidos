@@ -97,9 +97,7 @@ public class PeerToPeer {
                 hiloTexto = new HiloPrincipalServidor();
                 hiloArchivo = new HiloPrincipalArchivo();
                 hiloTexto.start();
-//                hiloArchivo.start();
-                Interfaz interfaz = new Interfaz();
-                interfaz.buscar();
+//                hiloArchivo.start();    
                 PeerToPeer.dentroRegistro();
                 
             }else if(entradaTeclado.equals("6")){
@@ -140,6 +138,7 @@ public class PeerToPeer {
         DAOUsuario dao = new DAOUsuario();
         user = dao.devolverUsuarioActivo();
         while (!entradaTeclado.equals("0")){
+            new Interfaz().buscar();
             Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
             entradaTeclado = entradaEscaner.nextLine ();
             if (entradaTeclado.equals("1")){
