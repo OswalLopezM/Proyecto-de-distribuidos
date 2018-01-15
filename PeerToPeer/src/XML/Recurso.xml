@@ -7,8 +7,8 @@
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
     <cantidadDescargas>0</cantidadDescargas>
-    <puertoTexto>5004</puertoTexto>
-    <puertoArchivo>6004</puertoArchivo>
+    <puertoTexto>5005</puertoTexto>
+    <puertoArchivo>6005</puertoArchivo>
   </Recurso>
   <Recurso>
     <nombreRecurso>Juegos del hambre.pdf</nombreRecurso>
@@ -18,8 +18,8 @@
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
     <cantidadDescargas>0</cantidadDescargas>
-    <puertoTexto>5004</puertoTexto>
-    <puertoArchivo>6004</puertoArchivo>
+    <puertoTexto>5005</puertoTexto>
+    <puertoArchivo>6005</puertoArchivo>
   </Recurso>
   <Recurso>
     <nombreRecurso>The big Bang theory.pdf</nombreRecurso>
@@ -29,18 +29,7 @@
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
     <cantidadDescargas>0</cantidadDescargas>
-    <puertoTexto>5004</puertoTexto>
-    <puertoArchivo>6004</puertoArchivo>
-  </Recurso>
-  <Recurso>
-    <nombreRecurso>Harry Potter 2.pdf</nombreRecurso>
-    <hashRecurso>6</hashRecurso>
-    <ipRecurso>192.168.1.10</ipRecurso>
-    <hashIpRecurso>11</hashIpRecurso>
-    <rutaRecurso>no importa</rutaRecurso>
-    <recursoPropio>true</recursoPropio>
-    <cantidadDescargas>1</cantidadDescargas>
-    <puertoTexto>5002</puertoTexto>
-    <puertoArchivo>6002</puertoArchivo>
+    <puertoTexto>5005</puertoTexto>
+    <puertoArchivo>6005</puertoArchivo>
   </Recurso>
 </root>

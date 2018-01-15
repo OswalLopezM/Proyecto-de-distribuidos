@@ -11,8 +11,10 @@ import DAO.DAOOtrosUsuarios;
 import DAO.DAORecurso;
 import DAO.DAOUsuario;
 import Dominio.Buscador;
+import Dominio.Finger;
 import Dominio.OtrosUsuarios;
 import Dominio.Recurso;
+import Dominio.Status;
 import Dominio.Usuario;
 import Interfaz.Interfaz;
 import java.io.IOException;
@@ -102,6 +104,7 @@ public class PeerToPeer {
                 
             }else if(entradaTeclado.equals("6")){
                 PeerToPeer.salirmeConCoordinador();
+                 System.exit(0);
                 //hiloTexto.stop();
                 //hiloArchivo.stop();
             }
@@ -140,7 +143,7 @@ public class PeerToPeer {
         while (!entradaTeclado.equals("0")){
             new Interfaz().buscar();
             Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
-            entradaTeclado = entradaEscaner.nextLine ();
+            entradaTeclado = entradaEscaner.nextLine();
             if (entradaTeclado.equals("1")){
                 System.out.println("Indica el nombre del recurso que deseas: ");
                 entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
@@ -155,33 +158,78 @@ public class PeerToPeer {
                     String _conozcoDireccion = buscador.conozcoDireccion();
                     if(_conozcoDireccion.equals("No")){
                             
-                            System.out.println("ESTE RECURSO "+_hashRecurso+" NO LO TIENE NADIE QUE CONOZCAS, SE PROCEDE A BUSCAR CON LA TABLA DE FINGER"); 
-                            String _quienLoTiene =  buscador.tablaFingerSinSaltoPropio(user.getIp(),user.getPuertoTexto(),user.getPuertoArchivo());
-                            if(_quienLoTiene.equals("No")){
-                                buscador.tablaFingerConSalto(user.getIp(),user.getPuertoTexto(),user.getPuertoArchivo());
-                            }else{
-                                System.out.println("El recurso lo tiene: "+_quienLoTiene);
-                                EnvioNodo.solicitarRecurso(_quienLoTiene.split(";")[0],Integer.parseInt(_quienLoTiene.split(";")[1]),_hashRecurso);
-                            }
-                            
-                        }else{
-                           System.out.println("El recurso lo tiene: "+_conozcoDireccion);
-                           //aqui tambien se deberia probar el solicitar Recurso
-                        }
+                        System.out.println("ESTE RECURSO "+_hashRecurso+" NO LO TIENE NADIE QUE CONOZCAS, SE PROCEDE A BUSCAR CON LA TABLA DE FINGER"); 
+                        //String _quienLoTiene =  buscador.tablaFingerSinSalto(user.getIp(),user.getPuertoTexto(),user.getPuertoArchivo());
+                        //if(_quienLoTiene.equals("No")){
+                            //buscador.tablaFingerConSalto(user.getIp(),user.getPuertoTexto(),user.getPuertoArchivo());
+                            Finger f = buscador.buscarFingerOswaldo();
+                            Usuario u = new DAOUsuario().devolverUsuarioActivo();
+                            new EnvioNodo().enviarMensaje(f.getIp(), f.getPuertoTexto(), "BUSCAR;"+_hashRecurso+";"+u.getIp()+";"+u.getPuertoTexto()+";"+u.getPuertoArchivo());
+                        //}else{
+                        //    System.out.println("El recurso lo tiene: "+_quienLoTiene);
+                        //    EnvioNodo.solicitarRecurso(_quienLoTiene.split(";")[0],Integer.parseInt(_quienLoTiene.split(";")[1]),_hashRecurso);
+                       // }
+                        
+                        
+                    }else{
+                       System.out.println("El recurso lo tiene: "+_conozcoDireccion);
+                       EnvioNodo.solicitarRecurso(_conozcoDireccion.split(";")[0],Integer.parseInt(_conozcoDireccion.split(";")[1]),_hashRecurso);
+                        
+                    }
 
                 }
             }else if(entradaTeclado.equals("2")){
-            
-            }else if(entradaTeclado.equals("3")){
-                System.out.println("lista de recursos:");
+                System.out.println("Lista de recursos que conoezco: ");
                 for(Recurso r : Registro.Registro.RECURSOS_CONOCIDOS){
-                    System.out.println("nombre : "+r.getNombreRecurso());
+                    System.out.println("clave de recurso : "+r.getHashRecurso()+ " ");
+                    System.out.println("nombre : "+r.getNombreRecurso()+ " ");
+                    System.out.println("Dueno : "+r.getIpRecurso()+ " ");
+                    System.out.println("ID de Dueno : "+r.getHashIpRecurso()+ " ");
+                    System.out.println("_________________________________________");
+                    
+                    
                 }
-            }else if(entradaTeclado.equals("4")){
+            }else if(entradaTeclado.equals("3")){
                 System.out.println("Lista de mis recursos");
                 for (Recurso r: new DAORecurso().todosLosRecursosPropios()){
-                    System.out.println("Nombre: "+r.getNombreRecurso());
+                    System.out.println("clave de recurso : "+r.getHashRecurso()+ " ");
+                    System.out.println("nombre : "+r.getNombreRecurso()+ " ");
+                    System.out.println("_________________________________________");
                 }
+            }else if(entradaTeclado.equals("4")){
+                System.out.println("Lista de descargas como servidor");
+                System.out.println("_________________________________________");
+                Status s =new Status("","envio");
+                System.out.println(s.devolverStatus()); 
+                System.out.println("_________________________________________");
+            }else if(entradaTeclado.equals("5")){
+                System.out.println("Lista de descargas como cliente");
+                System.out.println("_________________________________________");
+                Status s =new Status("","recepcion");
+                System.out.println(s.devolverStatus()); 
+                System.out.println("_________________________________________");
+            }else if(entradaTeclado.equals("6")){
+                for (Recurso r: new DAORecurso().todosLosRecursosPropios()){
+                    System.out.print("clave de recurso : "+r.getHashRecurso()+ " ");
+                    System.out.print("nombre : "+r.getNombreRecurso()+ " ");
+                    System.out.print("Cantidad de descargas del recurso : "+ r.getCantidadDescargas() + " ");
+                    System.out.println("_________________________________________");
+                }
+            }else if(entradaTeclado.equals("7")){
+                System.out.println("La tabla de finger de este usuario es: ");
+                for (Finger f: new DAOFinger().todosLosFinger()){
+                    System.out.print("Posicion : "+f.getPosicion()+ " ");
+                    System.out.print("Hash : "+f.getHash_ip()+ " ");
+                    System.out.print("IP : "+f.getIp()+ " ");
+                    System.out.println("_________________________________________");
+                }
+            }else if(entradaTeclado.equals("8")){
+                System.out.println("Los datos del usuario son");
+                Usuario u = new DAOUsuario().devolverUsuarioActivo();
+                    System.out.print("IP : "+u.getIp()+ " ");
+                    System.out.print("Puerto Archivo : "+u.getPuertoArchivo()+ " ");
+                    System.out.println("_________________________________________");
+                
             }
         }
         

@@ -74,6 +74,7 @@ public class HiloRecepcionArchivo extends Thread{
                         acumulado = acumulado + in;
                         status.actualizarArchivo(acumulado);
                     }
+                    Thread.sleep(50);
                 }
                 status.eliminarArchivo();
                 System.out.println("HiloRecepcionArchivo.run Se ha terminado la recepcion del archivo");

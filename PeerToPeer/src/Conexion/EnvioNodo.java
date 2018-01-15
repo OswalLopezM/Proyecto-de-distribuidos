@@ -142,6 +142,26 @@ public class EnvioNodo {
             Logger.getLogger(PeticionCoordinador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     
+     public void encontreRecurso(String ipOrigen, Integer puertoTextoOrigen, Integer puertoArchivoOrigen,String hashDelRecurso){
+       try {
+           Usuario u = new DAOUsuario().devolverUsuarioActivo();
+            Socket clientSocket;
+            clientSocket = new Socket(ipOrigen,puertoTextoOrigen);
+            
+            String mensaje = "RECURSO;"+u.getIp()+";"+u.getPuertoTexto()+";"+u.getPuertoArchivo()+";"+hashDelRecurso;
+
+            ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
+            envio.writeObject(mensaje);
+            envio.close();
+            clientSocket.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(PeticionCoordinador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     
+     
     
      /**
      * metodo que se encarga de convertir a hash la contrasena
@@ -173,5 +193,18 @@ public class EnvioNodo {
         }
   }
     
+  public void enviarMensaje(String ip, Integer puerto,String mensaje){
+        try {
+            Socket clientSocket;
+            //System.out.println("EnvioNodo.enviar: Voy a enviar el recurso con nombre " + recurso.getNombreRecurso() + " y hash: "+recurso.getHashIpRecurso()+" a ip: "+ip + " puerto: "+ puerto);
+            clientSocket = new Socket(ip,puerto);
+            ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
+            envio.writeObject(mensaje);
+            envio.close();
+            clientSocket.close();
+        } catch (IOException ex) {
+            Logger.getLogger(PeticionCoordinador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

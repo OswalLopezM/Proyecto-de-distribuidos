@@ -9,9 +9,12 @@ import ConexionArchivos.HiloEnvioArchivo;
 import DAO.DAOFinger;
 import DAO.DAOOtrosUsuarios;
 import DAO.DAORecurso;
+import DAO.DAOUsuario;
 import Dominio.Buscador;
+import Dominio.Finger;
 import Dominio.OtrosUsuarios;
 import Dominio.Recurso;
+import Dominio.Usuario;
 import Registro.Registro;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -54,25 +57,30 @@ public class HiloProcesaServidor extends Thread {
                     Buscador buscador = new Buscador(Integer.parseInt(split[1]));
                     Boolean _esMio = buscador.miRecurso();
                     if(_esMio == true){
-                        envio.encontreRecurso(split[5], Integer.parseInt(split[6]), Integer.parseInt(split[7]),
-                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]),split[1]);
+                        //envio.encontreRecurso(split[5], Integer.parseInt(split[6]), Integer.parseInt(split[7]),
+                        //        split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]),split[1]);
                     }else{
                         System.out.println("ESTE RECURSO "+split[1]+" NO ES TUYO, SE PROCEDE A BUSCAR SI TIENES LA DIRECCION DE ESTE RECURSO");
                         String _conozcoDireccion = buscador.conozcoDireccion();
                         if(_conozcoDireccion.equals("No")){
                             
                             System.out.println("ESTE RECURSO "+split[1]+"NO LO TIENE NADIE QUE CONOZCAS, SE PROCEDE A BUSCAR CON LA TABLA DE FINGER"); 
-                            String _quienLoTiene =  buscador.tablaFingerSinSalto(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]));
-                            if(_quienLoTiene.equals("No")){
-                                buscador.tablaFingerConSalto(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]));
-                            }else{
-                                envio.encontreRecurso(_quienLoTiene, Integer.parseInt(split[6]), Integer.parseInt(split[7]),
-                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]),split[1]);
-                            }
+                            Finger f = buscador.buscarFingerOswaldo();
+                            Usuario u = new DAOUsuario().devolverUsuarioActivo();
+                            new EnvioNodo().enviarMensaje(f.getIp(), f.getPuertoTexto(), "BUSCAR;"+split[1]+";"+split[2]+";"+split[3]+";"+split[4]);
+                        
+
+                            //String _quienLoTiene =  buscador.tablaFingerDiferencia(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]));
+                            //if(_quienLoTiene.equals("No")){
+                            //    buscador.tablaFingerConSalto(split[2],Integer.parseInt(split[3]),Integer.parseInt(split[4]));
+                            //}else{
+                            //    envio.encontreRecurso(_quienLoTiene, Integer.parseInt(split[6]), Integer.parseInt(split[7]),
+                            //    split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]),split[1]);
+                            //}
+                            
                             
                         }else{
-                           envio.encontreRecurso(_conozcoDireccion, Integer.parseInt(split[7]), Integer.parseInt(split[8]),
-                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]),split[1]);
+                           envio.encontreRecurso(_conozcoDireccion.split(";")[0],Integer.parseInt(_conozcoDireccion.split(";")[1]),Integer.parseInt(_conozcoDireccion.split(";")[2]),split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]),split[1]);
                         }
                     }
               

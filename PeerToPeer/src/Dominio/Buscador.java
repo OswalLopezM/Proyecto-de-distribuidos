@@ -50,7 +50,7 @@ public class Buscador {
         String _conozco = "No";
         for(Recurso r : Recurso.ObtenerTodosLosRecursosConocidos()){
             if((r.getHashRecurso().equals(_hashRecurso)) && (r.getRecursoPropio() == false)){
-                _conozco = r.getIpRecurso();
+                _conozco = r.getIpRecurso()+";"+r.getPuertoTexto()+";"+r.getPuertoArchivo();
                 return _conozco;
             }
         }
@@ -112,5 +112,42 @@ public class Buscador {
         }
     }
     
+    public String tablaFingerDiferencia(String miIp, Integer miPuertoTexto, Integer miPuertoArchivo){
+        String _loTiene = "No";
+        Integer _diferenciaMenor = 1000000;
+        Integer _diferencia = 0;
+        DAOFinger _dao = new DAOFinger();
+        String ipMenor = "";
+        Integer puertoTextoMenor = 0 ,puertoArchivoMenor = 0;
+        
+        for(Finger f : _dao.todosLosFinger()){
+            _diferencia = f.getHash_ip() - _hashRecurso;
+            if(_diferencia < _diferenciaMenor){
+               _diferenciaMenor = _diferencia;
+               ipMenor = f.getIp();
+               puertoTextoMenor = f.getPuertoTexto();
+               puertoArchivoMenor = f.getPuertoArchivo();
+            }
+            
+        }    
+        EnvioNodo envio = new EnvioNodo();
+        try {
+            envio.buscarEnOtroNodo(_hashRecurso, miPuertoTexto, miPuertoArchivo, miIp,ipMenor,puertoTextoMenor,puertoArchivoMenor);
+        } catch (IOException ex) {
+            Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+     return _loTiene;
+    }
     
+    public Finger buscarFingerOswaldo(){
+        Finger ultimo = null;
+        for(Finger f : new DAOFinger().todosLosFinger()){    
+            if(_hashRecurso  <= f.getHash_ip()){
+                return f;
+            }
+            ultimo = f;
+            
+        } 
+        return ultimo;
+    }
 }

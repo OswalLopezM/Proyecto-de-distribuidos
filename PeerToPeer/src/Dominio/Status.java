@@ -92,21 +92,30 @@ public class Status {
      * @throws FileNotFoundException
      * @throws IOException 
      */
-    public String devolverStatus() throws FileNotFoundException, IOException{
-        int i=0;
+    public String devolverStatus(){
+        
+            int i=0;
         File f=null;
         String sfichero ="";
         String texto= "";
         BufferedReader br= null;
-        while (i<=1000){
-            sfichero ="status//"+this.tipo+"//status"+i+".txt";
-            f= new File(sfichero);
-            if(f.exists()){
-                br= new BufferedReader(new FileReader(sfichero));
-                texto=texto+br.readLine()+"\n";
-                br.close();
+        try {
+            while (i<=1000){
+                sfichero ="status//"+this.tipo+"//status"+i+".txt";
+                f= new File(sfichero);
+                if(f.exists()){
+
+                        br= new BufferedReader(new FileReader(sfichero));
+
+                    texto=texto+br.readLine()+"\n";
+                    br.close();
+                }
+                i++;
             }
-            i++;
+        } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Status.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+            Logger.getLogger(Status.class.getName()).log(Level.SEVERE, null, ex);
         }
         return texto;
     }

@@ -55,12 +55,11 @@ public class Interfaz {
         System.out.println("------------------------------------------------");
         System.out.println("------------------------------------------------");
         System.out.println("----               1: Buscar                ----");
-        System.out.println("----              2: Reportes               ----");
-        System.out.println("----      3: Mostrar Recursos conocidos     ----");
-        System.out.println("----       4: Mostrar Recursos propios      ----");
+        System.out.println("----      2: Mostrar Recursos conocidos     ----");
+        System.out.println("----       3: Mostrar Recursos propios      ----");
+        System.out.println("----         4: Estado de Respuestas        ----");
         System.out.println("----        5: Estado de Solicitudes        ----");
-        System.out.println("----         6: Estado de Respuestas        ----");
-        System.out.println("----         7: Numero de Descargas         ----");
+        System.out.println("----         6: Numero de Descargas         ----");
         System.out.println("------------------------------------------------");
         System.out.println("------------------------------------------------");
         
