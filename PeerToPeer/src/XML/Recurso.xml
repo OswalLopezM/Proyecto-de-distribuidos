@@ -1,36 +1,36 @@
 <root>
   <Recurso>
-    <nombreRecurso>Cirque Du Freak.pdf</nombreRecurso>
-    <hashRecurso>49</hashRecurso>
-    <ipRecurso>192.168.1.10</ipRecurso>
-    <hashIpRecurso>11</hashIpRecurso>
+    <nombreRecurso>Principe de persia.pdf</nombreRecurso>
+    <hashRecurso>55</hashRecurso>
+    <ipRecurso>192.168.1.9</ipRecurso>
+    <hashIpRecurso>81</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
     <cantidadDescargas>0</cantidadDescargas>
-    <puertoTexto>5002</puertoTexto>
-    <puertoArchivo>6002</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+    <puertoArchivo>6004</puertoArchivo>
   </Recurso>
   <Recurso>
-    <nombreRecurso>Bajo La Misma Estrella.pdf</nombreRecurso>
-    <hashRecurso>92</hashRecurso>
-    <ipRecurso>192.168.1.10</ipRecurso>
-    <hashIpRecurso>11</hashIpRecurso>
+    <nombreRecurso>Juegos del hambre.pdf</nombreRecurso>
+    <hashRecurso>29</hashRecurso>
+    <ipRecurso>192.168.1.9</ipRecurso>
+    <hashIpRecurso>81</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
     <cantidadDescargas>0</cantidadDescargas>
-    <puertoTexto>5002</puertoTexto>
-    <puertoArchivo>6002</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+    <puertoArchivo>6004</puertoArchivo>
   </Recurso>
   <Recurso>
-    <nombreRecurso>Yo Antes De Ti.pdf</nombreRecurso>
-    <hashRecurso>75</hashRecurso>
-    <ipRecurso>192.168.1.10</ipRecurso>
-    <hashIpRecurso>11</hashIpRecurso>
+    <nombreRecurso>The big Bang theory.pdf</nombreRecurso>
+    <hashRecurso>86</hashRecurso>
+    <ipRecurso>192.168.1.9</ipRecurso>
+    <hashIpRecurso>81</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
     <cantidadDescargas>0</cantidadDescargas>
-    <puertoTexto>5002</puertoTexto>
-    <puertoArchivo>6002</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+    <puertoArchivo>6004</puertoArchivo>
   </Recurso>
   <Recurso>
     <nombreRecurso>Harry Potter 2.pdf</nombreRecurso>
