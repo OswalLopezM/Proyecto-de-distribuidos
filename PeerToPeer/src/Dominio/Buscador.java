@@ -7,6 +7,7 @@ package Dominio;
 
 import Conexion.EnvioNodo;
 import DAO.DAOFinger;
+import DAO.DAOOtrosUsuarios;
 import DAO.DAORecurso;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,9 +87,11 @@ public class Buscador {
       public String tablaFingerSinSaltoPropio(String miIp, Integer miPuertoTexto, Integer miPuertoArchivo){
         String _loTiene = "No";
         DAOFinger _dao = new DAOFinger();
+        
         for(Finger f : _dao.todosLosFinger()){
-            if(_hashRecurso<=f.hash_ip){
-                _loTiene = f.getIp()+";"+f.getPuertoArchivo();
+            if((_hashRecurso)<=f.hash_ip){
+                _loTiene = f.getIp()+";"+f.getPuertoTexto();
+                System.out.println("_lotiene es "+_loTiene);
                 return _loTiene;
             }
         }     
@@ -108,4 +111,6 @@ public class Buscador {
             }
         }
     }
+    
+    
 }

@@ -95,7 +95,7 @@ public class PeerToPeer {
                 hiloTexto = new HiloPrincipalServidor();
                 hiloArchivo = new HiloPrincipalArchivo();
                 hiloTexto.start();
-                hiloArchivo.start();
+//                hiloArchivo.start();
                 Interfaz interfaz = new Interfaz();
                 interfaz.buscar();
                 PeerToPeer.dentroRegistro();
@@ -165,6 +165,7 @@ public class PeerToPeer {
                             
                         }else{
                            System.out.println("El recurso lo tiene: "+_conozcoDireccion);
+                           //aqui tambien se deberia probar el solicitar Recurso
                         }
 
                 }

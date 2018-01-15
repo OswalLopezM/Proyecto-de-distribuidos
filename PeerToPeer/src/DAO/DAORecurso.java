@@ -153,8 +153,8 @@ public class DAORecurso {
      * @return retorna el objeto producto
      */
     public Recurso buscarRecurso(String hashRecurso) throws ParseException {
-        Element aux = new Element("Finger");
-        List Recurso= this.root.getChildren("Finger");
+        Element aux = new Element("Recurso");
+        List Recurso= this.root.getChildren("Recurso");
         while (aux != null) {
             aux = DAORecurso.buscar(Recurso,hashRecurso);
             if (aux != null) {

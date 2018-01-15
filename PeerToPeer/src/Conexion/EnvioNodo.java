@@ -153,14 +153,16 @@ public class EnvioNodo {
    return strHashCode;
 }
   
-  public static void solicitarRecurso(String ipDueno, Integer PuertoArchivoDueno, Integer hashRecurso){
+  public static void solicitarRecurso(String ipDueno, Integer PuertoTextoDueno, Integer hashRecurso){
       try {
             Socket clientSocket;
-            clientSocket = new Socket(ipDueno,PuertoArchivoDueno);
+            System.out.println("la ip del dueno es "+ipDueno+" Puerto de texto: "+ PuertoTextoDueno+ " y el hash del recurs: "+hashRecurso);
+            clientSocket = new Socket(ipDueno,PuertoTextoDueno);
             Usuario u = new DAOUsuario().devolverUsuarioActivo();
             String ip = u.getIp();
             Integer puertoArchivo = u.getPuertoArchivo();
-            String mensaje = ip + ";" + puertoArchivo+";"+hashRecurso;
+            String mensaje = "DESCARGA;"+ip + ";" + puertoArchivo+";"+hashRecurso;
+            System.out.println("voy a enviar "+mensaje);
             ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
             envio.writeObject(mensaje);
             envio.close();

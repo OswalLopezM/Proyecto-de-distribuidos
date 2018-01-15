@@ -34,7 +34,7 @@ public class HiloPrincipalArchivo extends Thread{
             Socket clientSocket; //Socket del cliente
             for (;;){
                 clientSocket = serverSocket.accept();
-                new HiloEnvioArchivo(clientSocket).start();
+                //new HiloEnvioArchivo(clientSocket).start();
             }
         } catch (IOException ex) {
             Logger.getLogger(HiloPrincipalArchivo.class.getName()).log(Level.SEVERE, null, ex);

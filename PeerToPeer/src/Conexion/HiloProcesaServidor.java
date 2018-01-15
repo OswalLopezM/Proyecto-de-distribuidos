@@ -5,6 +5,7 @@
  */
 package Conexion;
 
+import ConexionArchivos.HiloEnvioArchivo;
 import DAO.DAOFinger;
 import DAO.DAOOtrosUsuarios;
 import DAO.DAORecurso;
@@ -46,7 +47,6 @@ public class HiloProcesaServidor extends Thread {
             clientSocket.getLocalAddress().getHostAddress();
             if(recibo instanceof String){
                 //logica para cualquier otra cosa.
-      
                 String[] split = ((String) recibo).split(";");
                 EnvioNodo envio = new EnvioNodo();
                 if (split[0].equals("BUSCAR")){
@@ -82,7 +82,9 @@ public class HiloProcesaServidor extends Thread {
                     System.out.println("La IP del dueno del recurso: "+split[1]);
                     System.out.println("El puerto de TEXTO del dueno del recurso: "+split[2]);
                     System.out.println("El puerto de ARCHIVOS del dueno del recurso: "+split[3]);
-                    EnvioNodo.solicitarRecurso(split[1],Integer.parseInt(split[3]),Integer.parseInt(split[4]));
+                    EnvioNodo.solicitarRecurso(split[1],Integer.parseInt(split[2]),Integer.parseInt(split[4]));
+                }else if(split[0].equals("DESCARGA")){
+                    new HiloEnvioArchivo((String) recibo).start();
                 }
             }else if(recibo instanceof ArrayList){
                 Recurso.eliminarArchivos();
