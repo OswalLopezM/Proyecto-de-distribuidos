@@ -1,26 +1,35 @@
 <root>
   <Recurso>
-    <nombreRecurso>Principe de persia.pdf</nombreRecurso>
-    <hashRecurso>55</hashRecurso>
-    <ipRecurso>192.168.1.9</ipRecurso>
-    <hashIpRecurso>81</hashIpRecurso>
+    <nombreRecurso>Cirque Du Freak.pdf</nombreRecurso>
+    <hashRecurso>49</hashRecurso>
+    <ipRecurso>192.168.1.10</ipRecurso>
+    <hashIpRecurso>11</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
+    <cantidadDescargas>0</cantidadDescargas>
+    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6002</puertoArchivo>
   </Recurso>
   <Recurso>
-    <nombreRecurso>Juegos del hambre.pdf</nombreRecurso>
-    <hashRecurso>29</hashRecurso>
-    <ipRecurso>192.168.1.9</ipRecurso>
-    <hashIpRecurso>81</hashIpRecurso>
+    <nombreRecurso>Bajo La Misma Estrella.pdf</nombreRecurso>
+    <hashRecurso>92</hashRecurso>
+    <ipRecurso>192.168.1.10</ipRecurso>
+    <hashIpRecurso>11</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
+    <cantidadDescargas>0</cantidadDescargas>
+    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6002</puertoArchivo>
   </Recurso>
   <Recurso>
-    <nombreRecurso>The big Bang theory.pdf</nombreRecurso>
-    <hashRecurso>86</hashRecurso>
-    <ipRecurso>192.168.1.9</ipRecurso>
-    <hashIpRecurso>81</hashIpRecurso>
+    <nombreRecurso>Yo Antes De Ti.pdf</nombreRecurso>
+    <hashRecurso>75</hashRecurso>
+    <ipRecurso>192.168.1.10</ipRecurso>
+    <hashIpRecurso>11</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
+    <cantidadDescargas>0</cantidadDescargas>
+    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6002</puertoArchivo>
   </Recurso>
 </root>
