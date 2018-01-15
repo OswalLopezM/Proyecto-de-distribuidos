@@ -83,11 +83,7 @@ public class PeerToPeer {
         new DAOOtrosUsuarios().eliminarOtrosUsuarios();
         String entradaTeclado="";
         while(!entradaTeclado.equals("0")){
-            System.out.println("¿QUE DESEA HACER?");
-            System.out.println("5: Registrar usuario");
-            System.out.println("6: Salir PeerToPeer");
-            System.out.println("7: Salir PeerToPeer");
-            System.err.println("0: Salir");
+            new Interfaz().menuPrincipal();
             Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
             entradaTeclado = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
             if(entradaTeclado.equals("5")){
@@ -175,6 +171,11 @@ public class PeerToPeer {
                 System.out.println("lista de recursos:");
                 for(Recurso r : Registro.Registro.RECURSOS_CONOCIDOS){
                     System.out.println("nombre : "+r.getNombreRecurso());
+                }
+            }else if(entradaTeclado.equals("4")){
+                System.out.println("Lista de mis recursos");
+                for (Recurso r: new DAORecurso().todosLosRecursosPropios()){
+                    System.out.println("Nombre: "+r.getNombreRecurso());
                 }
             }
         }
