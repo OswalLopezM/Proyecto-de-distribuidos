@@ -73,6 +73,8 @@ public class HiloEnvioArchivo extends Thread{
             System.out.println("HiloEnvioArchivo.run Se ha terminado el envio del archivo");
             bis.close();
             bos.close();
+            r.setCantidadDescargas(r.getCantidadDescargas()+1);
+            new DAORecurso().actualizarRecurso(r, r.getHashRecurso().toString());
             //clientSocket.close();
             clientArchivo.close();
         }catch ( Exception e ) {

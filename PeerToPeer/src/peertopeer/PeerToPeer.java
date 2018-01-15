@@ -39,7 +39,7 @@ public class PeerToPeer {
         
         //String nombreRecurso, String ipRecurso, String rutaRecurso,Boolean recursoPropio
         try {
-            recurso = new Recurso("Yo Antes De Ti.pdf",PeerToPeer.obtenerIP(),"no importa",true,0,0,0);//caso para que sea menor que la maquina de mari
+            recurso = new Recurso("Harry Potter 2.pdf",PeerToPeer.obtenerIP(),"no importa",true,0,0,0);//caso para que sea menor que la maquina de mari
         } catch (UnknownHostException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
