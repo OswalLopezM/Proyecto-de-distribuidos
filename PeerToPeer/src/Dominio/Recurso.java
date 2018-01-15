@@ -28,17 +28,25 @@ public class Recurso implements Serializable{
    public Integer hashIpRecurso;
    public String rutaRecurso;
    public Boolean recursoPropio;
+   public Integer cantidadDescargas;
+   public Integer puertoTexto;
+   public Integer puertoArchivo;
+   
    private static final long serialVersionUID = 1L;
    
     public Recurso(){}
    
-    public Recurso(String nombreRecurso, String ipRecurso, String rutaRecurso,Boolean recursoPropio) {
+    public Recurso(String nombreRecurso, String ipRecurso, String rutaRecurso,Boolean recursoPropio, Integer cantidadDescargas,
+            Integer puertoTexto, Integer puertoArchivo) {
         this.nombreRecurso = nombreRecurso;
         this.hashRecurso = toHash(nombreRecurso);
         this.ipRecurso = ipRecurso;
         this.hashIpRecurso = toHash(ipRecurso);
         this.rutaRecurso = rutaRecurso;
         this.recursoPropio = recursoPropio;
+        this.cantidadDescargas = cantidadDescargas;
+        this.puertoTexto = puertoTexto;
+        this.puertoArchivo = puertoArchivo;
     }
 
     public Boolean getRecursoPropio() {
@@ -89,6 +97,19 @@ public class Recurso implements Serializable{
         return rutaRecurso;
     }
 
+    public Integer getCantidadDescargas() {
+        return cantidadDescargas;
+    }
+
+    public Integer getPuertoTexto() {
+        return puertoTexto;
+    }
+
+    public Integer getPuertoArchivo() {
+        return puertoArchivo;
+    }
+    
+    
     /**
      * Establece el nombre del recurso
      * @param nombreRecurso el nombre
@@ -128,7 +149,20 @@ public class Recurso implements Serializable{
     public void setRutaRecurso(String rutaRecurso) {
         this.rutaRecurso = rutaRecurso;
     }
+
+    public void setCantidadDescargas(Integer cantidadDescargas) {
+        this.cantidadDescargas = cantidadDescargas;
+    }
+
+    public void setPuertoTexto(Integer puertoTexto) {
+        this.puertoTexto = puertoTexto;
+    }
+
+    public void setPuertoArchivo(Integer puertoArchivo) {
+        this.puertoArchivo = puertoArchivo;
+    }
    
+    
     
 /**
      * metodo que se encarga de convertir a hash la contrasena
@@ -157,7 +191,8 @@ public class Recurso implements Serializable{
                     BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 
                     bw.write(this.nombreRecurso+";"+this.hashRecurso+";"+this.ipRecurso+";"
-                            +this.hashIpRecurso+";"+this.rutaRecurso+";"+this.recursoPropio);
+                            +this.hashIpRecurso+";"+this.rutaRecurso+";"+this.recursoPropio+";"+
+                            this.cantidadDescargas+";"+this.puertoTexto+";"+this.puertoArchivo);
                     bw.close();
                 }
         } catch (IOException ex) {
@@ -192,7 +227,7 @@ public class Recurso implements Serializable{
                 for (File archivo : f.listFiles()){
                     br= new BufferedReader(new FileReader(sfichero+"//"+archivo.getName()));
                     texto= br.readLine();
-                    recursosConocidos.add(new Recurso(texto.split(";")[0],texto.split(";")[2],texto.split(";")[4],Boolean.parseBoolean(texto.split(";")[5])));
+                    recursosConocidos.add(new Recurso(texto.split(";")[0],texto.split(";")[2],texto.split(";")[4],Boolean.parseBoolean(texto.split(";")[5]),Integer.parseInt(texto.split(";")[6]),Integer.parseInt(texto.split(";")[7]),Integer.parseInt(texto.split(";")[8])));
                     br.close();
                 }
             }

@@ -57,6 +57,9 @@ public class DAORecurso {
         Element hashIpRecurso = new Element("hashIpRecurso");
         Element rutaRecurso = new Element("rutaRecurso");
         Element recursoPropio = new Element("recursoPropio");
+        Element cantidadDescargas = new Element("cantidadDescargas");
+        Element puertoTexto = new Element("puertoTexto");
+        Element puertoArchivo = new Element("puertoArchivo");
         
         nombreRecurso.setText(nRecurso.getNombreRecurso());
         hashRecurso.setText(nRecurso.getHashRecurso().toString());
@@ -64,6 +67,9 @@ public class DAORecurso {
         hashIpRecurso.setText(nRecurso.getHashIpRecurso().toString());
         rutaRecurso.setText(nRecurso.getRutaRecurso());
         recursoPropio.setText(nRecurso.getRecursoPropio().toString());
+        cantidadDescargas.setText(nRecurso.getCantidadDescargas().toString());
+        puertoTexto.setText(nRecurso.getPuertoTexto().toString());
+        puertoArchivo.setText(nRecurso.getPuertoArchivo().toString());
      
         
         Recursotrans.addContent(nombreRecurso);
@@ -72,6 +78,9 @@ public class DAORecurso {
         Recursotrans.addContent(hashIpRecurso);
         Recursotrans.addContent(rutaRecurso);
         Recursotrans.addContent(recursoPropio);
+        Recursotrans.addContent(cantidadDescargas);
+        Recursotrans.addContent(puertoTexto);
+        Recursotrans.addContent(puertoArchivo);
         
         return Recursotrans;
     }
@@ -87,7 +96,10 @@ public class DAORecurso {
         Recurso nRecurso = new Recurso (element.getChildText("nombreRecurso"),
                 element.getChildText("ipRecurso"),
                 element.getChildText("rutaRecurso"),
-                Boolean.parseBoolean(element.getChildText("recursoPropio")));
+                Boolean.parseBoolean(element.getChildText("recursoPropio")),
+                Integer.parseInt(element.getChildText("cantidadDescargas")),
+                Integer.parseInt(element.getChildText("puertoTexto")),
+                Integer.parseInt(element.getChildText("puertoArchivo")));
                 
         return nRecurso;
     }
@@ -100,14 +112,8 @@ public class DAORecurso {
      */
     public boolean registrarRecurso(Recurso nRecurso) {
         boolean resultado = false;
-        while(Registro.SEMAFORO_XML_RECURSO){
-            
-        }
-        Registro.SEMAFORO_XML_RECURSO = true;
         root.addContent(RecursotoXmlElement((Recurso) nRecurso));
         resultado = updateDocument();
-        System.out.println("DAORecurso.RegistrarRecurso TERMINE DE REGISTRAR EL RECURSO");
-        Registro.SEMAFORO_XML_RECURSO = false;
         return resultado;
     }
     
@@ -249,6 +255,23 @@ public class DAORecurso {
         }
 
     }
+    
+    public boolean actualizarRecurso(Recurso nRecurso,String hash) {
+        boolean resultado = false;
+        Element aux = new Element("Recurso");
+        List Recurso = this.root.getChildren("Recurso");
+        while (aux != null) {
+            System.out.println("el hash es " + hash);
+            aux = DAORecurso.buscar(Recurso,hash);
+            if (aux != null) {
+                System.out.println("consiguio el recurso");
+                Recurso.remove(aux);
+                resultado = updateDocument();
+            }
+        }
+        registrarRecurso(nRecurso);
+        return resultado;
+    } 
     
     public void actualizarRecursos(Recurso recurso){
         while(Registro.SEMAFORO_XML_RECURSO){

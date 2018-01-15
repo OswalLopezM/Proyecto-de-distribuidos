@@ -39,7 +39,7 @@ public class PeerToPeer {
         
         //String nombreRecurso, String ipRecurso, String rutaRecurso,Boolean recursoPropio
         try {
-            recurso = new Recurso("The big Bang theory.pdf",PeerToPeer.obtenerIP(),"no importa",true);//caso para que sea menor que la maquina de mari
+            recurso = new Recurso("Yo Antes De Ti.pdf",PeerToPeer.obtenerIP(),"no importa",true,0,0,0);//caso para que sea menor que la maquina de mari
         } catch (UnknownHostException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,7 +53,7 @@ public class PeerToPeer {
         //System.out.println("El recurso es: "+recurso.getNombreRecurso()+ " " + recurso.getIpRecurso() 
         //+ " " + recurso.getRutaRecurso()+ " " + recurso.getHashIpRecurso() + " " + recurso.getHashRecurso()+ " " );
         
-//        new DAORecurso().registrarRecurso(recurso);
+        //new DAORecurso().registrarRecurso(recurso);
         /*
         try {
             ip = InetAddress.getLocalHost().getHostAddress();
@@ -88,6 +88,12 @@ public class PeerToPeer {
             entradaTeclado = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
             if(entradaTeclado.equals("5")){
                 PeerToPeer.registrarmeConCoordinador();
+                for(Recurso r :new DAORecurso().todosLosRecursos()){
+                    System.out.println("El has del recurso en el main es: "+r.getHashRecurso());
+                    r.setPuertoArchivo(new DAOUsuario().devolverUsuarioActivo().getPuertoArchivo());
+                    r.setPuertoTexto(new DAOUsuario().devolverUsuarioActivo().getPuertoTexto());
+                    new DAORecurso().actualizarRecurso(r,r.getHashRecurso().toString());
+                }
                 hiloTexto = new HiloPrincipalServidor();
                 hiloArchivo = new HiloPrincipalArchivo();
                 hiloTexto.start();

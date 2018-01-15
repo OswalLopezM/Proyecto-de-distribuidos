@@ -6,6 +6,9 @@
     <hashIpRecurso>81</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
+    <cantidadDescargas>0</cantidadDescargas>
+    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6002</puertoArchivo>
   </Recurso>
   <Recurso>
     <nombreRecurso>Juegos del hambre.pdf</nombreRecurso>
@@ -14,6 +17,9 @@
     <hashIpRecurso>81</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
+    <cantidadDescargas>0</cantidadDescargas>
+    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6002</puertoArchivo>
   </Recurso>
   <Recurso>
     <nombreRecurso>The big Bang theory.pdf</nombreRecurso>
@@ -22,5 +28,8 @@
     <hashIpRecurso>81</hashIpRecurso>
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
+    <cantidadDescargas>0</cantidadDescargas>
+    <puertoTexto>5002</puertoTexto>
+    <puertoArchivo>6002</puertoArchivo>
   </Recurso>
 </root>
