@@ -29,7 +29,6 @@ public class HiloPrincipalServidor extends Thread{
             Usuario usuario = new DAOUsuario().buscarUsuario(toHash(ip).toString());
             
             int PUERTO = usuario.getPuertoTexto(); //Puerto para la conexión
-            System.out.println("SE INICIA HILO DE ESCUCHA DE TEXTO CON PUERTO: "+PUERTO);
             ServerSocket serverSocket = new ServerSocket(PUERTO); //Socket del servidor
             Socket clientSocket; //Socket del cliente
             for (;;)

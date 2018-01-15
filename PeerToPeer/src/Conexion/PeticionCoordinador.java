@@ -27,7 +27,6 @@ public class PeticionCoordinador {
 
             ObjectInputStream recibo = new ObjectInputStream(clientSocket.getInputStream());//Recibo el dato
             String texto = (String)  recibo.readObject();
-            System.out.println("llego al cliente: "+texto);
 
             envio.close();
             recibo.close();

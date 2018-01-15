@@ -57,8 +57,8 @@ public class HiloProcesaServidor extends Thread {
                     Buscador buscador = new Buscador(Integer.parseInt(split[1]));
                     Boolean _esMio = buscador.miRecurso();
                     if(_esMio == true){
-                        //envio.encontreRecurso(split[5], Integer.parseInt(split[6]), Integer.parseInt(split[7]),
-                        //        split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]),split[1]);
+                        envio.encontreRecurso(
+                                split[2],Integer.parseInt(split[3]), Integer.parseInt(split[4]),split[1]);
                     }else{
                         System.out.println("ESTE RECURSO "+split[1]+" NO ES TUYO, SE PROCEDE A BUSCAR SI TIENES LA DIRECCION DE ESTE RECURSO");
                         String _conozcoDireccion = buscador.conozcoDireccion();
@@ -97,9 +97,8 @@ public class HiloProcesaServidor extends Thread {
             }else if(recibo instanceof ArrayList){
                 Recurso.eliminarArchivos();
                 //logica para actualizar tabla de otrosUsuarios
-                System.out.println("llego un array/////////////////////////////////////////////////////");
+                System.out.println("---------------LLEGO UN ARRAY----------------");
                 ArrayList<String> otrosUsuarios = (ArrayList<String>) recibo;
-                System.out.println("El largo del array es: " +otrosUsuarios.size());
                 new DAOOtrosUsuarios().actualizarListaOtrosUsuarios(otrosUsuarios);
                 new DAOFinger().eliminarFinger();
                 new DAOFinger().llenarFinger();
@@ -110,18 +109,11 @@ public class HiloProcesaServidor extends Thread {
             }else if(recibo instanceof Recurso){
                 Thread.sleep(3000);
                 //logica para cuando recibes un recurso de otro nodo
-                System.out.println("HiloProcesaServidor.run La longitud de los recursos conocidos es: "+Registro.RECURSOS_CONOCIDOS.size());
-                System.out.println("HiloProcesaServidor.run LLEGO UN RECURSO");
+                System.out.println("---------------------LLEGO UN RECURSO----------------------");
                 Recurso recibido = (Recurso) recibo;
                 recibido.setRecursoPropio(false);
-                System.out.println("el recurso es: nombre " + recibido.getNombreRecurso() +" hash nombre "+ recibido.getHashRecurso() 
-                        +" ip "+ recibido.getIpRecurso() +" hash ip "+recibido.getHashIpRecurso() );
                 recibido.crearArchvio();
                 Registro.RECURSOS_CONOCIDOS.add(recibido);
-                System.out.println("HiloProcesaServidor.run La longitud de los recursos conocidos despues de agregar es: "+Registro.RECURSOS_CONOCIDOS.size());
-                //new DAORecurso().eliminarRecursoDeOtros(); 
-                //new DAORecurso().registrarRecurso(recibido);
-                //new DAORecurso().actualizarRecursos(recibido);
             }
             //ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream()); 
             //servidor responde

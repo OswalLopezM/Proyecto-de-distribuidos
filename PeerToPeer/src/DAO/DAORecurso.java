@@ -261,10 +261,8 @@ public class DAORecurso {
         Element aux = new Element("Recurso");
         List Recurso = this.root.getChildren("Recurso");
         while (aux != null) {
-            System.out.println("el hash es " + hash);
             aux = DAORecurso.buscar(Recurso,hash);
             if (aux != null) {
-                System.out.println("consiguio el recurso");
                 Recurso.remove(aux);
                 resultado = updateDocument();
             }

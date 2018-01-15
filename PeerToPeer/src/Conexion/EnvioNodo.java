@@ -92,7 +92,6 @@ public class EnvioNodo {
     public void enviar(String ip, Integer puerto,Recurso recurso){
         try {
             Socket clientSocket;
-            System.out.println("EnvioNodo.enviar: Voy a enviar el recurso con nombre " + recurso.getNombreRecurso() + " y hash: "+recurso.getHashIpRecurso()+" a ip: "+ip + " puerto: "+ puerto);
             clientSocket = new Socket(ip,puerto);
             ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
             envio.writeObject(recurso);
@@ -106,14 +105,12 @@ public class EnvioNodo {
     public void buscarEnOtroNodo(Integer hashrecurso, Integer miPuertoTexto, Integer miPuertoArchivo,
             String miIp, String tuIp, Integer tuPuertoTexto, Integer tuPuertoArchivo) throws IOException{
         Socket clientSocket;
-        System.out.println("Esta es la ip que llega "+tuIp +" Con este puerto: "+tuPuertoTexto);
             clientSocket = new Socket(tuIp,tuPuertoTexto);
         try {
             
             
             String mensaje = "BUSCAR;"+hashrecurso.toString()+";"+miIp+";"+miPuertoTexto+";"+miPuertoArchivo+
                     ";"+tuIp+";"+tuPuertoTexto.toString()+";"+tuPuertoArchivo.toString();
-            System.out.println("El mensaje es: "+mensaje);
             ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
             envio.writeObject(mensaje.toString());
            
@@ -176,13 +173,11 @@ public class EnvioNodo {
   public static void solicitarRecurso(String ipDueno, Integer PuertoTextoDueno, Integer hashRecurso){
       try {
             Socket clientSocket;
-            System.out.println("la ip del dueno es "+ipDueno+" Puerto de texto: "+ PuertoTextoDueno+ " y el hash del recurs: "+hashRecurso);
             clientSocket = new Socket(ipDueno,PuertoTextoDueno);
             Usuario u = new DAOUsuario().devolverUsuarioActivo();
             String ip = u.getIp();
             Integer puertoArchivo = u.getPuertoArchivo();
             String mensaje = "DESCARGA;"+ip + ";" + puertoArchivo+";"+hashRecurso;
-            System.out.println("voy a enviar "+mensaje);
             ObjectOutputStream envio = new ObjectOutputStream(clientSocket.getOutputStream()); // Envio el dato
             envio.writeObject(mensaje);
             envio.close();

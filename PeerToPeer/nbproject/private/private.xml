@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/oswalm/Documentos/repositorios/UnicorniosAzules/PeerToPeer/src/XML/Recurso.xml</file>
             <file>file:/home/oswalm/Documentos/repositorios/UnicorniosAzules/PeerToPeer/src/ConexionArchivos/HiloPrincipalArchivo.java</file>
-            <file>file:/home/oswalm/Documentos/repositorios/UnicorniosAzules/PeerToPeer/src/Conexion/PeticionCoordinador.java</file>
+            <file>file:/home/oswalm/Documentos/repositorios/UnicorniosAzules/PeerToPeer/src/DAO/DAORecurso.java</file>
             <file>file:/home/oswalm/Documentos/repositorios/UnicorniosAzules/PeerToPeer/src/Conexion/HiloPrincipalServidor.java</file>
-            <file>file:/home/oswalm/Documentos/repositorios/UnicorniosAzules/PeerToPeer/src/Registro/Registro.java</file>
-            <file>file:/home/oswalm/Documentos/repositorios/UnicorniosAzules/PeerToPeer/src/Conexion/EnvioNodo.java</file>
-            <file>file:/home/oswalm/Documentos/repositorios/UnicorniosAzules/PeerToPeer/src/XML/OtrosUsuarios.xml</file>
+            <file>file:/home/oswalm/Documentos/repositorios/UnicorniosAzules/PeerToPeer/src/Conexion/PeticionCoordinador.java</file>
             <file>file:/home/oswalm/Documentos/repositorios/UnicorniosAzules/PeerToPeer/src/peertopeer/PeerToPeer.java</file>
-            <file>file:/home/oswalm/Documentos/repositorios/UnicorniosAzules/PeerToPeer/src/XML/Usuario.xml</file>
         </group>
     </open-files>
 </project-private>
