@@ -13,17 +13,21 @@ public class Interfaz {
      * muestra la interfaz del menu principal
      */
     public static void menuPrincipal(){
+        System.out.println("------------------------------------------------");
         System.out.println("______            _____    ______");
         System.out.println("| ___ \\          |_   _|   | ___ \\            ");
         System.out.println("| |_/ /__  ___ _ __| | ___ | |_/ /__  ___ _ __ ");
         System.out.println("|  __/ _ \\/ _ \\ '__| |/ _ \\|  __/ _ \\/ _ \\ '__|");
         System.out.println("| | |  __/  __/ |  | | (_) | | |  __/  __/ | ");
         System.out.println("\\_|  \\___|\\___|_|  \\_/\\___/\\_|  \\___|\\___|_| ");
-            System.out.println("¿QUE DESEA HACER?");
-            System.out.println("5: Registrar usuario");
-            System.out.println("6: Salir PeerToPeer");
-            System.out.println("7: Salir PeerToPeer");
-            System.out.println("0: Salir");
+        System.out.println("------------------------------------------------");
+        System.out.println("--------------------BIENVENIDO------------------");
+        System.out.println("----             ¿QUE DESEA HACER?          ----");
+        System.out.println("----           5: Registrar usuario         ----");
+        System.out.println("----            6: Salir PeerToPeer         ----");
+        System.out.println("----            7: Salir PeerToPeer         ----");
+        System.out.println("----                 0: Salir               ----");
+        System.out.println("------------------------------------------------");
 
                                                
     }
@@ -41,15 +45,24 @@ public class Interfaz {
     }
     
     public static void buscar(){
-        
-        System.out.println("------------------------------------");
-        System.out.println("------------------------------------");
-        System.out.println("-     1: Buscar                    -");
-        System.out.println("-     2: Reportes                  -");
-        System.out.println("-  3: Mostrar Recursos conocidos   -");
-        System.out.println("-  4: Mostrar Recursos propios     -");
-        System.out.println("------------------------------------");
-        System.out.println("------------------------------------");
+        System.out.println("------------------------------------------------");
+        System.out.println("______            _____    ______");
+        System.out.println("| ___ \\          |_   _|   | ___ \\            ");
+        System.out.println("| |_/ /__  ___ _ __| | ___ | |_/ /__  ___ _ __ ");
+        System.out.println("|  __/ _ \\/ _ \\ '__| |/ _ \\|  __/ _ \\/ _ \\ '__|");
+        System.out.println("| | |  __/  __/ |  | | (_) | | |  __/  __/ | ");
+        System.out.println("\\_|  \\___|\\___|_|  \\_/\\___/\\_|  \\___|\\___|_| ");
+        System.out.println("------------------------------------------------");
+        System.out.println("------------------------------------------------");
+        System.out.println("----               1: Buscar                ----");
+        System.out.println("----              2: Reportes               ----");
+        System.out.println("----      3: Mostrar Recursos conocidos     ----");
+        System.out.println("----       4: Mostrar Recursos propios      ----");
+        System.out.println("----        5: Estado de Solicitudes        ----");
+        System.out.println("----         6: Estado de Respuestas        ----");
+        System.out.println("----         7: Numero de Descargas         ----");
+        System.out.println("------------------------------------------------");
+        System.out.println("------------------------------------------------");
         
     }
 }

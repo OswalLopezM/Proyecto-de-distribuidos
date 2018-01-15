@@ -7,8 +7,8 @@
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
     <cantidadDescargas>0</cantidadDescargas>
-    <puertoTexto>5002</puertoTexto>
-    <puertoArchivo>6002</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+    <puertoArchivo>6004</puertoArchivo>
   </Recurso>
   <Recurso>
     <nombreRecurso>Juegos del hambre.pdf</nombreRecurso>
@@ -18,8 +18,8 @@
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
     <cantidadDescargas>0</cantidadDescargas>
-    <puertoTexto>5002</puertoTexto>
-    <puertoArchivo>6002</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+    <puertoArchivo>6004</puertoArchivo>
   </Recurso>
   <Recurso>
     <nombreRecurso>The big Bang theory.pdf</nombreRecurso>
@@ -29,7 +29,7 @@
     <rutaRecurso>no importa</rutaRecurso>
     <recursoPropio>true</recursoPropio>
     <cantidadDescargas>0</cantidadDescargas>
-    <puertoTexto>5002</puertoTexto>
-    <puertoArchivo>6002</puertoArchivo>
+    <puertoTexto>5004</puertoTexto>
+    <puertoArchivo>6004</puertoArchivo>
   </Recurso>
 </root>
